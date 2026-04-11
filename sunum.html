@@ -576,20 +576,27 @@
   /* Iframe HİÇ hareket etmez, hep aynı boyutta.
      Sadece z-index değişir — slaytların altında / üstünde.
      Browser throttlingi z-index'ten kaynaklanmaz. */
+  /* Iframe HER ZAMAN görünür küçük pencerede (WebRTC canlı tutmak için).
+     Sahne 13'te transform ile büyütülür — reflow yok, stream kesilmez. */
   #live-wrapper {
     position: fixed;
     left: 20px;
     top: 20px;
-    width: 320px;
-    height: 240px;
+    width: 200px;
+    height: 150px;
     z-index: 200;
     pointer-events: none;
-    border: 2px solid red;
     overflow: hidden;
+    border-radius: 8px;
+    transform-origin: top left;
+    transition: transform 0.35s ease;
+    will-change: transform;
   }
 
   #live-wrapper.visible {
-    border-color: lime;
+    /* Scale ve translate ile ortalanmış büyük hale getir.
+       200x150 → ~1440x1080 (yaklaşık 80vw x 80vh) */
+    transform: translate(calc(10vw - 20px), calc(10vh - 20px)) scale(7.2);
   }
 
   #live-stream {
@@ -1042,7 +1049,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v9-test</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v10</div>
 
 <script>
   // ── STATE ──
