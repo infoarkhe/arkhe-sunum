@@ -573,23 +573,23 @@
   }
 
   /* ── CANLI YAYIN WRAPPER ── */
+  /* Ekran dışında başlar, görünür olduğunda ekran içine kayar.
+     Browser throttling için: display/visibility/opacity kullanmıyoruz. */
   #live-wrapper {
     position: fixed;
     left: 10vw;
-    top: 10vh;
+    top: 100vh;  /* ekranın alt dışında */
     width: 80vw;
     height: 80vh;
-    z-index: -1;
-    opacity: 0;
+    z-index: 50;
     pointer-events: none;
-    transition: opacity 0.35s ease;
+    transition: top 0.35s ease;
     border-radius: 18px;
     overflow: hidden;
   }
 
   #live-wrapper.visible {
-    z-index: 50;
-    opacity: 1;
+    top: 10vh;
     pointer-events: all;
   }
 
@@ -1043,7 +1043,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v3</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v4</div>
 
 <script>
   // ── STATE ──
