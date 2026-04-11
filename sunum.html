@@ -573,30 +573,38 @@
   }
 
   /* ── CANLI YAYIN WRAPPER ── */
-  /* Iframe hep viewport içinde kalır (throttling önlemi).
-     Aktif değilken sağ alta küçük, aktifken büyür. */
+  /* Iframe boyutu ve pozisyonu HİÇ değişmez, throttling olmaz.
+     Sahne 13 dışında üstüne beyaz overlay koyuyoruz. */
   #live-wrapper {
     position: fixed;
-    right: 8px;
-    bottom: 8px;
-    width: 120px;
-    height: 90px;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
     z-index: 50;
     pointer-events: none;
-    transition: all 0.35s ease;
-    border-radius: 6px;
+    border-radius: 18px;
     overflow: hidden;
-    opacity: 0.01;
+  }
+
+  #live-wrapper-cover {
+    position: fixed;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
+    z-index: 51;
+    background: #ffffff;
+    transition: opacity 0.35s ease;
+    pointer-events: none;
+  }
+
+  #live-wrapper-cover.hidden {
+    opacity: 0;
   }
 
   #live-wrapper.visible {
-    right: 10vw;
-    bottom: 10vh;
-    width: 80vw;
-    height: 80vh;
-    opacity: 1;
     pointer-events: all;
-    border-radius: 18px;
   }
 
   #live-stream {
@@ -1045,11 +1053,12 @@
     allowfullscreen>
   </iframe>
 </div>
+<div id="live-wrapper-cover"></div>
 
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v6</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v7</div>
 
 <script>
   // ── STATE ──
@@ -1068,6 +1077,7 @@
   const navIndicator = document.getElementById('nav-indicator');
   const cornerLogo = document.getElementById('corner-logo');
   const liveWrapper = document.getElementById('live-wrapper');
+  const liveCover = document.getElementById('live-wrapper-cover');
 
   // ── RENDER ──
   function render() {
@@ -1101,9 +1111,10 @@
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
 
-    // Canlı yayın wrapper — sadece sahne 13'te görünür (ama her zaman DOM'da, bağlantı sürekli)
+    // Canlı yayın — iframe hep açık, sadece cover'ı gizle/göster
     const isLiveScene = currentSlide === 2 && currentScene === 12;
     liveWrapper.classList.toggle('visible', isLiveScene);
+    liveCover.classList.toggle('hidden', isLiveScene);
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
