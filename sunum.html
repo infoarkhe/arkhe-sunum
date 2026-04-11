@@ -1038,8 +1038,8 @@
 <div id="live-wrapper">
   <iframe
     id="live-stream"
-    src=""
-    allow="autoplay; encrypted-media"
+    src="https://meet.jit.si/ArkheSunum0508#config.prejoinPageEnabled=false&config.startWithAudioMuted=true&config.startWithVideoMuted=false&config.disableDeepLinking=true&interfaceConfig.TOOLBAR_BUTTONS=[]&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true"
+    allow="autoplay; camera; microphone; encrypted-media; display-capture"
     allowfullscreen>
   </iframe>
 </div>
@@ -1047,7 +1047,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v12</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v13</div>
 
 <script>
   // ── STATE ──
@@ -1206,29 +1206,6 @@
   setTimeout(() => {
     goFullscreen();
   }, 500);
-
-  // ── CANLI YAYIN — live.txt'ten video ID oku ──
-  // live.txt dosyası localhost:8080/live.txt yolunda olmalı
-  // İçeriği sadece YouTube video ID olmalı (örn: dQw4w9WgXcQ)
-  async function loadLiveStream() {
-    try {
-      const res = await fetch('live.txt?t=' + Date.now());
-      if (!res.ok) throw new Error('live.txt bulunamadı');
-      const videoId = (await res.text()).trim();
-      if (!videoId) return;
-      const iframe = document.getElementById('live-stream');
-      const newSrc = `https://www.youtube.com/embed/${videoId}?autoplay=1&mute=1&controls=0&modestbranding=1`;
-      if (iframe.src !== newSrc) {
-        iframe.src = newSrc;
-        console.log('Live stream yüklendi:', videoId);
-      }
-    } catch (e) {
-      console.warn('Live stream yüklenemedi:', e.message);
-    }
-  }
-  loadLiveStream();
-  // Her 30 sn'de bir güncelle (yayın değişirse otomatik)
-  setInterval(loadLiveStream, 30000);
 
   // ── WAVE ANİMASYONU (sadece aktif sahne) ──
   const LINE_COUNT = 14;
