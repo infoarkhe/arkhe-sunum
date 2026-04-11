@@ -573,24 +573,30 @@
   }
 
   /* ── CANLI YAYIN WRAPPER ── */
-  /* Ekran dışında başlar, görünür olduğunda ekran içine kayar.
-     Browser throttling için: display/visibility/opacity kullanmıyoruz. */
+  /* Iframe hep viewport içinde kalır (throttling önlemi).
+     Aktif değilken sağ alta küçük, aktifken büyür. */
   #live-wrapper {
     position: fixed;
-    left: 10vw;
-    top: 100vh;  /* ekranın alt dışında */
-    width: 80vw;
-    height: 80vh;
+    right: 8px;
+    bottom: 8px;
+    width: 120px;
+    height: 90px;
     z-index: 50;
     pointer-events: none;
-    transition: top 0.35s ease;
-    border-radius: 18px;
+    transition: all 0.35s ease;
+    border-radius: 6px;
     overflow: hidden;
+    opacity: 0.01;
   }
 
   #live-wrapper.visible {
-    top: 10vh;
+    right: 10vw;
+    bottom: 10vh;
+    width: 80vw;
+    height: 80vh;
+    opacity: 1;
     pointer-events: all;
+    border-radius: 18px;
   }
 
   #live-stream {
@@ -1043,7 +1049,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v5</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v6</div>
 
 <script>
   // ── STATE ──
