@@ -573,37 +573,23 @@
   }
 
   /* ── CANLI YAYIN WRAPPER ── */
-  /* Iframe boyutu ve pozisyonu HİÇ değişmez, throttling olmaz.
-     Sahne 13 dışında üstüne beyaz overlay koyuyoruz. */
+  /* Iframe HİÇ hareket etmez, hep aynı boyutta.
+     Sadece z-index değişir — slaytların altında / üstünde.
+     Browser throttlingi z-index'ten kaynaklanmaz. */
   #live-wrapper {
     position: fixed;
     left: 10vw;
     top: 10vh;
     width: 80vw;
     height: 80vh;
-    z-index: 50;
+    z-index: -1;
     pointer-events: none;
     border-radius: 18px;
     overflow: hidden;
   }
 
-  #live-wrapper-cover {
-    position: fixed;
-    left: 10vw;
-    top: 10vh;
-    width: 80vw;
-    height: 80vh;
-    z-index: 51;
-    background: #ffffff;
-    transition: opacity 0.35s ease;
-    pointer-events: none;
-  }
-
-  #live-wrapper-cover.hidden {
-    opacity: 0;
-  }
-
   #live-wrapper.visible {
+    z-index: 50;
     pointer-events: all;
   }
 
@@ -1053,12 +1039,11 @@
     allowfullscreen>
   </iframe>
 </div>
-<div id="live-wrapper-cover"></div>
 
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v7</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v8</div>
 
 <script>
   // ── STATE ──
@@ -1077,7 +1062,6 @@
   const navIndicator = document.getElementById('nav-indicator');
   const cornerLogo = document.getElementById('corner-logo');
   const liveWrapper = document.getElementById('live-wrapper');
-  const liveCover = document.getElementById('live-wrapper-cover');
 
   // ── RENDER ──
   function render() {
@@ -1111,10 +1095,9 @@
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
 
-    // Canlı yayın — iframe hep açık, sadece cover'ı gizle/göster
+    // Canlı yayın — iframe boyutu değişmez, sadece z-index değişir
     const isLiveScene = currentSlide === 2 && currentScene === 12;
     liveWrapper.classList.toggle('visible', isLiveScene);
-    liveCover.classList.toggle('hidden', isLiveScene);
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
