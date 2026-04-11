@@ -578,19 +578,18 @@
      Browser throttlingi z-index'ten kaynaklanmaz. */
   #live-wrapper {
     position: fixed;
-    left: 10vw;
-    top: 10vh;
-    width: 80vw;
-    height: 80vh;
-    z-index: -1;
+    left: 20px;
+    top: 20px;
+    width: 320px;
+    height: 240px;
+    z-index: 200;
     pointer-events: none;
-    border-radius: 18px;
+    border: 2px solid red;
     overflow: hidden;
   }
 
   #live-wrapper.visible {
-    z-index: 50;
-    pointer-events: all;
+    border-color: lime;
   }
 
   #live-stream {
@@ -1043,7 +1042,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v8</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v9-test</div>
 
 <script>
   // ── STATE ──
