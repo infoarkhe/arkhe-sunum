@@ -1015,7 +1015,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v18</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v19</div>
 
 <script>
   // ── STATE ──
@@ -1073,6 +1073,12 @@
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
 
+    // Native live WebView — sadece sahne 13'te (index 12)
+    const isLiveScene = currentSlide === 2 && currentScene === 12;
+    if (window.SunumNative) {
+      if (isLiveScene) window.SunumNative.showLive();
+      else window.SunumNative.hideLive();
+    }
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
