@@ -1003,10 +1003,19 @@
 </div>
 
 
+<!-- Canlı yayın: sol üstte küçük, sunum boyunca hep görünür -->
+<iframe
+  id="live-stream"
+  src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&codec=vp8&buffer=200&autostart&noaudio"
+  allow="autoplay; encrypted-media"
+  allowfullscreen
+  style="position:fixed; left:20px; top:20px; width:240px; height:180px; border:2px solid #00b4d8; border-radius:8px; z-index:200; pointer-events:none; background:#000;">
+</iframe>
+
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v15</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v16</div>
 
 <script>
   // ── STATE ──
@@ -1057,12 +1066,6 @@
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
 
-    // Canlı yayın — native WebView'a haber ver
-    const isLiveScene = currentSlide === 2 && currentScene === 12;
-    if (window.Sunum) {
-      if (isLiveScene) window.Sunum.showLive();
-      else window.Sunum.hideLive();
-    }
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
