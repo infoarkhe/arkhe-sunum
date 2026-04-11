@@ -576,27 +576,25 @@
   /* Iframe HİÇ hareket etmez, hep aynı boyutta.
      Sadece z-index değişir — slaytların altında / üstünde.
      Browser throttlingi z-index'ten kaynaklanmaz. */
-  /* Iframe HER ZAMAN görünür küçük pencerede (WebRTC canlı tutmak için).
-     Sahne 13'te transform ile büyütülür — reflow yok, stream kesilmez. */
+  /* Iframe HEP tam boyutta (80vw x 80vh), hep aynı pozisyonda.
+     Sadece clip-path değişiyor — WebRTC'yi etkilemez. */
   #live-wrapper {
     position: fixed;
-    left: 20px;
-    top: 20px;
-    width: 200px;
-    height: 150px;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
     z-index: 200;
     pointer-events: none;
+    border-radius: 18px;
     overflow: hidden;
-    border-radius: 8px;
-    transform-origin: top left;
-    transition: transform 0.35s ease;
-    will-change: transform;
+    /* Başlangıçta sadece sol üstte küçük bir kare gözüksün (hep görünür) */
+    clip-path: polygon(0 0, 200px 0, 200px 150px, 0 150px);
   }
 
   #live-wrapper.visible {
-    /* Scale ve translate ile ortalanmış büyük hale getir.
-       200x150 → ~1440x1080 (yaklaşık 80vw x 80vh) */
-    transform: translate(calc(10vw - 20px), calc(10vh - 20px)) scale(7.2);
+    /* Tümü görünür */
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
   }
 
   #live-stream {
@@ -1049,7 +1047,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v10</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v11</div>
 
 <script>
   // ── STATE ──
