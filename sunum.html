@@ -572,38 +572,6 @@
     letter-spacing: 0.02em;
   }
 
-  /* ── CANLI YAYIN WRAPPER ── */
-  /* Iframe HİÇ hareket etmez, hep aynı boyutta.
-     Sadece z-index değişir — slaytların altında / üstünde.
-     Browser throttlingi z-index'ten kaynaklanmaz. */
-  /* Iframe HEP tam boyutta (80vw x 80vh), hep aynı pozisyonda.
-     Sadece clip-path değişiyor — WebRTC'yi etkilemez. */
-  #live-wrapper {
-    position: fixed;
-    left: 10vw;
-    top: 10vh;
-    width: 80vw;
-    height: 80vh;
-    z-index: 200;
-    pointer-events: none;
-    border-radius: 18px;
-    overflow: hidden;
-    /* Başlangıçta sadece sol üstte küçük bir kare gözüksün (hep görünür) */
-    clip-path: polygon(0 0, 200px 0, 200px 150px, 0 150px);
-  }
-
-  #live-wrapper.visible {
-    /* Tümü görünür */
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-
-  #live-stream {
-    border: none;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-  }
-
   /* ── NAVİGASYON İNDİKATÖRÜ ── */
   #nav-indicator {
     position: fixed;
@@ -1034,20 +1002,11 @@
   <div class="dot" data-section="4"></div>
 </div>
 
-<!-- Canlı yayın: sunum boyunca DOM'da, sahne 13'te görünür -->
-<div id="live-wrapper">
-  <iframe
-    id="live-stream"
-    src="https://meet.jit.si/ArkheSunum0508?userInfo.displayName=%22Izleyici%22#config.prejoinConfig.enabled=false&config.prejoinPageEnabled=false&config.startWithAudioMuted=true&config.disableDeepLinking=true&config.requireDisplayName=false&interfaceConfig.TOOLBAR_BUTTONS=[]&interfaceConfig.SHOW_JITSI_WATERMARK=false&interfaceConfig.HIDE_INVITE_MORE_HEADER=true"
-    allow="autoplay; camera; microphone; encrypted-media; display-capture"
-    allowfullscreen>
-  </iframe>
-</div>
 
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v14</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v15</div>
 
 <script>
   // ── STATE ──
@@ -1065,7 +1024,6 @@
   const slideNum = document.getElementById('slide-num');
   const navIndicator = document.getElementById('nav-indicator');
   const cornerLogo = document.getElementById('corner-logo');
-  const liveWrapper = document.getElementById('live-wrapper');
 
   // ── RENDER ──
   function render() {
@@ -1099,9 +1057,12 @@
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
 
-    // Canlı yayın — iframe boyutu değişmez, sadece z-index değişir
+    // Canlı yayın — native WebView'a haber ver
     const isLiveScene = currentSlide === 2 && currentScene === 12;
-    liveWrapper.classList.toggle('visible', isLiveScene);
+    if (window.Sunum) {
+      if (isLiveScene) window.Sunum.showLive();
+      else window.Sunum.hideLive();
+    }
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
