@@ -572,6 +572,34 @@
     letter-spacing: 0.02em;
   }
 
+  /* ── CANLI YAYIN WRAPPER ── */
+  #live-wrapper {
+    position: fixed;
+    left: 10vw;
+    top: 10vh;
+    width: 80vw;
+    height: 80vh;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.35s ease;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  #live-wrapper.visible {
+    z-index: 50;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  #live-stream {
+    border: none;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+  }
+
   /* ── NAVİGASYON İNDİKATÖRÜ ── */
   #nav-indicator {
     position: fixed;
@@ -889,18 +917,9 @@
         <div class="scene-label">TR / EN Dil Desteği</div>
       </div>
 
-      <!-- SAHNE 13: Canlı Demo -->
+      <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
       <div class="video-scene demo-scene" data-scene="12">
         <div class="scene-label">Canlı Demo</div>
-        <div id="live-container" style="position:relative; width:80vw; height:80vh; display:flex; align-items:center; justify-content:center;">
-          <iframe
-            id="live-stream"
-            src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&codec=vp8&buffer=200&nohtml5"
-            style="border:none; border-radius:18px; width:100%; height:100%; background:transparent;"
-            allow="autoplay; camera; microphone; encrypted-media"
-            allowfullscreen>
-          </iframe>
-        </div>
       </div>
 
       <!-- SAHNE 14: Karşılaştırma Tablosu -->
@@ -1011,6 +1030,16 @@
   <div class="dot" data-section="4"></div>
 </div>
 
+<!-- Canlı yayın: sunum boyunca DOM'da, sahne 13'te görünür -->
+<div id="live-wrapper">
+  <iframe
+    id="live-stream"
+    src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&codec=vp8&buffer=200&nohtml5"
+    allow="autoplay; camera; microphone; encrypted-media"
+    allowfullscreen>
+  </iframe>
+</div>
+
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
@@ -1031,6 +1060,7 @@
   const slideNum = document.getElementById('slide-num');
   const navIndicator = document.getElementById('nav-indicator');
   const cornerLogo = document.getElementById('corner-logo');
+  const liveWrapper = document.getElementById('live-wrapper');
 
   // ── RENDER ──
   function render() {
@@ -1063,6 +1093,10 @@
     // Corner logo — kapak ve son sahne (teşekkürler) hariç
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
+
+    // Canlı yayın wrapper — sadece sahne 13'te görünür (ama her zaman DOM'da, bağlantı sürekli)
+    const isLiveScene = currentSlide === 2 && currentScene === 12;
+    liveWrapper.classList.toggle('visible', isLiveScene);
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
