@@ -1015,7 +1015,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v17</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v18</div>
 
 <script>
   // ── STATE ──
@@ -1033,6 +1033,13 @@
   const slideNum = document.getElementById('slide-num');
   const navIndicator = document.getElementById('nav-indicator');
   const cornerLogo = document.getElementById('corner-logo');
+
+  // Native tarafından çağrılabilir — belirli bir sahneye atla
+  window.goToScene = function(sceneIdx) {
+    currentSlide = 2;
+    currentScene = sceneIdx;
+    render();
+  };
 
   // ── RENDER ──
   function render() {
