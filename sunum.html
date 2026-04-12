@@ -891,11 +891,11 @@
 
       <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
       <div class="video-scene demo-scene" data-scene="12">
-        <div class="scene-label">Canlı Demo</div>
+        <div class="scene-label" style="z-index:10;">Canlı Demo</div>
         <iframe
           id="live-stream"
-          src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
-          style="position:absolute; left:5vw; top:10vh; width:80vw; height:80vh; border:none; border-radius:18px; background:transparent;"
+          src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
+          style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:85vw; height:85vh; border:none; border-radius:18px; background:#000; z-index:5;"
           allow="autoplay; camera; microphone; encrypted-media"
           allowfullscreen>
         </iframe>
@@ -1010,19 +1010,10 @@
 </div>
 
 
-<!-- Canlı yayın: sol üstte küçük, sunum boyunca hep görünür -->
-<iframe
-  id="live-stream"
-  src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&codec=vp8&buffer=200&autostart&noaudio"
-  allow="autoplay; encrypted-media"
-  allowfullscreen
-  style="position:fixed; left:20px; top:20px; width:240px; height:180px; border:2px solid #00b4d8; border-radius:8px; z-index:200; pointer-events:none; background:#000;">
-</iframe>
-
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v21</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v22</div>
 
 <script>
   // ── STATE ──
