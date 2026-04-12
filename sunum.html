@@ -892,6 +892,13 @@
       <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
       <div class="video-scene demo-scene" data-scene="12">
         <div class="scene-label">Canlı Demo</div>
+        <iframe
+          id="live-stream"
+          src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
+          style="position:absolute; left:5vw; top:10vh; width:80vw; height:80vh; border:none; border-radius:18px; background:transparent;"
+          allow="autoplay; camera; microphone; encrypted-media"
+          allowfullscreen>
+        </iframe>
       </div>
 
       <!-- SAHNE 14: Karşılaştırma Tablosu -->
@@ -1012,19 +1019,10 @@
   style="position:fixed; left:20px; top:20px; width:240px; height:180px; border:2px solid #00b4d8; border-radius:8px; z-index:200; pointer-events:none; background:#000;">
 </iframe>
 
-<!-- Canlı yayın: sol üstte küçük, sunum boyunca hep görünür -->
-<iframe
-  id="live-stream"
-  src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
-  allow="autoplay; camera; microphone; encrypted-media"
-  allowfullscreen
-  style="position:fixed; left:20px; top:20px; width:240px; height:180px; border:2px solid #00b4d8; border-radius:8px; z-index:200; pointer-events:none; background:#000;">
-</iframe>
-
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v20</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v21</div>
 
 <script>
   // ── STATE ──
@@ -1081,13 +1079,6 @@
     // Corner logo — kapak ve son sahne (teşekkürler) hariç
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
     cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
-
-    // Native live WebView — sadece sahne 13'te (index 12)
-    const isLiveScene = currentSlide === 2 && currentScene === 12;
-    if (window.SunumNative) {
-      if (isLiveScene) window.SunumNative.showLive();
-      else window.SunumNative.hideLive();
-    }
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
