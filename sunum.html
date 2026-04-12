@@ -572,6 +572,11 @@
     letter-spacing: 0.02em;
   }
 
+  @keyframes rec-blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.2; }
+  }
+
   /* ── NAVİGASYON İNDİKATÖRÜ ── */
   #nav-indicator {
     position: fixed;
@@ -891,7 +896,7 @@
 
       <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
       <div class="video-scene demo-scene" data-scene="12">
-        <div class="scene-label" style="z-index:10;">Canlı Demo</div>
+        <div class="scene-label" style="z-index:10; color:#e63946;"><span style="display:inline-block; width:14px; height:14px; background:#e63946; border-radius:50%; margin-right:12px; vertical-align:middle; animation:rec-blink 1.5s ease-in-out infinite;"></span>Canlı Demo</div>
         <iframe
           id="live-stream"
           src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
@@ -1013,7 +1018,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v22</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v23</div>
 
 <script>
   // ── STATE ──
