@@ -474,8 +474,8 @@
       content: '';
       position: absolute;
       left: 0;
-      top: 50%;
-      transform: translateY(-50%);
+      top: 0.7em;
+      transform: none;
       width: 12px;
       height: 12px;
       border-radius: 50%;
@@ -917,9 +917,8 @@
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
-            <li>Büyük rakam görünümü</li>
-            <li>Uzaktan okunabilir</li>
-            <li>Watt cinsinden anlık değer</li>
+            <li><b>Büyük rakam gösterimi</b> — makineye yaklaşmadan güç değerini okursunuz.</li>
+            <li><b>Alarm göstergeleri</b> — Power ve Energy alarmları üst ve altta belirir.</li>
           </ul>
           <div class="scene-label">Güç / Büyük</div>
         </div>
@@ -932,9 +931,8 @@
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
-            <li>Dalga formu analizi</li>
-            <li>Sinyal kalitesi takibi</li>
-            <li>Harmonik bozulma tespiti</li>
+            <li><b>Gerçek zamanlı dalga formu</b> — güç sinyalinin zaman içindeki değişimi osiloskop gibi gösterilir.</li>
+            <li><b>Ani dalgalanma takibi</b> — sayısal göstergelerin kaçırdığı mikro-salınımlar fark edilir.</li>
           </ul>
           <div class="scene-label">Güç / Sinyal</div>
         </div>
@@ -1187,7 +1185,7 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v41</div>
+    v42</div>
 
   <script>
     // ── STATE ──
