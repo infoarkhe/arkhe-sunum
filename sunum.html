@@ -290,23 +290,80 @@
     z-index: 1;
   }
 
-  .intro-text {
+  /* Intro sahnesi — video arkada, metin ortada shell içinde */
+  .intro-scene video {
+    position: absolute !important;
+    left: 50% !important;
+    top: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    width: 90vw !important;
+    max-width: none !important;
+    max-height: none !important;
+    height: 90vh !important;
+    opacity: 0.12;
+    filter: blur(2px) grayscale(30%);
+    z-index: 0;
+    pointer-events: none;
+  }
+
+  .intro-scene .scene-info-bg {
+    display: none;
+  }
+
+  .intro-scene .scene-label {
+    z-index: 3;
+  }
+
+  .intro-shell {
     position: absolute;
-    left: 52vw;
+    left: 50%;
     top: 50%;
-    transform: translateY(-50%);
-    max-width: 40vw;
+    transform: translate(-50%, -50%);
+    max-width: 70vw;
+    padding: 64px 72px;
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(0, 180, 216, 0.2);
+    border-radius: 24px;
+    box-shadow:
+      0 2px 0 rgba(0, 180, 216, 0.08) inset,
+      0 0 0 1px rgba(0, 180, 216, 0.1),
+      0 30px 80px rgba(0, 0, 0, 0.08);
+    z-index: 2;
+  }
+
+  .intro-shell::before {
+    content: '';
+    position: absolute;
+    left: -2px; top: -2px; right: -2px; bottom: -2px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, rgba(0,180,216,0.5), transparent 40%, transparent 60%, rgba(0,180,216,0.5));
+    z-index: -1;
+    opacity: 0.6;
+  }
+
+  .intro-badge {
+    font-family: var(--font-display);
+    font-size: clamp(14px, 1.5vw, 20px);
+    letter-spacing: 0.4em;
+    color: var(--accent);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .intro-text {
     font-family: var(--font-body);
-    font-size: clamp(22px, 2.8vw, 36px);
+    font-size: clamp(22px, 2.6vw, 34px);
     font-weight: 300;
-    line-height: 1.4;
-    color: var(--gray-700);
-    z-index: 1;
+    line-height: 1.5;
+    color: var(--black);
+    text-align: center;
+    max-width: 60vw;
   }
 
   .intro-text .accent {
     color: var(--accent);
-    font-weight: 500;
+    font-weight: 600;
   }
 
   .scene-info-bg {
@@ -757,8 +814,11 @@
           <source src="videos/01_ana_ekran.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
-        <div class="intro-text">
-          Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
+        <div class="intro-shell">
+          <div class="intro-badge">// ÇÖZÜM</div>
+          <div class="intro-text">
+            Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
+          </div>
         </div>
         <div class="scene-label">Enerjimetre</div>
       </div>
@@ -1052,7 +1112,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v25</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v26</div>
 
 <script>
   // ── STATE ──
