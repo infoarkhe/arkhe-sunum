@@ -348,18 +348,33 @@
     background: var(--black);
   }
 
+  .intro-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
   .intro-badge {
     font-family: var(--font-display);
     font-size: clamp(28px, 3.5vw, 48px);
     letter-spacing: 0.25em;
     color: var(--black);
-    margin-bottom: 32px;
     text-align: left;
+    flex: 1;
   }
 
   .intro-badge .slash {
     color: var(--accent);
     margin-right: 4px;
+  }
+
+  .intro-logo {
+    width: clamp(60px, 6vw, 96px);
+    height: clamp(60px, 6vw, 96px);
+    animation: kapak-spin 60s linear infinite;
+    flex-shrink: 0;
   }
 
   .intro-text {
@@ -825,7 +840,10 @@
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
         <div class="intro-shell">
-          <div class="intro-badge"><span class="slash">//</span> ÇÖZÜM — ENERJİMETRE</div>
+          <div class="intro-header">
+            <div class="intro-badge"><span class="slash">//</span> ÇÖZÜM — ENERJİMETRE</div>
+            <img src="logo.svg" class="intro-logo" alt="">
+          </div>
           <div class="intro-text">
             Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
           </div>
@@ -1122,7 +1140,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v29</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v30</div>
 
 <script>
   // ── STATE ──
@@ -1176,9 +1194,10 @@
       sceneCounter.classList.remove('visible');
     }
 
-    // Corner logo — kapak ve son sahne (teşekkürler) hariç
+    // Corner logo — kapak, intro sahnesi ve son sahne hariç
     const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
-    cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene);
+    const isIntroScene = currentSlide === 2 && currentScene === 0;
+    cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene && !isIntroScene);
 
     // Nav dots — kapak ve teşekkürler hariç
     // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
