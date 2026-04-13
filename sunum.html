@@ -3,7 +3,6 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<base href="http://localhost:8080/">
 <title>Arkhe Enerjimetre — Sunum</title>
 <link rel="manifest" href="manifest.json">
 <meta name="mobile-web-app-capable" content="yes">
@@ -572,9 +571,15 @@
     letter-spacing: 0.02em;
   }
 
+  .rec-label {
+    color: #e63946;
+    z-index: 10;
+    animation: rec-blink 1.5s ease-in-out infinite;
+  }
+
   @keyframes rec-blink {
     0%, 100% { opacity: 1; }
-    50% { opacity: 0.2; }
+    50% { opacity: 0.3; }
   }
 
   /* ── NAVİGASYON İNDİKATÖRÜ ── */
@@ -729,6 +734,7 @@
       <!-- SAHNE 1: Ana Ekran -->
       <div class="video-scene active side-left" data-scene="0">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/01_ana_ekran.mp4" type="video/mp4">
           <source src="videos/01_ana_ekran.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -743,6 +749,7 @@
       <!-- SAHNE 2: Power Gauge -->
       <div class="video-scene side-left" data-scene="1">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/02_power_gauge.mp4" type="video/mp4">
           <source src="videos/02_power_gauge.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -757,6 +764,7 @@
       <!-- SAHNE 3: Power Big -->
       <div class="video-scene side-left" data-scene="2">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/03_power_big.mp4" type="video/mp4">
           <source src="videos/03_power_big.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -771,6 +779,7 @@
       <!-- SAHNE 4: Power Osiloskop -->
       <div class="video-scene side-left" data-scene="3">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/04_power_osiloskop.mp4" type="video/mp4">
           <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -785,6 +794,7 @@
       <!-- SAHNE 5: CO2 Gauge -->
       <div class="video-scene side-left" data-scene="4">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/05_co2_gauge.mp4" type="video/mp4">
           <source src="videos/05_co2_gauge.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -799,6 +809,7 @@
       <!-- SAHNE 6: CO2 Big -->
       <div class="video-scene side-left" data-scene="5">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/06_co2_big.mp4" type="video/mp4">
           <source src="videos/06_co2_big.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -813,6 +824,7 @@
       <!-- SAHNE 7: Barchart -->
       <div class="video-scene side-left" data-scene="6">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/07_barchart.mp4" type="video/mp4">
           <source src="videos/07_barchart.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -827,6 +839,7 @@
       <!-- SAHNE 8: Günlük Rapor -->
       <div class="video-scene side-left" data-scene="7">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/08_gunluk_rapor.mp4" type="video/mp4">
           <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -841,6 +854,7 @@
       <!-- SAHNE 9: Alarm Sistemi -->
       <div class="video-scene side-left" data-scene="8">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/09_alarm.mp4" type="video/mp4">
           <source src="videos/09_alarm.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -855,6 +869,7 @@
       <!-- SAHNE 10: RS485 Ayarları -->
       <div class="video-scene side-left" data-scene="9">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/10_rs485.mp4" type="video/mp4">
           <source src="videos/10_rs485.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -869,6 +884,7 @@
       <!-- SAHNE 11: Şifre Koruma -->
       <div class="video-scene side-left" data-scene="10">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/11_sifre.mp4" type="video/mp4">
           <source src="videos/11_sifre.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -883,6 +899,7 @@
       <!-- SAHNE 12: Dil Seçeneği -->
       <div class="video-scene side-left" data-scene="11">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+          <source src="http://localhost:8080/videos/12_dil.mp4" type="video/mp4">
           <source src="videos/12_dil.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
@@ -896,7 +913,7 @@
 
       <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
       <div class="video-scene demo-scene" data-scene="12">
-        <div class="scene-label" style="z-index:10; color:#e63946;"><span style="display:inline-block; width:14px; height:14px; background:#e63946; border-radius:50%; margin-right:12px; vertical-align:middle; animation:rec-blink 1.5s ease-in-out infinite;"></span>Canlı Demo</div>
+        <div class="scene-label rec-label">&#9679; Canlı Demo</div>
         <iframe
           id="live-stream"
           src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
