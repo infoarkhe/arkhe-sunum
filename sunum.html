@@ -352,8 +352,9 @@
     display: flex;
     align-items: center;
     justify-content: space-between;
-    gap: 32px;
-    margin-bottom: 32px;
+    gap: 40px;
+    margin-bottom: 36px;
+    margin-right: -32px;
   }
 
   .intro-badge {
@@ -362,7 +363,8 @@
     letter-spacing: 0.25em;
     color: var(--black);
     text-align: left;
-    flex: 1;
+    line-height: 1;
+    flex: 0 1 auto;
   }
 
   .intro-badge .slash {
@@ -371,10 +373,11 @@
   }
 
   .intro-logo {
-    width: clamp(60px, 6vw, 96px);
-    height: clamp(60px, 6vw, 96px);
+    width: clamp(70px, 7vw, 110px);
+    height: clamp(70px, 7vw, 110px);
     animation: kapak-spin 60s linear infinite;
     flex-shrink: 0;
+    display: block;
   }
 
   .intro-text {
@@ -1140,7 +1143,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v30</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v31</div>
 
 <script>
   // ── STATE ──
