@@ -290,18 +290,19 @@
     z-index: 1;
   }
 
-  /* Intro sahnesi — video arkada, metin ortada shell içinde */
+  /* Intro sahnesi — video tam ekran arkada, metin ortada */
   .intro-scene video {
     position: absolute !important;
     left: 50% !important;
     top: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    width: 90vw !important;
+    transform: translate(-50%, -50%) scale(1.35) !important;
+    width: 100vw !important;
     max-width: none !important;
     max-height: none !important;
-    height: 90vh !important;
-    opacity: 0.12;
-    filter: blur(2px) grayscale(30%);
+    height: 100vh !important;
+    object-fit: cover !important;
+    opacity: 0.1;
+    filter: blur(3px) grayscale(40%);
     z-index: 0;
     pointer-events: none;
   }
@@ -311,7 +312,7 @@
   }
 
   .intro-scene .scene-label {
-    z-index: 3;
+    display: none;
   }
 
   .intro-shell {
@@ -319,36 +320,46 @@
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    max-width: 70vw;
-    padding: 64px 72px;
-    background: rgba(255, 255, 255, 0.88);
-    backdrop-filter: blur(8px);
-    border: 1px solid rgba(0, 180, 216, 0.2);
-    border-radius: 24px;
-    box-shadow:
-      0 2px 0 rgba(0, 180, 216, 0.08) inset,
-      0 0 0 1px rgba(0, 180, 216, 0.1),
-      0 30px 80px rgba(0, 0, 0, 0.08);
+    max-width: 78vw;
+    padding: 72px 88px;
+    background: #ffffff;
     z-index: 2;
   }
 
+  /* Üstte kalın accent çizgi */
   .intro-shell::before {
     content: '';
     position: absolute;
-    left: -2px; top: -2px; right: -2px; bottom: -2px;
-    border-radius: 26px;
-    background: linear-gradient(135deg, rgba(0,180,216,0.5), transparent 40%, transparent 60%, rgba(0,180,216,0.5));
-    z-index: -1;
-    opacity: 0.6;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 6px;
+    background: var(--accent);
+  }
+
+  /* Sağ altta ince köşe çizgileri */
+  .intro-shell::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 40%;
+    height: 2px;
+    background: var(--black);
   }
 
   .intro-badge {
     font-family: var(--font-display);
-    font-size: clamp(14px, 1.5vw, 20px);
-    letter-spacing: 0.4em;
+    font-size: clamp(28px, 3.5vw, 48px);
+    letter-spacing: 0.25em;
+    color: var(--black);
+    margin-bottom: 32px;
+    text-align: left;
+  }
+
+  .intro-badge .slash {
     color: var(--accent);
-    margin-bottom: 20px;
-    text-align: center;
+    margin-right: 4px;
   }
 
   .intro-text {
@@ -356,9 +367,8 @@
     font-size: clamp(22px, 2.6vw, 34px);
     font-weight: 300;
     line-height: 1.5;
-    color: var(--black);
-    text-align: center;
-    max-width: 60vw;
+    color: var(--gray-700);
+    text-align: left;
   }
 
   .intro-text .accent {
@@ -815,7 +825,7 @@
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
         <div class="intro-shell">
-          <div class="intro-badge">// ÇÖZÜM</div>
+          <div class="intro-badge"><span class="slash">//</span> ÇÖZÜM — ENERJİMETRE</div>
           <div class="intro-text">
             Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
           </div>
@@ -1112,7 +1122,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v26</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v27</div>
 
 <script>
   // ── STATE ──
