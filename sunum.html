@@ -290,6 +290,25 @@
     z-index: 1;
   }
 
+  .intro-text {
+    position: absolute;
+    left: 52vw;
+    top: 50%;
+    transform: translateY(-50%);
+    max-width: 40vw;
+    font-family: var(--font-body);
+    font-size: clamp(22px, 2.8vw, 36px);
+    font-weight: 300;
+    line-height: 1.4;
+    color: var(--gray-700);
+    z-index: 1;
+  }
+
+  .intro-text .accent {
+    color: var(--accent);
+    font-weight: 500;
+  }
+
   .scene-info-bg {
     position: absolute;
     left: 50vw;
@@ -732,17 +751,15 @@
     <div class="video-stage">
 
       <!-- SAHNE 1: Ana Ekran -->
-      <div class="video-scene active side-left" data-scene="0">
+      <div class="video-scene active side-left intro-scene" data-scene="0">
         <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
           <source src="http://localhost:8080/videos/01_ana_ekran.mp4" type="video/mp4">
           <source src="videos/01_ana_ekran.mp4" type="video/mp4">
         </video>
         <div class="scene-info-bg"><canvas></canvas></div>
-        <ul class="scene-info">
-          <li>Genel sistem durumu</li>
-          <li>Tüm verilere tek ekran</li>
-          <li>Anlık güç ve enerji özeti</li>
-        </ul>
+        <div class="intro-text">
+          Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
+        </div>
         <div class="scene-label">Enerjimetre</div>
       </div>
 
@@ -1035,7 +1052,7 @@
 <img id="corner-logo" src="logo.svg" alt="">
 <div id="scene-counter"></div>
 <div id="slide-num"></div>
-<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v24</div>
+<div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">v25</div>
 
 <script>
   // ── STATE ──
