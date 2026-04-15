@@ -895,50 +895,23 @@
           <div class="scene-label">Enerjimetre</div>
         </div>
 
-        <!-- SAHNE 2: Power Gauge -->
+        <!-- SAHNE 9: Alarm Sistemi -->
         <div class="video-scene side-left" data-scene="1">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/02_power_gauge.mp4" type="video/mp4">
-            <source src="videos/02_power_gauge.mp4" type="video/mp4">
+            <source src="http://localhost:8080/videos/09_alarm.mp4" type="video/mp4">
+            <source src="videos/09_alarm.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
-            <li><b>Histerik görünürlük</b> — kadran, güç dalgalanmalarını dijital sayıdan çok daha hızlı gösterir.</li>
-            <li><b>Alarm göstergeleri</b> — Power ve Energy alarmları tetiklendiğinde kadranın üstünde ve altında ayrı ikonlarla belirir.</li>
+            <li><b>3 boyutlu alarm sistemi</b> — zaman, güç ve enerji için ayrı tetikleyiciler.</li>
+            <li><b>Ön tanımlı + özel</b> — molalar ve gün sonu hazır gelir; 4 özel zaman, 3 özel güç ve 3 özel enerji eşiği yetkiliye bırakılır.</li>
+            <li><b>Anomali analizi</b> — power ve enerji alarmları günlük raporlardaki yükselişleri yakalar; mesai dışı kayıpları minimize etmenin kilidi.</li>
           </ul>
-          <div class="scene-label">Güç / Kadran</div>
-        </div>
-
-        <!-- SAHNE 3: Power Big -->
-        <div class="video-scene side-left" data-scene="2">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/03_power_big.mp4" type="video/mp4">
-            <source src="videos/03_power_big.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Büyük rakam gösterimi</b> — makineye yaklaşmadan güç değerini okursunuz.</li>
-            <li><b>Alarm göstergeleri</b> — Power ve Energy alarmları üst ve altta belirir.</li>
-          </ul>
-          <div class="scene-label">Güç / Büyük</div>
-        </div>
-
-        <!-- SAHNE 4: Power Osiloskop -->
-        <div class="video-scene side-left" data-scene="3">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/04_power_osiloskop.mp4" type="video/mp4">
-            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Gerçek zamanlı dalga formu</b> — güç sinyalinin zaman içindeki değişimi osiloskop gibi gösterilir.</li>
-            <li><b>Ani dalgalanma takibi</b> — sayısal göstergelerin kaçırdığı mikro-salınımlar fark edilir.</li>
-          </ul>
-          <div class="scene-label">Güç / Sinyal</div>
+          <div class="scene-label">Alarm Sistemi</div>
         </div>
 
         <!-- SAHNE 7: Barchart -->
-        <div class="video-scene side-left" data-scene="4">
+        <div class="video-scene side-left" data-scene="2">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
             <source src="http://localhost:8080/videos/07_barchart.mp4" type="video/mp4">
             <source src="videos/07_barchart.mp4" type="video/mp4">
@@ -953,7 +926,7 @@
         </div>
 
         <!-- SAHNE 8: Günlük Rapor -->
-        <div class="video-scene side-left" data-scene="5">
+        <div class="video-scene side-left" data-scene="3">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
             <source src="http://localhost:8080/videos/08_gunluk_rapor.mp4" type="video/mp4">
             <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
@@ -967,23 +940,8 @@
           <div class="scene-label">Günlük Rapor</div>
         </div>
 
-        <!-- SAHNE 9: Alarm Sistemi -->
-        <div class="video-scene side-left" data-scene="6">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/09_alarm.mp4" type="video/mp4">
-            <source src="videos/09_alarm.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>3 boyutlu alarm sistemi</b> — zaman, güç ve enerji için ayrı tetikleyiciler.</li>
-            <li><b>Ön tanımlı + özel</b> — molalar ve gün sonu hazır gelir; 4 özel zaman, 3 özel güç ve 3 özel enerji eşiği yetkiliye bırakılır.</li>
-            <li><b>Anomali analizi</b> — power ve enerji alarmları günlük raporlardaki yükselişleri yakalar; mesai dışı kayıpları minimize etmenin kilidi.</li>
-          </ul>
-          <div class="scene-label">Alarm Sistemi</div>
-        </div>
-
         <!-- SAHNE 10: RS485 Ayarları -->
-        <div class="video-scene side-left" data-scene="7">
+        <div class="video-scene side-left" data-scene="4">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
             <source src="http://localhost:8080/videos/10_rs485.mp4" type="video/mp4">
             <source src="videos/10_rs485.mp4" type="video/mp4">
@@ -996,35 +954,50 @@
           <div class="scene-label">RS485 Haberleşme</div>
         </div>
 
-        <!-- SAHNE 11: Şifre Koruma -->
-        <div class="video-scene side-left" data-scene="8">
+        <!-- SAHNE 2: Power Gauge -->
+        <div class="video-scene side-left" data-scene="5">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/11_sifre.mp4" type="video/mp4">
-            <source src="videos/11_sifre.mp4" type="video/mp4">
+            <source src="http://localhost:8080/videos/02_power_gauge.mp4" type="video/mp4">
+            <source src="videos/02_power_gauge.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
-            <li><b>Yetkisiz erişim engeli</b> — cihaz ayarlarına yalnızca şifre bilen kişiler ulaşabilir, operatör seviyesinde müdahaleler kısıtlanır.</li>
-            <li><b>Ayar koruması</b> — alarm eşikleri, tarife saatleri ve haberleşme parametreleri yanlışlıkla değiştirilmekten korunur.</li>
+            <li><b>Histerik görünürlük</b> — kadran, güç dalgalanmalarını dijital sayıdan çok daha hızlı gösterir.</li>
+            <li><b>Alarm göstergeleri</b> — Power ve Energy alarmları tetiklendiğinde kadranın üstünde ve altında ayrı ikonlarla belirir.</li>
           </ul>
-          <div class="scene-label">Şifre Koruması</div>
+          <div class="scene-label">Güç / Kadran</div>
         </div>
 
-        <!-- SAHNE 12: Dil Seçeneği -->
-        <div class="video-scene side-left" data-scene="9">
+        <!-- SAHNE 3: Power Big -->
+        <div class="video-scene side-left" data-scene="6">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
-            <source src="http://localhost:8080/videos/12_dil.mp4" type="video/mp4">
-            <source src="videos/12_dil.mp4" type="video/mp4">
+            <source src="http://localhost:8080/videos/03_power_big.mp4" type="video/mp4">
+            <source src="videos/03_power_big.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
-            <li><b>Türkçe / İngilizce arayüz</b> — menüden tek dokunuşla dil değişimi.</li>
+            <li><b>Büyük rakam gösterimi</b> — makineye yaklaşmadan güç değerini okursunuz.</li>
+            <li><b>Alarm göstergeleri</b> — Power ve Energy alarmları üst ve altta belirir.</li>
           </ul>
-          <div class="scene-label">TR / EN Dil Desteği</div>
+          <div class="scene-label">Güç / Büyük</div>
+        </div>
+
+        <!-- SAHNE 4: Power Osiloskop -->
+        <div class="video-scene side-left" data-scene="7">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/04_power_osiloskop.mp4" type="video/mp4">
+            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Gerçek zamanlı dalga formu</b> — güç sinyalinin zaman içindeki değişimi osiloskop gibi gösterilir.</li>
+            <li><b>Ani dalgalanma takibi</b> — sayısal göstergelerin kaçırdığı mikro-salınımlar fark edilir.</li>
+          </ul>
+          <div class="scene-label">Güç / Sinyal</div>
         </div>
 
         <!-- SAHNE 5: CO2 Gauge -->
-        <div class="video-scene side-left" data-scene="10">
+        <div class="video-scene side-left" data-scene="8">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
             <source src="http://localhost:8080/videos/05_co2_gauge.mp4" type="video/mp4">
             <source src="videos/05_co2_gauge.mp4" type="video/mp4">
@@ -1038,7 +1011,7 @@
         </div>
 
         <!-- SAHNE 6: CO2 Big -->
-        <div class="video-scene side-left" data-scene="11">
+        <div class="video-scene side-left" data-scene="9">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
             <source src="http://localhost:8080/videos/06_co2_big.mp4" type="video/mp4">
             <source src="videos/06_co2_big.mp4" type="video/mp4">
@@ -1048,6 +1021,33 @@
             <li><b>Anlık CO₂ emisyonu</b> — kg cinsinden tesisinizdeki anlık salınımı gösterir, raporlama altyapısı için temel verileri sağlar.</li>
           </ul>
           <div class="scene-label">CO₂ / Büyük</div>
+        </div>
+
+        <!-- SAHNE 11: Şifre Koruma -->
+        <div class="video-scene side-left" data-scene="10">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/11_sifre.mp4" type="video/mp4">
+            <source src="videos/11_sifre.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Yetkisiz erişim engeli</b> — cihaz ayarlarına yalnızca şifre bilen kişiler ulaşabilir, operatör seviyesinde müdahaleler kısıtlanır.</li>
+            <li><b>Ayar koruması</b> — alarm eşikleri, tarife saatleri ve haberleşme parametreleri yanlışlıkla değiştirilmekten korunur.</li>
+          </ul>
+          <div class="scene-label">Şifre Koruması</div>
+        </div>
+
+        <!-- SAHNE 12: Dil Seçeneği -->
+        <div class="video-scene side-left" data-scene="11">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/12_dil.mp4" type="video/mp4">
+            <source src="videos/12_dil.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Türkçe / İngilizce arayüz</b> — menüden tek dokunuşla dil değişimi.</li>
+          </ul>
+          <div class="scene-label">TR / EN Dil Desteği</div>
         </div>
 
         <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
