@@ -513,15 +513,15 @@
 
     .compare-table {
       border-collapse: collapse;
-      width: 80%;
-      max-width: 900px;
+      width: 90%;
+      max-width: 1200px;
     }
 
     .compare-table th {
       font-family: var(--font-display);
-      font-size: clamp(16px, 2vw, 24px);
+      font-size: clamp(24px, 3vw, 36px);
       letter-spacing: 0.1em;
-      padding: 16px 20px;
+      padding: 22px 28px;
       text-align: center;
       color: var(--white);
       background: var(--black);
@@ -538,8 +538,8 @@
 
     .compare-table td {
       font-family: var(--font-body);
-      font-size: clamp(14px, 1.6vw, 20px);
-      padding: 14px 20px;
+      font-size: clamp(20px, 2.4vw, 30px);
+      padding: 20px 28px;
       text-align: center;
       border-bottom: 1px solid var(--gray-200);
       color: var(--gray-700);
@@ -552,11 +552,12 @@
 
     .compare-table .check {
       color: var(--accent);
-      font-size: 22px;
+      font-size: 32px;
     }
 
     .compare-table .dash {
       color: var(--gray-200);
+      font-size: 32px;
     }
 
     /* ── DEMO TEKLİFİ ── */
@@ -598,6 +599,14 @@
       align-items: center;
       gap: 12px;
       max-width: 340px;
+    }
+
+    .demo-step-gift {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 0;
+      /* SVG siyah fill → accent rengine dönüştür */
+      filter: invert(55%) sepia(95%) saturate(1870%) hue-rotate(156deg) brightness(92%) contrast(101%);
     }
 
     .demo-step-num {
@@ -1135,6 +1144,11 @@
               <div class="demo-step-num">03</div>
               <div class="demo-step-title">ANALİZ & RAPOR</div>
               <div class="demo-step-desc">2 haftanın sonunda fabrikanızın standby enerji maliyetini raporluyoruz.</div>
+            </div>
+            <div class="demo-step">
+              <img src="gift.svg" class="demo-step-gift" alt="">
+              <div class="demo-step-title">UNITER DASHBOARD</div>
+              <div class="demo-step-desc">Uniter Dashboard aşamasına geçildiğinde ücretsiz güncelleme desteği dahildir.</div>
             </div>
           </div>
           <div class="demo-gift">
