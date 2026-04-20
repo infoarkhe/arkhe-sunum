@@ -1,9 +1,9 @@
 """
 Arkhe Enerjimetre — Telegram → DWIN Köprüsü
-Sıra sistemi + timeout ile çoklu kullanıcı desteği.
+Sıra sistemi + geri sayım + kullanım raporu.
 
 Gereksinim:
-    pip install python-telegram-bot pyserial
+    pip install "python-telegram-bot[job-queue]"
 """
 
 # ─── AYARLAR ───
@@ -15,15 +15,21 @@ SERIAL_PORT  = "COM14"
 BAUD_RATE    = 115200
 MENU_FILE    = "menu_tree.json"
 START_PAGE   = 1
-TIMEOUT_SEC  = 60              # Kullanıcı 60 sn sessiz kalırsa sıra geçer
-LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"  # Canlı yayın linki
+TIMEOUT_SEC  = 60
+TICK_SEC     = 10
+DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
+LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
+LOG_FILE     = "kullanim_raporu.md"
+LOG_JSON     = "kullanim_raporu.json"
 # ────────────────
 
 import json
 import logging
 import socket
 import time
-from collections import deque
+import os
+from datetime import datetime
+from collections import deque, Counter
 
 try:
     import serial
@@ -39,249 +45,346 @@ logging.basicConfig(
 )
 log = logging.getLogger("ArkheBot")
 
-# ─── MENÜ YÜKLE ───
 with open(MENU_FILE, "r", encoding="utf-8") as f:
     MENU = json.load(f)
 log.info(f"{len(MENU)} sayfa yüklendi.")
 
-# ─── BAĞLANTI ───
 ser = None
 if not USE_TCP:
     try:
         ser = serial.Serial(SERIAL_PORT, BAUD_RATE, timeout=1)
-        log.info(f"Serial port açıldı: {SERIAL_PORT} @ {BAUD_RATE}")
     except Exception as e:
         log.warning(f"Serial port açılamadı: {e}")
-        ser = None
 
-# ─── SIRA SİSTEMİ ───
-active_user = None          # (chat_id, username, last_activity_time)
-queue = deque()             # [(chat_id, username), ...]
+# ─── STATE ───
+active_user = None          # (chat_id, username, start_time, last_activity)
+active_msg = None           # (chat_id, message_id, page_key)
+session_log = []            # [(page_key, page_title, timestamp), ...]
+queue = deque()
+tick_job = None
+session_counter = 0
 
 
-def is_active(chat_id: int) -> bool:
-    return active_user is not None and active_user[0] == chat_id
+def is_active(cid): return active_user and active_user[0] == cid
 
-
-def get_queue_position(chat_id: int) -> int:
-    """Sıradaki pozisyon (1-based), 0 = sırada değil."""
-    for i, (cid, _) in enumerate(queue):
-        if cid == chat_id:
-            return i + 1
+def queue_pos(cid):
+    for i, (c, _) in enumerate(queue):
+        if c == cid: return i + 1
     return 0
 
+def remaining():
+    if not active_user: return 0
+    return max(0, TIMEOUT_SEC - int(time.time() - active_user[3]))
 
-def activate_user(chat_id: int, username: str):
-    global active_user
-    active_user = (chat_id, username, time.time())
-    log.info(f"Aktif kullanıcı: {username} ({chat_id})")
-
-
-def touch_activity():
-    """Aktif kullanıcının son etkinlik zamanını güncelle."""
+def touch():
     global active_user
     if active_user:
-        active_user = (active_user[0], active_user[1], time.time())
+        active_user = (active_user[0], active_user[1], active_user[2], time.time())
 
+def activate(cid, name):
+    global active_user, session_log
+    active_user = (cid, name, time.time(), time.time())
+    session_log = []
+    log.info(f"Aktif: {name} ({cid})")
 
-def release_active():
-    """Aktif kullanıcıyı serbest bırak."""
-    global active_user
+def log_page(page_key):
+    page = MENU.get(page_key)
+    title = page.get("title", page_key) if page else page_key
+    session_log.append((page_key, title, time.time()))
+
+def release(reason="bilinmiyor"):
+    global active_user, active_msg, tick_job
     old = active_user
-    active_user = None
     if old:
-        log.info(f"Kullanıcı serbest bırakıldı: {old[1]} ({old[0]})")
+        write_report(old, reason)
+    active_user = None
+    active_msg = None
+    if tick_job:
+        tick_job.schedule_removal()
+        tick_job = None
+    send_dwin(DEFAULT_PAGE)
     return old
 
 
-async def promote_next(context: ContextTypes.DEFAULT_TYPE):
-    """Sıradaki kişiyi aktif yap ve bilgilendir."""
-    global active_user
-    if not queue:
-        return
-    next_id, next_name = queue.popleft()
-    activate_user(next_id, next_name)
+# ─── RAPORLAMA ───
+def write_report(user_info, reason):
+    global session_counter
+    session_counter += 1
+
+    cid, name, start_time, last_act = user_info
+    end_time = time.time()
+    duration = int(end_time - start_time)
+
+    start_str = datetime.fromtimestamp(start_time).strftime("%Y-%m-%d %H:%M:%S")
+    end_str = datetime.fromtimestamp(end_time).strftime("%H:%M:%S")
+
+    # Sayfa istatistikleri
+    pages_visited = [title for (_, title, _) in session_log]
+    page_count = len(pages_visited)
+    page_counter = Counter(pages_visited)
+    most_visited = page_counter.most_common(1)[0] if page_counter else ("—", 0)
+
+    # Sayfa bazlı süre hesapla
+    page_durations = {}
+    for i, (pkey, title, ts) in enumerate(session_log):
+        if i + 1 < len(session_log):
+            dur = session_log[i + 1][2] - ts
+        else:
+            dur = end_time - ts
+        page_durations[title] = page_durations.get(title, 0) + dur
+
+    top_duration = sorted(page_durations.items(), key=lambda x: -x[1])
+
+    # Geçiş sırası
+    journey = " → ".join(pages_visited) if pages_visited else "—"
+
+    # ─── MD Rapor ───
+    md = f"""
+---
+
+## Oturum #{session_counter} — {start_str}
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | {name} |
+| **Telegram ID** | `{cid}` |
+| **Başlangıç** | {start_str} |
+| **Bitiş** | {end_str} |
+| **Süre** | {duration} sn ({duration // 60} dk {duration % 60} sn) |
+| **Sonuç** | {reason} |
+| **Toplam basış** | {page_count} |
+| **En çok ziyaret** | {most_visited[0]} ({most_visited[1]}x) |
+
+**Sayfa geçişleri:**
+{journey}
+
+**Sayfa bazlı süre:**
+"""
+    for title, dur in top_duration:
+        md += f"- {title}: {int(dur)} sn\n"
+
+    # Dosyaya ekle
     try:
-        keyboard = build_keyboard(str(START_PAGE))
-        page = MENU.get(str(START_PAGE))
-        title = page.get("title", "Ana Ekran") if page else "Ana Ekran"
-        send_to_dwin(START_PAGE)
-        await context.bot.send_message(
-            chat_id=next_id,
-            text=f"🟢 *Sıra sizde!* Enerjimetre'yi kontrol edebilirsiniz.\n\n📺 *{title}*",
-            reply_markup=keyboard,
-            parse_mode="Markdown"
-        )
+        header_needed = not os.path.exists(LOG_FILE)
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            if header_needed:
+                f.write("# Enerjimetre — Kullanım Raporu\n\n")
+                f.write("Her oturum ayrı ayrı kaydedilir.\n")
+            f.write(md)
+        log.info(f"Rapor yazıldı: oturum #{session_counter}")
     except Exception as e:
-        log.error(f"Sıradaki kullanıcıya mesaj gönderilemedi: {e}")
-        release_active()
-        await promote_next(context)
+        log.error(f"Rapor yazma hatası: {e}")
 
-
-# ─── TIMEOUT KONTROLÜ ───
-async def check_timeout(context: ContextTypes.DEFAULT_TYPE):
-    global active_user
-    if active_user is None:
-        return
-    chat_id, username, last_time = active_user
-    elapsed = time.time() - last_time
-    if elapsed >= TIMEOUT_SEC:
-        log.info(f"Timeout: {username} ({chat_id}) — {elapsed:.0f} sn")
-        try:
-            await context.bot.send_message(
-                chat_id=chat_id,
-                text=f"⏰ *{TIMEOUT_SEC} saniye* boyunca işlem yapmadığınız için sıra bir sonraki kullanıcıya geçti.\n\nTekrar denemek için /start gönderin.",
-                parse_mode="Markdown"
-            )
-        except:
-            pass
-        release_active()
-        await promote_next(context)
+    # ─── JSON Log ───
+    json_entry = {
+        "session": session_counter,
+        "user": name,
+        "telegram_id": cid,
+        "start": start_str,
+        "end": end_str,
+        "duration_sec": duration,
+        "reason": reason,
+        "total_clicks": page_count,
+        "most_visited": {"page": most_visited[0], "count": most_visited[1]},
+        "journey": pages_visited,
+        "page_durations": {k: round(v, 1) for k, v in page_durations.items()}
+    }
+    try:
+        with open(LOG_JSON, "a", encoding="utf-8") as f:
+            f.write(json.dumps(json_entry, ensure_ascii=False) + "\n")
+    except Exception as e:
+        log.error(f"JSON log hatası: {e}")
 
 
 # ─── DWIN ───
-def dwin_page_command(page_id: int) -> bytes:
-    return bytes([0x5A, 0xA5, 0x07, 0x82, 0x00, 0x84, 0x5A, 0x01, 0x00, page_id])
+def dwin_cmd(pid): return bytes([0x5A, 0xA5, 0x07, 0x82, 0x00, 0x84, 0x5A, 0x01, 0x00, pid])
 
-
-def send_to_dwin(page_id: int):
-    cmd = dwin_page_command(page_id)
-    hex_str = " ".join(f"{b:02X}" for b in cmd)
-    log.info(f"DWIN → page {page_id} | {hex_str}")
+def send_dwin(pid):
+    log.info(f"DWIN → {pid}")
     try:
         if USE_TCP:
             with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as s:
-                s.settimeout(2)
-                s.connect((TCP_HOST, TCP_PORT))
-                s.sendall(cmd)
-            return
+                s.settimeout(2); s.connect((TCP_HOST, TCP_PORT)); s.sendall(dwin_cmd(pid))
         elif ser and ser.is_open:
-            ser.write(cmd)
+            ser.write(dwin_cmd(pid))
     except Exception as e:
-        log.error(f"Yazma hatası: {e}")
+        log.error(f"DWIN hata: {e}")
 
 
-# ─── TELEGRAM ───
-def build_keyboard(page_key: str) -> InlineKeyboardMarkup:
+# ─── KEYBOARD ───
+def build_kb(page_key):
     page = MENU.get(page_key)
-    if not page:
-        return InlineKeyboardMarkup([])
+    if not page: return []
     rows = []
     row = []
     for btn in page["buttons"]:
         row.append(InlineKeyboardButton(btn["text"], callback_data=str(btn["target"])))
-        if len(row) == 2:
-            rows.append(row)
-            row = []
-    if row:
-        rows.append(row)
-    # Bırak butonu ekle
+        if len(row) == 2: rows.append(row); row = []
+    if row: rows.append(row)
     rows.append([InlineKeyboardButton("🔴 Bırak", callback_data="_release")])
+    return rows
+
+def timer_label(rem):
+    if rem <= 15: return f"🔴 {rem} sn"
+    if rem <= 30: return f"🟡 {rem} sn"
+    return f"⏱ {rem} sn"
+
+def make_markup(page_key, rem):
+    rows = build_kb(page_key)
+    rows.insert(0, [InlineKeyboardButton(timer_label(rem), callback_data="_timer")])
     return InlineKeyboardMarkup(rows)
 
+def page_text(page_key):
+    page = MENU.get(page_key)
+    return f"📺 *{page.get('title', page_key)}*" if page else "⚠"
 
-async def show_page(update: Update, page_key: str, edit: bool = False):
+
+# ─── TICK ───
+async def on_tick(context):
+    if not active_user or not active_msg: return
+    rem = remaining()
+    cid, mid, pkey = active_msg
+
+    if rem <= 0:
+        try:
+            await context.bot.send_message(cid,
+                f"⏰ *{TIMEOUT_SEC} sn* süreniz doldu.\nTekrar: /start",
+                parse_mode="Markdown")
+        except: pass
+        release("timeout")
+        await promote(context)
+        return
+
+    try:
+        await context.bot.edit_message_reply_markup(
+            chat_id=cid, message_id=mid,
+            reply_markup=make_markup(pkey, rem))
+    except: pass
+
+def start_tick(context):
+    global tick_job
+    if tick_job: tick_job.schedule_removal()
+    tick_job = context.job_queue.run_repeating(on_tick, interval=TICK_SEC, first=TICK_SEC)
+
+
+# ─── PROMOTE ───
+async def promote(context):
+    if not queue: return
+    nid, nname = queue.popleft()
+    activate(nid, nname)
+    page = MENU.get(str(START_PAGE))
+    dp = page.get("dwin_page", START_PAGE) if page else START_PAGE
+    send_dwin(dp)
+    log_page(str(START_PAGE))
+    try:
+        msg = await context.bot.send_message(nid,
+            f"🟢 *Sıra sizde {nname}!*\n\n{page_text(str(START_PAGE))}",
+            reply_markup=make_markup(str(START_PAGE), TIMEOUT_SEC),
+            parse_mode="Markdown")
+        global active_msg
+        active_msg = (nid, msg.message_id, str(START_PAGE))
+        start_tick(context)
+    except Exception as e:
+        log.error(f"Promote hata: {e}")
+        release("hata")
+        await promote(context)
+
+
+# ─── HANDLERS ───
+async def show_page(update, page_key, edit=False):
     page = MENU.get(page_key)
     if not page:
-        text = "⚠ Sayfa bulunamadı."
-        if edit:
-            await update.callback_query.edit_message_text(text)
-        else:
-            await update.message.reply_text(text)
+        t = "⚠ Sayfa bulunamadı."
+        if edit: await update.callback_query.edit_message_text(t)
+        else: await update.message.reply_text(t)
         return
 
-    title = page.get("title", page_key)
-    dwin_page = page.get("dwin_page", int(page_key))
-    remaining = TIMEOUT_SEC - int(time.time() - active_user[2]) if active_user else TIMEOUT_SEC
-    text = f"📺 *{title}*\n⏱ _{remaining} sn kaldı_"
-    keyboard = build_keyboard(page_key)
+    send_dwin(page.get("dwin_page", int(page_key)))
+    touch()
+    log_page(page_key)
 
-    send_to_dwin(dwin_page)
-    touch_activity()
+    text = page_text(page_key)
+    markup = make_markup(page_key, remaining())
 
+    global active_msg
     if edit:
-        await update.callback_query.edit_message_text(
-            text, reply_markup=keyboard, parse_mode="Markdown"
-        )
+        await update.callback_query.edit_message_text(text, reply_markup=markup, parse_mode="Markdown")
+        active_msg = (update.effective_user.id, update.callback_query.message.message_id, page_key)
     else:
-        await update.message.reply_text(
-            text, reply_markup=keyboard, parse_mode="Markdown"
-        )
+        msg = await update.message.reply_text(text, reply_markup=markup, parse_mode="Markdown")
+        active_msg = (update.effective_user.id, msg.message_id, page_key)
 
 
-async def cmd_start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    chat_id = update.effective_user.id
-    username = update.effective_user.first_name or str(chat_id)
+async def cmd_start(update, context):
+    cid = update.effective_user.id
+    name = update.effective_user.first_name or str(cid)
 
-    # Zaten aktif mi?
-    if is_active(chat_id):
+    if is_active(cid):
+        touch()
         await show_page(update, str(START_PAGE), edit=False)
+        start_tick(context)
         return
 
-    # Aktif kullanıcı yok → hemen aktif yap
     if active_user is None:
-        activate_user(chat_id, username)
+        activate(cid, name)
         await update.message.reply_text(
-            f"🟢 *Hoş geldiniz {username}!*\nEnerjimetre'yi kontrol edebilirsiniz.\n⏱ _{TIMEOUT_SEC} sn_ süreniz var, her tuşa basışta süre sıfırlanır.",
-            parse_mode="Markdown"
-        )
+            f"🟢 *Hoş geldiniz {name}!*\n"
+            f"Enerjimetre'yi kontrol edebilirsiniz.\n"
+            f"Her tuşa basışta _{TIMEOUT_SEC} sn_ süre sıfırlanır.",
+            parse_mode="Markdown")
         await show_page(update, str(START_PAGE), edit=False)
+        start_tick(context)
         return
 
-    # Aktif kullanıcı var → sıraya ekle
-    pos = get_queue_position(chat_id)
+    pos = queue_pos(cid)
     if pos == 0:
-        queue.append((chat_id, username))
+        queue.append((cid, name))
         pos = len(queue)
 
     await update.message.reply_text(
         f"⏳ *Cihaz şu an kullanılıyor.*\n"
         f"Sıranız: *{pos}*\n\n"
-        f"Beklerken canlı yayından cihazı izleyebilirsiniz:\n"
+        f"Beklerken canlı yayından izleyebilirsiniz:\n"
         f"🔴 [{LIVE_URL}]({LIVE_URL})",
-        parse_mode="Markdown",
-        disable_web_page_preview=True
-    )
+        parse_mode="Markdown", disable_web_page_preview=True)
 
 
-async def on_button(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    query = update.callback_query
-    await query.answer()
-    chat_id = update.effective_user.id
+async def on_button(update, context):
+    q = update.callback_query
+    await q.answer()
+    cid = update.effective_user.id
 
-    # Bırak butonu
-    if query.data == "_release":
-        if is_active(chat_id):
-            release_active()
-            await query.edit_message_text("✅ Cihazı bıraktınız. Tekrar kullanmak için /start gönderin.")
-            await promote_next(context)
+    if q.data == "_timer":
+        await q.answer(f"⏱ {remaining()} sn kaldı", show_alert=False)
         return
 
-    # Aktif kullanıcı değilse engelle
-    if not is_active(chat_id):
-        pos = get_queue_position(chat_id)
-        if pos > 0:
-            await query.answer(f"⏳ Sıranız: {pos}. Bekleyin.", show_alert=True)
-        else:
-            await query.answer("Önce /start gönderin.", show_alert=True)
+    if q.data == "_release":
+        if is_active(cid):
+            release("manuel bırakma")
+            await q.edit_message_text("✅ Cihazı bıraktınız. Tekrar: /start")
+            await promote(context)
         return
 
-    target_page = query.data
-    log.info(f"Click: {update.effective_user.first_name} → page {target_page}")
-    await show_page(update, target_page, edit=True)
+    if not is_active(cid):
+        pos = queue_pos(cid)
+        await q.answer(f"⏳ Sıranız: {pos}" if pos else "Önce /start gönderin.", show_alert=True)
+        return
+
+    log.info(f"Click: {update.effective_user.first_name} → {q.data}")
+    await show_page(update, q.data, edit=True)
+    start_tick(context)
 
 
-async def cmd_stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    chat_id = update.effective_user.id
-    if is_active(chat_id):
-        release_active()
+async def cmd_stop(update, context):
+    cid = update.effective_user.id
+    if is_active(cid):
+        release("kullanıcı /stop")
         await update.message.reply_text("✅ Cihazı bıraktınız.")
-        await promote_next(context)
+        await promote(context)
     else:
-        # Sıradan çık
-        pos = get_queue_position(chat_id)
-        if pos > 0:
-            queue.remove((chat_id, update.effective_user.first_name or str(chat_id)))
+        pos = queue_pos(cid)
+        if pos:
+            queue.remove((cid, update.effective_user.first_name or str(cid)))
             await update.message.reply_text("✅ Sıradan çıktınız.")
         else:
             await update.message.reply_text("Zaten aktif değilsiniz.")
@@ -289,15 +392,10 @@ async def cmd_stop(update: Update, context: ContextTypes.DEFAULT_TYPE):
 
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
-
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("stop", cmd_stop))
     app.add_handler(CallbackQueryHandler(on_button))
-
-    # Timeout kontrolü — her 10 saniyede bir
-    app.job_queue.run_repeating(check_timeout, interval=10, first=10)
-
-    log.info("Bot başlatıldı (sıra sistemi aktif).")
+    log.info("Bot başlatıldı (sıra + geri sayım + raporlama).")
     app.run_polling()
 
 
