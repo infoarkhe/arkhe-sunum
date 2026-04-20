@@ -21,6 +21,8 @@ DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchar
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
+LOG_FILE_REL = "telegram_bot/kullanim_raporu.md"
+LOG_JSON_REL = "telegram_bot/kullanim_raporu.json"
 # ────────────────
 
 import json
@@ -28,6 +30,8 @@ import logging
 import socket
 import time
 import os
+import subprocess
+import threading
 from datetime import datetime
 from collections import deque, Counter
 
@@ -194,6 +198,35 @@ def write_report(user_info, reason):
             f.write(json.dumps(json_entry, ensure_ascii=False) + "\n")
     except Exception as e:
         log.error(f"JSON log hatası: {e}")
+
+    # ─── GitHub Push (background thread) ───
+    git_push_async()
+
+
+def git_push_async():
+    """Rapor dosyalarını background'da GitHub'a push et."""
+    def _push():
+        try:
+            repo_dir = os.path.dirname(os.path.abspath(__file__))
+            parent_dir = os.path.dirname(repo_dir)
+            cmds = [
+                ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
+                ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
+                 "-c", "user.name=arkhe", "commit", "-m",
+                 f"rapor: oturum #{session_counter}"],
+                ["git", "-C", parent_dir, "push"],
+            ]
+            for cmd in cmds:
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                if result.returncode != 0 and "nothing to commit" not in result.stdout:
+                    log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
+                    break
+            else:
+                log.info("GitHub push başarılı.")
+        except Exception as e:
+            log.error(f"GitHub push hatası: {e}")
+
+    threading.Thread(target=_push, daemon=True).start()
 
 
 # ─── DWIN ───
