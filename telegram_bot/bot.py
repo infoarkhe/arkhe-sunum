@@ -19,6 +19,7 @@ TIMEOUT_SEC  = 60
 TICK_SEC     = 10
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
+PENDING_FILE = "pending_users.json"  # Restart sonrası bildirim için
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
 LOG_FILE_REL = "telegram_bot/kullanim_raporu.md"
@@ -32,6 +33,8 @@ import time
 import os
 import subprocess
 import threading
+import signal
+import asyncio
 from datetime import datetime
 from collections import deque, Counter
 
@@ -205,31 +208,37 @@ def write_report(user_info, reason):
 
 _git_lock = threading.Lock()
 
-def git_push_async():
-    """Rapor dosyalarını background'da GitHub'a push et. Lock ile sıralı."""
-    def _push():
-        with _git_lock:  # Aynı anda iki push çalışmasın
-            try:
-                repo_dir = os.path.dirname(os.path.abspath(__file__))
-                parent_dir = os.path.dirname(repo_dir)
-                cmds = [
-                    ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
-                    ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
-                     "-c", "user.name=arkhe", "commit", "-m",
-                     f"rapor: oturum #{session_counter}"],
-                    ["git", "-C", parent_dir, "push"],
-                ]
-                for cmd in cmds:
-                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-                    if result.returncode != 0 and "nothing to commit" not in result.stdout:
-                        log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
-                        break
-                else:
-                    log.info("GitHub push başarılı.")
-            except Exception as e:
-                log.error(f"GitHub push hatası: {e}")
+def _do_git_push():
+    """Git add + commit + push (lock ile)."""
+    with _git_lock:
+        try:
+            repo_dir = os.path.dirname(os.path.abspath(__file__))
+            parent_dir = os.path.dirname(repo_dir)
+            cmds = [
+                ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
+                ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
+                 "-c", "user.name=arkhe", "commit", "-m",
+                 f"rapor: oturum #{session_counter}"],
+                ["git", "-C", parent_dir, "push"],
+            ]
+            for cmd in cmds:
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                if result.returncode != 0 and "nothing to commit" not in result.stdout:
+                    log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
+                    break
+            else:
+                log.info("GitHub push başarılı.")
+        except Exception as e:
+            log.error(f"GitHub push hatası: {e}")
 
-    threading.Thread(target=_push, daemon=True).start()
+
+def git_push_sync():
+    """Senkron push — bot kapanmadan tamamlanır."""
+    _do_git_push()
+
+def git_push_async():
+    """Rapor dosyalarını background'da GitHub'a push et."""
+    threading.Thread(target=_do_git_push, daemon=True).start()
 
 
 # ─── DWIN ───
@@ -426,11 +435,75 @@ async def cmd_stop(update, context):
             await update.message.reply_text("Zaten aktif değilsiniz.")
 
 
+async def shutdown_notify(app):
+    """Ctrl+C yapıldığında herkese haber ver, ID'leri kaydet."""
+    all_users = []
+
+    # Aktif kullanıcıyı bilgilendir + rapor yaz
+    if active_user:
+        cid = active_user[0]
+        all_users.append(cid)
+        try:
+            await app.bot.send_message(cid,
+                "🔧 *Bot güncelleniyor.* Tekrar açıldığında size haber vereceğim.\nLütfen bekleyin.",
+                parse_mode="Markdown")
+        except: pass
+        release("bot kapatıldı")
+        # Push'u senkron yap — bot kapanmadan tamamlansın
+        git_push_sync()
+
+    # Sıradakileri bilgilendir
+    for cid, name in list(queue):
+        all_users.append(cid)
+        try:
+            await app.bot.send_message(cid,
+                "🔧 *Bot güncelleniyor.* Tekrar açıldığında size haber vereceğim.\nSıranız korunacak.",
+                parse_mode="Markdown")
+        except: pass
+    queue.clear()
+
+    # ID'leri dosyaya kaydet (restart'ta bildirim için)
+    if all_users:
+        try:
+            with open(PENDING_FILE, "w") as f:
+                json.dump(all_users, f)
+            log.info(f"Pending users kaydedildi: {all_users}")
+        except: pass
+
+    send_dwin(DEFAULT_PAGE)
+    log.info("Bot kapatılıyor...")
+
+
+async def startup_notify(app):
+    """Bot açıldığında önceki oturumdan bekleyenlere haber ver."""
+    if not os.path.exists(PENDING_FILE):
+        return
+    try:
+        with open(PENDING_FILE, "r") as f:
+            user_ids = json.load(f)
+        os.remove(PENDING_FILE)
+        for cid in user_ids:
+            try:
+                await app.bot.send_message(cid,
+                    "🟢 *Bot tekrar aktif!* Cihazı kullanmak için /start gönderin.",
+                    parse_mode="Markdown")
+            except: pass
+        log.info(f"Startup bildirimi gönderildi: {len(user_ids)} kullanıcı")
+    except: pass
+
+
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("stop", cmd_stop))
     app.add_handler(CallbackQueryHandler(on_button))
+
+    # Startup: bekleyenlere bildirim
+    app.post_init = startup_notify
+
+    # Shutdown: herkese haber ver
+    app.post_shutdown = shutdown_notify
+
     log.info("Bot başlatıldı (sıra + geri sayım + raporlama).")
     app.run_polling()
 
