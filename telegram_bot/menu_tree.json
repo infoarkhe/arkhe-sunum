@@ -1,0 +1,240 @@
+{
+  "1": {
+    "title": "Ana Ekran",
+    "dwin_page": 1,
+    "buttons": [
+      { "text": "Güç Göstergesi", "target": 5 },
+      { "text": "CO₂ Göstergesi", "target": 6 },
+      { "text": "Çizgi Grafik", "target": 7 },
+      { "text": "Bar Grafik", "target": 11 },
+      { "text": "Günlük Rapor", "target": 24 },
+      { "text": "Saat Ayarları", "target": 65 },
+      { "text": "Tarih Ayarları", "target": 63 },
+      { "text": "Ayarlar", "target": 40 }
+    ]
+  },
+
+  "5": {
+    "title": "Güç Göstergesi",
+    "dwin_page": 5,
+    "buttons": [
+      { "text": "← Geri", "target": 1 },
+      { "text": "Güç Büyük", "target": 15 }
+    ]
+  },
+  "15": {
+    "title": "Güç Büyük",
+    "dwin_page": 15,
+    "buttons": [
+      { "text": "← Geri", "target": 5 }
+    ]
+  },
+
+  "6": {
+    "title": "CO₂ Göstergesi",
+    "dwin_page": 6,
+    "buttons": [
+      { "text": "← Geri", "target": 1 },
+      { "text": "CO₂ Büyük", "target": 16 }
+    ]
+  },
+  "16": {
+    "title": "CO₂ Büyük",
+    "dwin_page": 16,
+    "buttons": [
+      { "text": "← Geri", "target": 6 }
+    ]
+  },
+
+  "7": {
+    "title": "Çizgi Grafik",
+    "dwin_page": 7,
+    "buttons": [
+      { "text": "← Geri", "target": 1 }
+    ]
+  },
+
+  "11": {
+    "title": "Bar Grafik",
+    "dwin_page": 11,
+    "buttons": [
+      { "text": "← Geri", "target": 1 }
+    ]
+  },
+
+  "24": {
+    "title": "Günlük Rapor",
+    "dwin_page": 24,
+    "buttons": [
+      { "text": "← Geri", "target": 1 }
+    ]
+  },
+
+  "40": {
+    "title": "Ayarlar",
+    "dwin_page": 40,
+    "buttons": [
+      { "text": "← Geri", "target": 1 },
+      { "text": "Maks. kW Ayarı", "target": 41 },
+      { "text": "CO₂ Katsayısı", "target": 44 },
+      { "text": "Parlaklık", "target": 47 },
+      { "text": "Saat ve Tarih", "target": 60 },
+      { "text": "Tarife Saatleri", "target": 88 },
+      { "text": "Önceden Tanımlı Değerler", "target": 50 },
+      { "text": "RS485 Ayarları", "target": 79 },
+      { "text": "Alarm Ayarları", "target": 89 }
+    ]
+  },
+
+  "41": {
+    "title": "Maks. kW Ayarı",
+    "dwin_page": 41,
+    "buttons": [
+      { "text": "← Geri", "target": 40 }
+    ]
+  },
+
+  "44": {
+    "title": "CO₂ Katsayısı",
+    "dwin_page": 44,
+    "buttons": [
+      { "text": "← Geri", "target": 40 }
+    ]
+  },
+
+  "47": {
+    "title": "Parlaklık Ayarları",
+    "dwin_page": 47,
+    "buttons": [
+      { "text": "← Geri", "target": 40 }
+    ]
+  },
+
+  "88": {
+    "title": "Tarife Saat Ayarları",
+    "dwin_page": 88,
+    "buttons": [
+      { "text": "← Geri", "target": 40 }
+    ]
+  },
+
+  "60": {
+    "title": "Saat ve Tarih Ayarları",
+    "dwin_page": 60,
+    "buttons": [
+      { "text": "← Geri", "target": 40 },
+      { "text": "Saat Ayarları", "target": 65 },
+      { "text": "Tarih Ayarları", "target": 63 }
+    ]
+  },
+  "65": {
+    "title": "Saat Ayarları",
+    "dwin_page": 65,
+    "buttons": [
+      { "text": "← Geri", "target": 60 }
+    ]
+  },
+  "63": {
+    "title": "Tarih Ayarları",
+    "dwin_page": 63,
+    "buttons": [
+      { "text": "← Geri", "target": 60 }
+    ]
+  },
+
+  "50": {
+    "title": "Önceden Tanımlı Değerler",
+    "dwin_page": 50,
+    "buttons": [
+      { "text": "← Geri", "target": 40 },
+      { "text": "Süre Ayarı", "target": 51 }
+    ]
+  },
+  "51": {
+    "title": "Önceden Tanımlı Süre",
+    "dwin_page": 51,
+    "buttons": [
+      { "text": "← Geri", "target": 50 }
+    ]
+  },
+
+  "79": {
+    "title": "RS485 Ayarları",
+    "dwin_page": 79,
+    "buttons": [
+      { "text": "← Geri", "target": 40 },
+      { "text": "Cihaz Ayarları", "target": 70 },
+      { "text": "Adres Ayarları", "target": 81 }
+    ]
+  },
+  "70": {
+    "title": "RS485 Cihaz Ayarları",
+    "dwin_page": 70,
+    "buttons": [
+      { "text": "← Geri", "target": 79 }
+    ]
+  },
+  "81": {
+    "title": "RS485 Adres Ayarları",
+    "dwin_page": 81,
+    "buttons": [
+      { "text": "← Geri", "target": 79 },
+      { "text": "Manuel Adres Girişi", "target": 73 }
+    ]
+  },
+  "73": {
+    "title": "Manuel Adres Girişi",
+    "dwin_page": 73,
+    "buttons": [
+      { "text": "← Geri", "target": 81 }
+    ]
+  },
+
+  "89": {
+    "title": "Alarm Ayarları",
+    "dwin_page": 89,
+    "buttons": [
+      { "text": "← Geri", "target": 40 },
+      { "text": "Hazır Saat Alarmları", "target": 91 },
+      { "text": "Özel Saat Alarmları", "target": 92 },
+      { "text": "Sonraki →", "target": 90 }
+    ]
+  },
+  "90": {
+    "title": "Alarm Ayarları (2)",
+    "dwin_page": 90,
+    "buttons": [
+      { "text": "← Önceki", "target": 89 },
+      { "text": "Enerji Alarmları", "target": 93 },
+      { "text": "Güç Alarmları", "target": 94 }
+    ]
+  },
+  "91": {
+    "title": "Hazır Saat Alarmları",
+    "dwin_page": 91,
+    "buttons": [
+      { "text": "← Geri", "target": 89 }
+    ]
+  },
+  "92": {
+    "title": "Özel Saat Alarmları",
+    "dwin_page": 92,
+    "buttons": [
+      { "text": "← Geri", "target": 89 }
+    ]
+  },
+  "93": {
+    "title": "Enerji Alarmları",
+    "dwin_page": 93,
+    "buttons": [
+      { "text": "← Geri", "target": 90 }
+    ]
+  },
+  "94": {
+    "title": "Güç Alarmları",
+    "dwin_page": 94,
+    "buttons": [
+      { "text": "← Geri", "target": 90 }
+    ]
+  }
+}
