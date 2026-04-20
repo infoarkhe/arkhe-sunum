@@ -19,6 +19,7 @@ TIMEOUT_SEC  = 60
 TICK_SEC     = 10
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
+PENDING_FILE = "pending_users.json"  # Restart sonrası bildirim için
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
 LOG_FILE_REL = "telegram_bot/kullanim_raporu.md"
@@ -32,6 +33,8 @@ import time
 import os
 import subprocess
 import threading
+import signal
+import asyncio
 from datetime import datetime
 from collections import deque, Counter
 
@@ -426,11 +429,73 @@ async def cmd_stop(update, context):
             await update.message.reply_text("Zaten aktif değilsiniz.")
 
 
+async def shutdown_notify(app):
+    """Ctrl+C yapıldığında herkese haber ver, ID'leri kaydet."""
+    all_users = []
+
+    # Aktif kullanıcıyı bilgilendir
+    if active_user:
+        cid = active_user[0]
+        all_users.append(cid)
+        try:
+            await app.bot.send_message(cid,
+                "🔧 *Bot güncelleniyor.* Tekrar açıldığında size haber vereceğim.\nLütfen bekleyin.",
+                parse_mode="Markdown")
+        except: pass
+        release("bot kapatıldı")
+
+    # Sıradakileri bilgilendir
+    for cid, name in list(queue):
+        all_users.append(cid)
+        try:
+            await app.bot.send_message(cid,
+                "🔧 *Bot güncelleniyor.* Tekrar açıldığında size haber vereceğim.\nSıranız korunacak.",
+                parse_mode="Markdown")
+        except: pass
+    queue.clear()
+
+    # ID'leri dosyaya kaydet (restart'ta bildirim için)
+    if all_users:
+        try:
+            with open(PENDING_FILE, "w") as f:
+                json.dump(all_users, f)
+            log.info(f"Pending users kaydedildi: {all_users}")
+        except: pass
+
+    send_dwin(DEFAULT_PAGE)
+    log.info("Bot kapatılıyor...")
+
+
+async def startup_notify(app):
+    """Bot açıldığında önceki oturumdan bekleyenlere haber ver."""
+    if not os.path.exists(PENDING_FILE):
+        return
+    try:
+        with open(PENDING_FILE, "r") as f:
+            user_ids = json.load(f)
+        os.remove(PENDING_FILE)
+        for cid in user_ids:
+            try:
+                await app.bot.send_message(cid,
+                    "🟢 *Bot tekrar aktif!* Cihazı kullanmak için /start gönderin.",
+                    parse_mode="Markdown")
+            except: pass
+        log.info(f"Startup bildirimi gönderildi: {len(user_ids)} kullanıcı")
+    except: pass
+
+
 def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("stop", cmd_stop))
     app.add_handler(CallbackQueryHandler(on_button))
+
+    # Startup: bekleyenlere bildirim
+    app.post_init = startup_notify
+
+    # Shutdown: herkese haber ver
+    app.post_shutdown = shutdown_notify
+
     log.info("Bot başlatıldı (sıra + geri sayım + raporlama).")
     app.run_polling()
 
