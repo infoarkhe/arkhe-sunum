@@ -203,28 +203,31 @@ def write_report(user_info, reason):
     git_push_async()
 
 
+_git_lock = threading.Lock()
+
 def git_push_async():
-    """Rapor dosyalarını background'da GitHub'a push et."""
+    """Rapor dosyalarını background'da GitHub'a push et. Lock ile sıralı."""
     def _push():
-        try:
-            repo_dir = os.path.dirname(os.path.abspath(__file__))
-            parent_dir = os.path.dirname(repo_dir)
-            cmds = [
-                ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
-                ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
-                 "-c", "user.name=arkhe", "commit", "-m",
-                 f"rapor: oturum #{session_counter}"],
-                ["git", "-C", parent_dir, "push"],
-            ]
-            for cmd in cmds:
-                result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-                if result.returncode != 0 and "nothing to commit" not in result.stdout:
-                    log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
-                    break
-            else:
-                log.info("GitHub push başarılı.")
-        except Exception as e:
-            log.error(f"GitHub push hatası: {e}")
+        with _git_lock:  # Aynı anda iki push çalışmasın
+            try:
+                repo_dir = os.path.dirname(os.path.abspath(__file__))
+                parent_dir = os.path.dirname(repo_dir)
+                cmds = [
+                    ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
+                    ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
+                     "-c", "user.name=arkhe", "commit", "-m",
+                     f"rapor: oturum #{session_counter}"],
+                    ["git", "-C", parent_dir, "push"],
+                ]
+                for cmd in cmds:
+                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                    if result.returncode != 0 and "nothing to commit" not in result.stdout:
+                        log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
+                        break
+                else:
+                    log.info("GitHub push başarılı.")
+            except Exception as e:
+                log.error(f"GitHub push hatası: {e}")
 
     threading.Thread(target=_push, daemon=True).start()
 
