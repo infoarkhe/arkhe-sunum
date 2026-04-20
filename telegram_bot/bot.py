@@ -107,7 +107,10 @@ def release(reason="bilinmiyor"):
     active_user = None
     active_msg = None
     if tick_job:
-        tick_job.schedule_removal()
+        try:
+            tick_job.schedule_removal()
+        except Exception:
+            pass
         tick_job = None
     send_dwin(DEFAULT_PAGE)
     return old
