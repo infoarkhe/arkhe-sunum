@@ -208,31 +208,37 @@ def write_report(user_info, reason):
 
 _git_lock = threading.Lock()
 
-def git_push_async():
-    """Rapor dosyalarını background'da GitHub'a push et. Lock ile sıralı."""
-    def _push():
-        with _git_lock:  # Aynı anda iki push çalışmasın
-            try:
-                repo_dir = os.path.dirname(os.path.abspath(__file__))
-                parent_dir = os.path.dirname(repo_dir)
-                cmds = [
-                    ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
-                    ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
-                     "-c", "user.name=arkhe", "commit", "-m",
-                     f"rapor: oturum #{session_counter}"],
-                    ["git", "-C", parent_dir, "push"],
-                ]
-                for cmd in cmds:
-                    result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
-                    if result.returncode != 0 and "nothing to commit" not in result.stdout:
-                        log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
-                        break
-                else:
-                    log.info("GitHub push başarılı.")
-            except Exception as e:
-                log.error(f"GitHub push hatası: {e}")
+def _do_git_push():
+    """Git add + commit + push (lock ile)."""
+    with _git_lock:
+        try:
+            repo_dir = os.path.dirname(os.path.abspath(__file__))
+            parent_dir = os.path.dirname(repo_dir)
+            cmds = [
+                ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
+                ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
+                 "-c", "user.name=arkhe", "commit", "-m",
+                 f"rapor: oturum #{session_counter}"],
+                ["git", "-C", parent_dir, "push"],
+            ]
+            for cmd in cmds:
+                result = subprocess.run(cmd, capture_output=True, text=True, timeout=30)
+                if result.returncode != 0 and "nothing to commit" not in result.stdout:
+                    log.warning(f"Git: {' '.join(cmd[:4])}... → {result.stderr[:100]}")
+                    break
+            else:
+                log.info("GitHub push başarılı.")
+        except Exception as e:
+            log.error(f"GitHub push hatası: {e}")
 
-    threading.Thread(target=_push, daemon=True).start()
+
+def git_push_sync():
+    """Senkron push — bot kapanmadan tamamlanır."""
+    _do_git_push()
+
+def git_push_async():
+    """Rapor dosyalarını background'da GitHub'a push et."""
+    threading.Thread(target=_do_git_push, daemon=True).start()
 
 
 # ─── DWIN ───
@@ -433,7 +439,7 @@ async def shutdown_notify(app):
     """Ctrl+C yapıldığında herkese haber ver, ID'leri kaydet."""
     all_users = []
 
-    # Aktif kullanıcıyı bilgilendir
+    # Aktif kullanıcıyı bilgilendir + rapor yaz
     if active_user:
         cid = active_user[0]
         all_users.append(cid)
@@ -443,6 +449,8 @@ async def shutdown_notify(app):
                 parse_mode="Markdown")
         except: pass
         release("bot kapatıldı")
+        # Push'u senkron yap — bot kapanmadan tamamlansın
+        git_push_sync()
 
     # Sıradakileri bilgilendir
     for cid, name in list(queue):
