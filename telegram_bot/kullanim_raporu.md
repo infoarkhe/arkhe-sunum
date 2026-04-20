@@ -230,3 +230,26 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Saat Ayarları → Saat ve Tarih A
 - Ayarlar: 1 sn
 - Saat ve Tarih Ayarları: 1 sn
 - Saat Ayarları: 1 sn
+
+---
+
+## Oturum #2 — 2026-04-21 02:47:39
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 02:47:39 |
+| **Bitiş** | 02:47:50 |
+| **Süre** | 10 sn (0 dk 10 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 7 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Bar Grafik → Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 6 sn
+- Bar Grafik: 3 sn
+- Çizgi Grafik: 1 sn
