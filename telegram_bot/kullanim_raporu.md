@@ -142,3 +142,66 @@ Ana Ekran → Bar Grafik → Ana Ekran → Ayarlar
 - Ana Ekran: 3 sn
 - Bar Grafik: 3 sn
 - Ayarlar: 1 sn
+
+---
+
+## Oturum #2 — 2026-04-21 01:24:46
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 01:24:46 |
+| **Bitiş** | 01:24:51 |
+| **Süre** | 5 sn (0 dk 5 sn) |
+| **Sonuç** | bot kapatıldı |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 4 sn
+
+---
+
+## Oturum #1 — 2026-04-21 01:27:32
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 01:27:32 |
+| **Bitiş** | 01:27:38 |
+| **Süre** | 6 sn (0 dk 6 sn) |
+| **Sonuç** | bot kapatıldı |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 5 sn
+
+---
+
+## Oturum #1 — 2026-04-21 01:29:43
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 01:29:43 |
+| **Bitiş** | 01:29:50 |
+| **Süre** | 7 sn (0 dk 7 sn) |
+| **Sonuç** | bot kapatıldı |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 7 sn
