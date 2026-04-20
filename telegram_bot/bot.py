@@ -502,7 +502,7 @@ def main():
     app.post_init = startup_notify
 
     # Shutdown: herkese haber ver
-    app.post_shutdown = shutdown_notify
+    app.post_stop = shutdown_notify
 
     log.info("Bot başlatıldı (sıra + geri sayım + raporlama).")
     app.run_polling()
