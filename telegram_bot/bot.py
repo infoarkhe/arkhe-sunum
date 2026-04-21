@@ -71,6 +71,7 @@ if not USE_TCP:
 active_user = None          # (chat_id, username, start_time, last_activity)
 active_msg = None           # (chat_id, message_id, page_key)
 session_log = []            # [(page_key, page_title, timestamp), ...]
+sent_msg_ids = {}           # {chat_id: [message_id, ...]} — temizlik için
 queue = deque()
 tick_job = None
 session_counter = 0
@@ -92,10 +93,25 @@ def touch():
     if active_user:
         active_user = (active_user[0], active_user[1], active_user[2], time.time())
 
+def track_msg(cid, msg_id):
+    """Gönderilen mesaj ID'sini kaydet."""
+    if cid not in sent_msg_ids:
+        sent_msg_ids[cid] = []
+    sent_msg_ids[cid].append(msg_id)
+
+async def clear_chat(bot, cid):
+    """Kaydedilen tüm mesajları sil."""
+    ids = sent_msg_ids.pop(cid, [])
+    for mid in ids:
+        try:
+            await bot.delete_message(cid, mid)
+        except: pass
+
 def activate(cid, name):
     global active_user, session_log
     active_user = (cid, name, time.time(), time.time())
     session_log = []
+    sent_msg_ids.pop(cid, None)  # Eski mesaj listesini temizle
     log.info(f"Aktif: {name} ({cid})")
 
 def log_page(page_key):
@@ -301,10 +317,14 @@ async def on_tick(context):
     cid, mid, pkey = active_msg
 
     if rem <= 0:
+        await clear_chat(context.bot, cid)
         try:
             await context.bot.send_message(cid,
-                f"⏰ *{TIMEOUT_SEC} sn* süreniz doldu.\nTekrar: /start",
-                parse_mode="Markdown")
+                f"⏰ Süreniz doldu.\n\nTekrar denemek için 👇",
+                parse_mode="Markdown",
+                reply_markup=InlineKeyboardMarkup([
+                    [InlineKeyboardButton("🟢 Başlat", callback_data="_restart")]
+                ]))
         except: pass
         release("timeout")
         await promote(context)
@@ -362,12 +382,14 @@ async def show_page(update, page_key, edit=False):
     markup = make_markup(page_key, remaining())
 
     global active_msg
+    cid = update.effective_user.id
     if edit:
         await update.callback_query.edit_message_text(text, reply_markup=markup, parse_mode="Markdown")
-        active_msg = (update.effective_user.id, update.callback_query.message.message_id, page_key)
+        active_msg = (cid, update.callback_query.message.message_id, page_key)
     else:
         msg = await update.message.reply_text(text, reply_markup=markup, parse_mode="Markdown")
-        active_msg = (update.effective_user.id, msg.message_id, page_key)
+        active_msg = (cid, msg.message_id, page_key)
+        track_msg(cid, msg.message_id)
 
 
 async def cmd_start(update, context):
@@ -382,11 +404,12 @@ async def cmd_start(update, context):
 
     if active_user is None:
         activate(cid, name)
-        await update.message.reply_text(
+        welcome = await update.message.reply_text(
             f"🟢 *Hoş geldiniz {name}!*\n"
             f"Enerjimetre'yi kontrol edebilirsiniz.\n"
             f"Her tuşa basışta _{TIMEOUT_SEC} sn_ süre sıfırlanır.",
             parse_mode="Markdown")
+        track_msg(cid, welcome.message_id)
         await show_page(update, str(START_PAGE), edit=False)
         start_tick(context)
         return
@@ -396,12 +419,13 @@ async def cmd_start(update, context):
         queue.append((cid, name))
         pos = len(queue)
 
-    await update.message.reply_text(
+    wait_msg = await update.message.reply_text(
         f"⏳ *Cihaz şu an kullanılıyor.*\n"
         f"Sıranız: *{pos}*\n\n"
         f"Beklerken canlı yayından izleyebilirsiniz:\n"
         f"🔴 [{LIVE_URL}]({LIVE_URL})",
         parse_mode="Markdown", disable_web_page_preview=True)
+    track_msg(cid, wait_msg.message_id)
 
 
 async def on_button(update, context):
@@ -413,10 +437,25 @@ async def on_button(update, context):
         await q.answer(f"⏱ {remaining()} sn kaldı", show_alert=False)
         return
 
+    if q.data == "_restart":
+        # Timeout sonrası başlat butonu
+        await q.message.delete()
+        update_fake = update
+        update_fake.message = q.message
+        await cmd_start(update, context)
+        return
+
     if q.data == "_release":
         if is_active(cid):
+            await clear_chat(context.bot, cid)
             release("manuel bırakma")
-            await q.edit_message_text("✅ Cihazı bıraktınız. Tekrar: /start")
+            try:
+                await context.bot.send_message(cid,
+                    "✅ Cihazı bıraktınız.\n\nTekrar denemek için 👇",
+                    reply_markup=InlineKeyboardMarkup([
+                        [InlineKeyboardButton("🟢 Başlat", callback_data="_restart")]
+                    ]))
+            except: pass
             await promote(context)
         return
 
