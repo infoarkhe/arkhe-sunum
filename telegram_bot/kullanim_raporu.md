@@ -276,3 +276,24 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Saat Ayarları
 - Ana Ekran: 7 sn
 - Çizgi Grafik: 5 sn
 - Saat Ayarları: 4 sn
+
+---
+
+## Oturum #4 — 2026-04-21 11:44:24
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 11:44:24 |
+| **Bitiş** | 11:45:25 |
+| **Süre** | 60 sn (1 dk 0 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 60 sn
