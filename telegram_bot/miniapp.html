@@ -130,7 +130,8 @@
     try {
       const userId = tg.initDataUnsafe?.user?.id;
       if (userId) {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        // 1. Mesaj gönder
+        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
@@ -138,6 +139,21 @@
             text: `/go ${pageId}`
           })
         });
+        const data = await res.json();
+        const msgId = data.result?.message_id;
+
+        // 2. Mesajı pinle → bot yakalayacak
+        if (msgId) {
+          await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/pinChatMessage`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              chat_id: userId,
+              message_id: msgId,
+              disable_notification: true
+            })
+          });
+        }
       }
       STATUS.textContent = `Sayfa ${pageId} ✓`;
     } catch (e) {
