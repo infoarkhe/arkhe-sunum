@@ -761,3 +761,25 @@ Ana Ekran → Güç Göstergesi
 **Sayfa bazlı süre:**
 - Ana Ekran: 13 sn
 - Güç Göstergesi: 3 sn
+
+---
+
+## Oturum #6 — 2026-04-21 17:34:09
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:34:09 |
+| **Bitiş** | 17:34:30 |
+| **Süre** | 20 sn (0 dk 20 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Saat Ayarları
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 12 sn
+- Saat Ayarları: 8 sn
