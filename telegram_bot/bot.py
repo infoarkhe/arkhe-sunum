@@ -19,7 +19,9 @@ TIMEOUT_SEC  = 60
 TICK_SEC     = 10
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
-PENDING_FILE = "pending_users.json"  # Restart sonrası bildirim için
+SUNUM_URL    = "https://infoarkhe.github.io/arkhe-sunum/sunum.html"
+HTTP_PORT    = 8891               # Mini App + API HTTP portu
+PENDING_FILE = "pending_users.json"
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
 LOG_FILE_REL = "telegram_bot/kullanim_raporu.md"
@@ -35,6 +37,8 @@ import subprocess
 import threading
 import signal
 import asyncio
+from http.server import HTTPServer, SimpleHTTPRequestHandler
+from urllib.parse import urlparse, parse_qs
 from datetime import datetime
 from collections import deque, Counter
 
@@ -43,8 +47,8 @@ try:
 except ImportError:
     serial = None
 
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update
-from telegram.ext import Application, CommandHandler, CallbackQueryHandler, ContextTypes
+from telegram import InlineKeyboardButton, InlineKeyboardMarkup, Update, WebAppInfo
+from telegram.ext import Application, CommandHandler, CallbackQueryHandler, MessageHandler, ContextTypes, filters
 
 logging.basicConfig(
     format="%(asctime)s [%(levelname)s] %(message)s",
@@ -269,7 +273,10 @@ def build_kb(page_key):
         row.append(InlineKeyboardButton(btn["text"], callback_data=str(btn["target"])))
         if len(row) == 2: rows.append(row); row = []
     if row: rows.append(row)
-    rows.append([InlineKeyboardButton("🔴 Bırak", callback_data="_release")])
+    rows.append([
+        InlineKeyboardButton("🔗 Sunuma Dön", url=SUNUM_URL),
+        InlineKeyboardButton("🔴 Bırak", callback_data="_release")
+    ])
     return rows
 
 def timer_label(rem):
@@ -423,6 +430,76 @@ async def on_button(update, context):
     start_tick(context)
 
 
+async def on_pinned(update, context):
+    """Mini App'ten gelen pin mesajını yakala → DWIN komutu gönder → temizle."""
+    global active_msg
+    msg = update.message
+    if not msg or not msg.pinned_message:
+        return
+
+    pinned = msg.pinned_message
+    cid = msg.chat.id
+    text = pinned.text or ""
+
+    # /go PAGE_ID formatını parse et
+    if not text.startswith("/go "):
+        return
+
+    try:
+        page_id = int(text.split()[1])
+    except (IndexError, ValueError):
+        return
+
+    log.info(f"MiniApp pin: chat={cid} → page {page_id}")
+
+    # Sıra kontrolü
+    if not is_active(cid):
+        # Aktif değilse yok say
+        try:
+            await context.bot.unpin_chat_message(cid, pinned.message_id)
+            await context.bot.delete_message(cid, pinned.message_id)
+            await context.bot.delete_message(cid, msg.message_id)
+        except: pass
+        return
+
+    # DWIN'e gönder
+    page_key = str(page_id)
+    page = MENU.get(page_key)
+    if page:
+        send_dwin(page.get("dwin_page", page_id))
+    else:
+        send_dwin(page_id)
+
+    touch()
+    log_page(page_key)
+
+    # Mesajları temizle (pin mesajı + service mesajı)
+    try:
+        await context.bot.unpin_chat_message(cid, pinned.message_id)
+    except: pass
+    try:
+        await context.bot.delete_message(cid, pinned.message_id)
+    except: pass
+    try:
+        await context.bot.delete_message(cid, msg.message_id)
+    except: pass
+
+    # Keyboard'ı güncelle (varsa)
+    if active_msg:
+        _, mid, _ = active_msg
+        title = page.get("title", page_key) if page else page_key
+        try:
+            await context.bot.edit_message_text(
+                chat_id=cid, message_id=mid,
+                text=f"📺 *{title}*",
+                reply_markup=make_markup(page_key, remaining()),
+                parse_mode="Markdown")
+            active_msg = (cid, mid, page_key)
+        except: pass
+
+    start_tick(context)
+
+
 async def cmd_stop(update, context):
     cid = update.effective_user.id
     if is_active(cid):
@@ -499,6 +576,7 @@ def main():
     app = Application.builder().token(BOT_TOKEN).build()
     app.add_handler(CommandHandler("start", cmd_start))
     app.add_handler(CommandHandler("stop", cmd_stop))
+    app.add_handler(MessageHandler(filters.StatusUpdate.PINNED_MESSAGE, on_pinned))
     app.add_handler(CallbackQueryHandler(on_button))
 
     # Startup: bekleyenlere bildirim
