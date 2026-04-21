@@ -688,3 +688,30 @@ Ana Ekran → Bar Grafik → Günlük Rapor → Güç Göstergesi → Güç Büy
 - Güç Göstergesi: 1 sn
 - Alarm Ayarları: 1 sn
 - RS485 Ayarları: 1 sn
+
+---
+
+## Oturum #3 — 2026-04-21 17:29:35
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:29:35 |
+| **Bitiş** | 17:31:00 |
+| **Süre** | 85 sn (1 dk 25 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 8 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Büyük → Günlük Rapor → RS485 Ayarları → Bar Grafik → CO₂ Göstergesi
+
+**Sayfa bazlı süre:**
+- CO₂ Göstergesi: 60 sn
+- Ana Ekran: 15 sn
+- Güç Büyük: 2 sn
+- Güç Göstergesi: 1 sn
+- Günlük Rapor: 1 sn
+- RS485 Ayarları: 1 sn
+- Bar Grafik: 1 sn
