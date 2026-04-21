@@ -16,6 +16,28 @@
     flex-direction: column;
   }
 
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
+    background: #111;
+    color: #fff;
+    font-size: 13px;
+  }
+  .top-bar .timer { color: #00b4d8; font-weight: 600; }
+  .top-bar .timer.warn { color: #f0ad4e; }
+  .top-bar .timer.danger { color: #e63946; }
+  .top-bar .back-btn {
+    background: none;
+    border: 1px solid #555;
+    color: #fff;
+    padding: 6px 14px;
+    border-radius: 6px;
+    font-size: 12px;
+    cursor: pointer;
+  }
+
   .stream {
     height: 35vh;
     background: #000;
@@ -44,6 +66,7 @@
     padding: 12px;
     background: #f8f8f8;
     border-top: 1px solid #eee;
+    flex: 1;
   }
   .controls h3 {
     font-size: 13px;
@@ -90,6 +113,11 @@
 </head>
 <body>
 
+<div class="top-bar">
+  <span class="timer" id="timer">⏱ --</span>
+  <button class="back-btn" onclick="backToTelegram()">← Telegram'a Dön</button>
+</div>
+
 <div class="stream">
   <div class="stream-label">● CANLI</div>
   <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
@@ -120,40 +148,70 @@
 
   const BOT_TOKEN = "8157710360:AAH0gG6KcYzMwYgrboU4v9hjhV_kJchZF4o";
   const STATUS = document.getElementById('status');
+  const TIMER = document.getElementById('timer');
+
+  // URL'den timeout al
+  const params = new URLSearchParams(window.location.search);
+  let timeLeft = parseInt(params.get('timeout')) || 60;
+
+  // Geri sayım
+  function updateTimer() {
+    if (timeLeft <= 15) {
+      TIMER.className = 'timer danger';
+      TIMER.textContent = `🔴 ${timeLeft} sn`;
+    } else if (timeLeft <= 30) {
+      TIMER.className = 'timer warn';
+      TIMER.textContent = `🟡 ${timeLeft} sn`;
+    } else {
+      TIMER.className = 'timer';
+      TIMER.textContent = `⏱ ${timeLeft} sn`;
+    }
+  }
+
+  updateTimer();
+  const countdown = setInterval(() => {
+    timeLeft--;
+    updateTimer();
+    if (timeLeft <= 0) {
+      clearInterval(countdown);
+      STATUS.textContent = '⏰ Süre doldu';
+      tg.close();
+    }
+  }, 1000);
+
+  function backToTelegram() {
+    tg.close();
+  }
 
   async function go(pageId) {
     document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
     event.target.classList.add('active');
-
     STATUS.textContent = 'Gönderiliyor...';
 
     try {
       const userId = tg.initDataUnsafe?.user?.id;
       if (userId) {
-        // 1. Mesaj gönder
+        // Mesaj gönder
         const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: userId,
-            text: `/go ${pageId}`
-          })
+          body: JSON.stringify({ chat_id: userId, text: `/go ${pageId}` })
         });
         const data = await res.json();
         const msgId = data.result?.message_id;
 
-        // 2. Mesajı pinle → bot yakalayacak
+        // Pinle → bot yakalasın
         if (msgId) {
           await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/pinChatMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              chat_id: userId,
-              message_id: msgId,
-              disable_notification: true
-            })
+            body: JSON.stringify({ chat_id: userId, message_id: msgId, disable_notification: true })
           });
         }
+
+        // Timeout sıfırla
+        timeLeft = 60;
+        updateTimer();
       }
       STATUS.textContent = `Sayfa ${pageId} ✓`;
     } catch (e) {
