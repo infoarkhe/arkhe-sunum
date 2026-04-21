@@ -1021,3 +1021,30 @@ Ana Ekran → Günlük Rapor → Ana Ekran → Bar Grafik → Ana Ekran → Çiz
 - Çizgi Grafik: 1 sn
 - Günlük Rapor: 1 sn
 - Bar Grafik: 1 sn
+
+---
+
+## Oturum #2 — 2026-04-21 18:06:03
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 18:06:03 |
+| **Bitiş** | 18:07:37 |
+| **Süre** | 94 sn (1 dk 34 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 13 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Ayarlar → Alarm Ayarları → Alarm Ayarları (2) → Enerji Alarmları → Alarm Ayarları (2) → Alarm Ayarları → Ayarlar → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 60 sn
+- Ayarlar: 15 sn
+- Alarm Ayarları (2): 5 sn
+- Enerji Alarmları: 3 sn
+- Çizgi Grafik: 3 sn
+- CO₂ Göstergesi: 2 sn
+- Alarm Ayarları: 2 sn
