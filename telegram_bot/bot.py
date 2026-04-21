@@ -289,7 +289,8 @@ def build_kb(page_key):
         row.append(InlineKeyboardButton(btn["text"], callback_data=str(btn["target"])))
         if len(row) == 2: rows.append(row); row = []
     if row: rows.append(row)
-    rows.append([InlineKeyboardButton("📺 Canlı Kontrol", web_app=WebAppInfo(url=MINIAPP_URL))])
+    rem = remaining()
+    rows.append([InlineKeyboardButton("📺 Canlı Kontrol", web_app=WebAppInfo(url=f"{MINIAPP_URL}?timeout={rem}"))])
     rows.append([
         InlineKeyboardButton("🔗 Sunuma Dön", url=SUNUM_URL),
         InlineKeyboardButton("🔴 Bırak", callback_data="_release")
