@@ -715,3 +715,27 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Büyük → Günlük Rap
 - Günlük Rapor: 1 sn
 - RS485 Ayarları: 1 sn
 - Bar Grafik: 1 sn
+
+---
+
+## Oturum #4 — 2026-04-21 17:31:08
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:31:08 |
+| **Bitiş** | 17:31:47 |
+| **Süre** | 38 sn (0 dk 38 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 7 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Bar Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Ayarlar → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 30 sn
+- Bar Grafik: 3 sn
+- Ayarlar: 2 sn
+- Günlük Rapor: 1 sn
