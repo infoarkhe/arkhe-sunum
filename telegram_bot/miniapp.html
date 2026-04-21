@@ -81,13 +81,17 @@
     background: #fff;
     border: 1.5px solid #ddd;
     border-radius: 10px;
-    padding: 14px 8px;
+    padding: 8px;
     font-size: 13px;
     font-weight: 500;
     color: #333;
     cursor: pointer;
     transition: all 0.15s;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
   }
   .btn:active {
     background: #00b4d8;
@@ -104,6 +108,8 @@
     background: #f0f0f0;
     border-color: #ccc;
     color: #666;
+    grid-column: span 3;
+    min-height: 40px;
   }
   .status {
     text-align: center;
@@ -123,7 +129,7 @@
 
 <div class="stream">
   <div class="stream-label">● CANLI</div>
-  <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=1000"
+  <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
     allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
