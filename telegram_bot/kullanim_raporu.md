@@ -429,3 +429,26 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 2 sn
+
+---
+
+## Oturum #2 — 2026-04-21 15:35:43
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 15:35:43 |
+| **Bitiş** | 15:37:35 |
+| **Süre** | 112 sn (1 dk 52 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 3 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Bar Grafik
+
+**Sayfa bazlı süre:**
+- Bar Grafik: 62 sn
+- Ana Ekran: 42 sn
+- Güç Göstergesi: 6 sn
