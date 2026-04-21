@@ -659,3 +659,32 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 2 sn
+
+---
+
+## Oturum #2 — 2026-04-21 17:28:13
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 17:28:13 |
+| **Bitiş** | 17:29:35 |
+| **Süre** | 81 sn (1 dk 21 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 14 |
+| **En çok ziyaret** | Günlük Rapor (3x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Bar Grafik → Günlük Rapor → Güç Göstergesi → Güç Büyük → Alarm Ayarları → CO₂ Göstergesi → Ana Ekran → RS485 Ayarları → Saat Ayarları → Günlük Rapor → Bar Grafik → Günlük Rapor → Güç Büyük
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 42 sn
+- Bar Grafik: 19 sn
+- Güç Büyük: 5 sn
+- Günlük Rapor: 5 sn
+- Saat Ayarları: 2 sn
+- CO₂ Göstergesi: 1 sn
+- Güç Göstergesi: 1 sn
+- Alarm Ayarları: 1 sn
+- RS485 Ayarları: 1 sn
