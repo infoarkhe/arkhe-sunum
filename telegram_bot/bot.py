@@ -232,12 +232,13 @@ def write_report(user_info, reason):
 _git_lock = threading.Lock()
 
 def _do_git_push():
-    """Git add + commit + push (lock ile)."""
+    """Git pull + add + commit + push (lock ile)."""
     with _git_lock:
         try:
             repo_dir = os.path.dirname(os.path.abspath(__file__))
             parent_dir = os.path.dirname(repo_dir)
             cmds = [
+                ["git", "-C", parent_dir, "pull", "--rebase", "--autostash"],
                 ["git", "-C", parent_dir, "add", LOG_FILE_REL, LOG_JSON_REL],
                 ["git", "-C", parent_dir, "-c", "user.email=info@arkhe.com",
                  "-c", "user.name=arkhe", "commit", "-m",
