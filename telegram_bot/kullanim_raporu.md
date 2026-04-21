@@ -380,3 +380,31 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Göstergesi → Ana Ekra
 - Maks. kW Ayarı: 7 sn
 - Saat ve Tarih Ayarları: 2 sn
 - Tarih Ayarları: 2 sn
+
+---
+
+## Oturum #1 — 2026-04-21 15:23:29
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 15:23:29 |
+| **Bitiş** | 15:25:08 |
+| **Süre** | 99 sn (1 dk 39 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 17 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Ana Ekran → Güç Göstergesi → Bar Grafik → Günlük Rapor → Alarm Ayarları → RS485 Ayarları → Saat Ayarları → Ana Ekran → Bar Grafik → Ana Ekran → Güç Büyük → Günlük Rapor → RS485 Ayarları → Alarm Ayarları → Ana Ekran → Bar Grafik
+
+**Sayfa bazlı süre:**
+- Bar Grafik: 36 sn
+- Ana Ekran: 27 sn
+- Günlük Rapor: 9 sn
+- RS485 Ayarları: 7 sn
+- Alarm Ayarları: 7 sn
+- Saat Ayarları: 5 sn
+- Güç Göstergesi: 3 sn
+- Güç Büyük: 2 sn
