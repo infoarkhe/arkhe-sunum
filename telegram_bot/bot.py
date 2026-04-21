@@ -19,8 +19,7 @@ TIMEOUT_SEC  = 60
 TICK_SEC     = 10
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
-SUNUM_URL    = "https://infoarkhe.github.io/arkhe-sunum/sunum.html"
-PENDING_FILE = "pending_users.json"
+PENDING_FILE = "pending_users.json"  # Restart sonrası bildirim için
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
 LOG_FILE_REL = "telegram_bot/kullanim_raporu.md"
@@ -270,10 +269,7 @@ def build_kb(page_key):
         row.append(InlineKeyboardButton(btn["text"], callback_data=str(btn["target"])))
         if len(row) == 2: rows.append(row); row = []
     if row: rows.append(row)
-    rows.append([
-        InlineKeyboardButton("🔗 Sunuma Dön", url=SUNUM_URL),
-        InlineKeyboardButton("🔴 Bırak", callback_data="_release")
-    ])
+    rows.append([InlineKeyboardButton("🔴 Bırak", callback_data="_release")])
     return rows
 
 def timer_label(rem):
