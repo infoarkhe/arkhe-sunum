@@ -914,3 +914,31 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 60 sn
+
+---
+
+## Oturum #12 — 2026-04-21 17:41:22
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:41:22 |
+| **Bitiş** | 17:42:24 |
+| **Süre** | 61 sn (1 dk 1 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 20 |
+| **En çok ziyaret** | Ana Ekran (10x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Bar Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Ayarlar → Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Güç Göstergesi → Güç Büyük → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 31 sn
+- Ayarlar: 7 sn
+- Çizgi Grafik: 7 sn
+- Güç Büyük: 4 sn
+- Bar Grafik: 4 sn
+- Güç Göstergesi: 3 sn
+- Günlük Rapor: 2 sn
+- CO₂ Göstergesi: 1 sn
