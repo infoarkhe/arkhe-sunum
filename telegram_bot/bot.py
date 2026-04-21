@@ -20,7 +20,7 @@ TICK_SEC     = 10
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
 SUNUM_URL    = "https://infoarkhe.github.io/arkhe-sunum/sunum.html"
-HTTP_PORT    = 8891               # Mini App + API HTTP portu
+MINIAPP_URL  = "https://infoarkhe.github.io/arkhe-sunum/telegram_bot/miniapp.html"
 PENDING_FILE = "pending_users.json"
 LOG_FILE     = "kullanim_raporu.md"
 LOG_JSON     = "kullanim_raporu.json"
@@ -289,6 +289,7 @@ def build_kb(page_key):
         row.append(InlineKeyboardButton(btn["text"], callback_data=str(btn["target"])))
         if len(row) == 2: rows.append(row); row = []
     if row: rows.append(row)
+    rows.append([InlineKeyboardButton("📺 Canlı Kontrol", web_app=WebAppInfo(url=MINIAPP_URL))])
     rows.append([
         InlineKeyboardButton("🔗 Sunuma Dön", url=SUNUM_URL),
         InlineKeyboardButton("🔴 Bırak", callback_data="_release")
