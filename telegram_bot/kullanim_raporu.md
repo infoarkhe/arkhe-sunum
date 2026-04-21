@@ -329,3 +329,27 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Göstergesi → Ana Ekra
 - Alarm Ayarları: 1 sn
 - Saat ve Tarih Ayarları: 1 sn
 - Saat Ayarları: 0 sn
+
+---
+
+## Oturum #1 — 2026-04-21 15:16:44
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 15:16:44 |
+| **Bitiş** | 15:18:02 |
+| **Süre** | 77 sn (1 dk 17 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 6 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → Ayarlar
+
+**Sayfa bazlı süre:**
+- Ayarlar: 60 sn
+- Güç Göstergesi: 11 sn
+- Ana Ekran: 4 sn
+- Güç Büyük: 1 sn
