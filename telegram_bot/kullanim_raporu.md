@@ -783,3 +783,31 @@ Ana Ekran → Saat Ayarları
 **Sayfa bazlı süre:**
 - Ana Ekran: 12 sn
 - Saat Ayarları: 8 sn
+
+---
+
+## Oturum #7 — 2026-04-21 17:35:57
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:35:57 |
+| **Bitiş** | 17:36:29 |
+| **Süre** | 31 sn (0 dk 31 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 11 |
+| **En çok ziyaret** | Ana Ekran (3x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Bar Grafik → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Günlük Rapor → RS485 Ayarları → Saat Ayarları → Alarm Ayarları → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 11 sn
+- Alarm Ayarları: 3 sn
+- CO₂ Göstergesi: 3 sn
+- Güç Göstergesi: 3 sn
+- Bar Grafik: 2 sn
+- Saat Ayarları: 2 sn
+- RS485 Ayarları: 1 sn
+- Günlük Rapor: 1 sn
