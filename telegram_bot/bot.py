@@ -16,7 +16,7 @@ BAUD_RATE    = 115200
 MENU_FILE    = "menu_tree.json"
 START_PAGE   = 1
 TIMEOUT_SEC  = 60
-TICK_SEC     = 10
+TICK_SEC     = 15
 DEFAULT_PAGE = 11              # Her disconnection'da dönülecek sayfa (barchart)
 LIVE_URL     = "https://vdo.ninja/?view=arkhesunum&room=azad&solo"
 SUNUM_URL    = "https://infoarkhe.github.io/arkhe-sunum/sunum.html"

@@ -120,7 +120,7 @@
 
 <div class="stream">
   <div class="stream-label">● CANLI</div>
-  <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
+  <iframe loading="lazy" src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&quality=0&bitrate=500"
     allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
@@ -188,35 +188,28 @@
     event.target.classList.add('active');
     STATUS.textContent = 'Gönderiliyor...';
 
-    try {
-      const userId = tg.initDataUnsafe?.user?.id;
-      if (userId) {
-        // Mesaj gönder
-        const res = await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ chat_id: userId, text: `/go ${pageId}` })
-        });
-        const data = await res.json();
+    const userId = tg.initDataUnsafe?.user?.id;
+    if (userId) {
+      // Fire & forget — await yok, anında devam et
+      fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ chat_id: userId, text: `/go ${pageId}` })
+      }).then(r => r.json()).then(data => {
         const msgId = data.result?.message_id;
-
-        // Pinle → bot yakalasın
         if (msgId) {
-          await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/pinChatMessage`, {
+          fetch(`https://api.telegram.org/bot${BOT_TOKEN}/pinChatMessage`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ chat_id: userId, message_id: msgId, disable_notification: true })
           });
         }
+      });
 
-        // Timeout sıfırla
-        timeLeft = 60;
-        updateTimer();
-      }
-      STATUS.textContent = `Sayfa ${pageId} ✓`;
-    } catch (e) {
-      STATUS.textContent = 'Hata: ' + e.message;
+      timeLeft = 60;
+      updateTimer();
     }
+    STATUS.textContent = `Sayfa ${pageId} ✓`;
 
     setTimeout(() => { STATUS.textContent = 'Hazır'; }, 2000);
   }
