@@ -432,6 +432,7 @@ async def on_button(update, context):
 
 async def on_pinned(update, context):
     """Mini App'ten gelen pin mesajını yakala → DWIN komutu gönder → temizle."""
+    global active_msg
     msg = update.message
     if not msg or not msg.pinned_message:
         return
@@ -493,7 +494,6 @@ async def on_pinned(update, context):
                 text=f"📺 *{title}*",
                 reply_markup=make_markup(page_key, remaining()),
                 parse_mode="Markdown")
-            global active_msg
             active_msg = (cid, mid, page_key)
         except: pass
 
