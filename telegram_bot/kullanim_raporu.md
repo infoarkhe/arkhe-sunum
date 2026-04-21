@@ -739,3 +739,25 @@ Ana Ekran → Bar Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Ayar
 - Bar Grafik: 3 sn
 - Ayarlar: 2 sn
 - Günlük Rapor: 1 sn
+
+---
+
+## Oturum #5 — 2026-04-21 17:33:25
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:33:25 |
+| **Bitiş** | 17:33:42 |
+| **Süre** | 17 sn (0 dk 17 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 13 sn
+- Güç Göstergesi: 3 sn
