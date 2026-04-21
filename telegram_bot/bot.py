@@ -440,11 +440,32 @@ async def on_button(update, context):
         return
 
     if q.data == "_restart":
-        # Timeout sonrası başlat butonu
-        await q.message.delete()
-        update_fake = update
-        update_fake.message = q.message
-        await cmd_start(update, context)
+        try:
+            await q.message.delete()
+        except: pass
+        # /start gibi davran
+        name = update.effective_user.first_name or str(cid)
+        if active_user is None:
+            activate(cid, name)
+            welcome = await context.bot.send_message(cid,
+                f"🟢 *Hoş geldiniz {name}!*\n"
+                f"Her tuşa basışta _{TIMEOUT_SEC} sn_ süre sıfırlanır.",
+                parse_mode="Markdown")
+            track_msg(cid, welcome.message_id)
+            page = MENU.get(str(START_PAGE))
+            dp = page.get("dwin_page", START_PAGE) if page else START_PAGE
+            send_dwin(dp)
+            touch()
+            log_page(str(START_PAGE))
+            text = page_text(str(START_PAGE))
+            markup = make_markup(str(START_PAGE), remaining())
+            msg = await context.bot.send_message(cid, text, reply_markup=markup, parse_mode="Markdown")
+            global active_msg
+            active_msg = (cid, msg.message_id, str(START_PAGE))
+            track_msg(cid, msg.message_id)
+            start_tick(context)
+        else:
+            await context.bot.send_message(cid, "⏳ Cihaz şu an kullanılıyor. /start ile sıraya girin.")
         return
 
     if q.data == "_release":
