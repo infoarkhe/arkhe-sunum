@@ -1093,3 +1093,47 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 3 sn
+
+---
+
+## Oturum #1 — 2026-04-21 19:33:23
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 19:33:23 |
+| **Bitiş** | 19:34:34 |
+| **Süre** | 71 sn (1 dk 11 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 3 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 64 sn
+- Çizgi Grafik: 6 sn
+
+---
+
+## Oturum #2 — 2026-04-21 22:24:27
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 22:24:27 |
+| **Bitiş** | 22:26:26 |
+| **Süre** | 119 sn (1 dk 59 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 3 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Bar Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 111 sn
+- Bar Grafik: 7 sn
