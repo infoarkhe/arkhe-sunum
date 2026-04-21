@@ -544,3 +544,24 @@ Ana Ekran → Bar Grafik → Güç Göstergesi → Ana Ekran → Saat Ayarları 
 - Saat ve Tarih Ayarları: 3 sn
 - Bar Grafik: 3 sn
 - Ayarlar: 2 sn
+
+---
+
+## Oturum #2 — 2026-04-21 15:45:11
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-21 15:45:11 |
+| **Bitiş** | 15:46:14 |
+| **Süre** | 63 sn (1 dk 3 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 63 sn
