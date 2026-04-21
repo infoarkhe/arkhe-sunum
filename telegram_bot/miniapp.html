@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<link rel="preconnect" href="https://vdo.ninja">
 <title>Enerjimetre Kontrol</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
@@ -103,7 +104,6 @@
     background: #f0f0f0;
     border-color: #ccc;
     color: #666;
-    grid-column: span 3;
   }
   .status {
     text-align: center;
@@ -123,7 +123,7 @@
 
 <div class="stream">
   <div class="stream-label">● CANLI</div>
-  <iframe loading="lazy" src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&quality=0&bitrate=500"
+  <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=1000"
     allow="autoplay; encrypted-media" allowfullscreen></iframe>
 </div>
 
@@ -154,6 +154,8 @@
         {text: "Çizgi Grafik", target: "7"},
         {text: "Bar Grafik", target: "11"},
         {text: "Günlük Rapor", target: "24"},
+        {text: "Saat Ayarları", target: "65"},
+        {text: "Tarih Ayarları", target: "63"},
         {text: "Ayarlar", target: "40"}
       ]
     },
