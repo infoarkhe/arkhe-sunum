@@ -942,3 +942,31 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekra
 - Güç Göstergesi: 3 sn
 - Günlük Rapor: 2 sn
 - CO₂ Göstergesi: 1 sn
+
+---
+
+## Oturum #1 — 2026-04-21 17:47:15
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:47:15 |
+| **Bitiş** | 17:48:16 |
+| **Süre** | 60 sn (1 dk 0 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 17 |
+| **En çok ziyaret** | Ana Ekran (8x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → CO₂ Göstergesi → Ana Ekran → Günlük Rapor → Ana Ekran → Ayarlar → Ana Ekran → Bar Grafik → Ana Ekran → Çizgi Grafik → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 34 sn
+- Güç Büyük: 14 sn
+- CO₂ Göstergesi: 4 sn
+- Güç Göstergesi: 2 sn
+- Çizgi Grafik: 1 sn
+- Ayarlar: 1 sn
+- Bar Grafik: 1 sn
+- Günlük Rapor: 0 sn
