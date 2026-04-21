@@ -589,3 +589,31 @@ Ana Ekran → Güç Göstergesi → Bar Grafik → Ana Ekran → Günlük Rapor 
 - Günlük Rapor: 31 sn
 - Ana Ekran: 14 sn
 - Güç Göstergesi: 6 sn
+
+---
+
+## Oturum #2 — 2026-04-21 15:55:17
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 15:55:17 |
+| **Bitiş** | 15:57:11 |
+| **Süre** | 113 sn (1 dk 53 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 14 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Tarih Ayarları → Saat ve Tarih Ayarları → Ayarlar → Önceden Tanımlı Değerler → Ayarlar → Ana Ekran → Bar Grafik → Ana Ekran → Bar Grafik
+
+**Sayfa bazlı süre:**
+- Bar Grafik: 64 sn
+- Ana Ekran: 32 sn
+- Ayarlar: 4 sn
+- CO₂ Göstergesi: 2 sn
+- Çizgi Grafik: 2 sn
+- Önceden Tanımlı Değerler: 2 sn
+- Saat ve Tarih Ayarları: 2 sn
+- Tarih Ayarları: 1 sn
