@@ -3,14 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Enerjimetre Kontrol</title>
+<title>Enerjimetre — Canlı Yayın</title>
 <script src="https://telegram.org/js/telegram-web-app.js"></script>
 <style>
   * { box-sizing: border-box; margin: 0; padding: 0; }
   body {
     font-family: -apple-system, sans-serif;
-    background: #ffffff;
-    color: #333;
+    background: #000;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -18,8 +17,6 @@
 
   .stream {
     flex: 1;
-    min-height: 40vh;
-    background: #000;
     position: relative;
   }
   .stream iframe {
@@ -29,63 +26,40 @@
   }
   .stream-label {
     position: absolute;
-    top: 8px;
-    left: 12px;
+    top: 12px;
+    left: 16px;
     color: #e63946;
-    font-size: 13px;
+    font-size: 14px;
     font-weight: 600;
     animation: blink 1.5s infinite;
+    z-index: 10;
   }
   @keyframes blink {
     0%,100% { opacity: 1; }
     50% { opacity: 0.3; }
   }
 
-  .controls {
-    padding: 12px;
-    background: #f8f8f8;
-    border-top: 1px solid #eee;
+  .bar {
+    padding: 14px 20px;
+    background: #111;
+    display: flex;
+    justify-content: center;
   }
-  .controls h3 {
-    font-size: 13px;
-    color: #999;
-    letter-spacing: 0.1em;
-    margin-bottom: 10px;
-    text-transform: uppercase;
-  }
-  .btn-grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 8px;
-  }
-  .btn {
-    background: #fff;
-    border: 1.5px solid #ddd;
+  .bar button {
+    background: #00b4d8;
+    color: #fff;
+    border: none;
     border-radius: 10px;
-    padding: 14px 8px;
-    font-size: 13px;
-    font-weight: 500;
-    color: #333;
+    padding: 14px 32px;
+    font-size: 16px;
+    font-weight: 600;
     cursor: pointer;
-    transition: all 0.15s;
-    text-align: center;
+    width: 100%;
+    max-width: 400px;
   }
-  .btn:active {
-    background: #00b4d8;
-    color: #fff;
-    border-color: #00b4d8;
-    transform: scale(0.95);
-  }
-  .btn.active {
-    background: #00b4d8;
-    color: #fff;
-    border-color: #00b4d8;
-  }
-  .status {
-    text-align: center;
-    padding: 8px;
-    font-size: 12px;
-    color: #999;
+  .bar button:active {
+    opacity: 0.8;
+    transform: scale(0.97);
   }
 </style>
 </head>
@@ -93,62 +67,24 @@
 
 <div class="stream">
   <div class="stream-label">● CANLI</div>
-  <iframe src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
-    allow="autoplay; encrypted-media" allowfullscreen></iframe>
+  <iframe
+    src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio"
+    allow="autoplay; encrypted-media"
+    allowfullscreen>
+  </iframe>
 </div>
 
-<div class="controls">
-  <h3>Cihazı Kontrol Et</h3>
-  <div class="btn-grid">
-    <div class="btn" onclick="go(1)">Ana Ekran</div>
-    <div class="btn" onclick="go(5)">Güç Kadran</div>
-    <div class="btn" onclick="go(15)">Güç Büyük</div>
-    <div class="btn" onclick="go(6)">CO₂</div>
-    <div class="btn" onclick="go(11)">Bar Grafik</div>
-    <div class="btn" onclick="go(24)">Günlük Rapor</div>
-    <div class="btn" onclick="go(89)">Alarmlar</div>
-    <div class="btn" onclick="go(79)">RS485</div>
-    <div class="btn" onclick="go(65)">Ayarlar</div>
-  </div>
+<div class="bar">
+  <button onclick="backToTelegram()">← Telegram'a Dön</button>
 </div>
-
-<div class="status" id="status">Hazır</div>
 
 <script>
   const tg = window.Telegram.WebApp;
-  tg.expand();  // Tam ekran aç
+  tg.expand();
   tg.ready();
 
-  const BOT_TOKEN = "8157710360:AAH0gG6KcYzMwYgrboU4v9hjhV_kJchZF4o";
-  const STATUS = document.getElementById('status');
-  let activeBtn = null;
-
-  async function go(pageId) {
-    // Butonu vurgula
-    document.querySelectorAll('.btn').forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-
-    STATUS.textContent = 'Gönderiliyor...';
-
-    try {
-      // Bot'un kendi chat'ine mesaj gönder — bot bunu yakalayacak
-      const userId = tg.initDataUnsafe?.user?.id;
-      if (userId) {
-        await fetch(`https://api.telegram.org/bot${BOT_TOKEN}/sendMessage`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            chat_id: userId,
-            text: `/go ${pageId}`
-          })
-        });
-      }
-      STATUS.textContent = `Sayfa ${pageId} ✓`;
-    } catch (e) {
-      STATUS.textContent = 'Hata: ' + e.message;
-    }
-
-    setTimeout(() => { STATUS.textContent = 'Hazır'; }, 2000);
+  function backToTelegram() {
+    tg.close();
   }
 </script>
 </body>
