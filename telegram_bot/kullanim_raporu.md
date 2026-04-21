@@ -855,3 +855,41 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 1 sn
+
+---
+
+## Oturum #10 — 2026-04-21 17:37:42
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:37:42 |
+| **Bitiş** | 17:39:04 |
+| **Süre** | 82 sn (1 dk 22 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 37 |
+| **En çok ziyaret** | Ana Ekran (6x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → CO₂ Göstergesi → Ana Ekran → Ayarlar → Ana Ekran → Günlük Rapor → Ana Ekran → Bar Grafik → Ana Ekran → Ayarlar → Saat ve Tarih Ayarları → Saat Ayarları → Saat ve Tarih Ayarları → Tarih Ayarları → Saat ve Tarih Ayarları → Ayarlar → Alarm Ayarları → Hazır Saat Alarmları → Alarm Ayarları → Özel Saat Alarmları → Alarm Ayarları → Alarm Ayarları (2) → Güç Alarmları → Alarm Ayarları (2) → Enerji Alarmları → Alarm Ayarları (2) → Alarm Ayarları → Ayarlar → RS485 Ayarları → RS485 Cihaz Ayarları → RS485 Ayarları → RS485 Adres Ayarları → Manuel Adres Girişi → RS485 Adres Ayarları → RS485 Ayarları → Ayarlar → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 26 sn
+- Ayarlar: 12 sn
+- Alarm Ayarları: 5 sn
+- RS485 Ayarları: 4 sn
+- Alarm Ayarları (2): 3 sn
+- RS485 Adres Ayarları: 3 sn
+- Bar Grafik: 3 sn
+- Saat ve Tarih Ayarları: 3 sn
+- Manuel Adres Girişi: 2 sn
+- Güç Alarmları: 2 sn
+- Hazır Saat Alarmları: 2 sn
+- Enerji Alarmları: 2 sn
+- Özel Saat Alarmları: 2 sn
+- CO₂ Göstergesi: 1 sn
+- Tarih Ayarları: 1 sn
+- Saat Ayarları: 1 sn
+- RS485 Cihaz Ayarları: 1 sn
+- Günlük Rapor: 1 sn
