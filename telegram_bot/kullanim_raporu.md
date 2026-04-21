@@ -893,3 +893,24 @@ Ana Ekran → CO₂ Göstergesi → Ana Ekran → Ayarlar → Ana Ekran → Gün
 - Saat Ayarları: 1 sn
 - RS485 Cihaz Ayarları: 1 sn
 - Günlük Rapor: 1 sn
+
+---
+
+## Oturum #11 — 2026-04-21 17:39:08
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 17:39:08 |
+| **Bitiş** | 17:40:09 |
+| **Süre** | 60 sn (1 dk 0 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 60 sn
