@@ -353,3 +353,30 @@ Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana 
 - Güç Göstergesi: 11 sn
 - Ana Ekran: 4 sn
 - Güç Büyük: 1 sn
+
+---
+
+## Oturum #1 — 2026-04-21 15:18:50
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `7561480889` |
+| **Başlangıç** | 2026-04-21 15:18:50 |
+| **Bitiş** | 15:21:45 |
+| **Süre** | 175 sn (2 dk 55 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 14 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Göstergesi → Ana Ekran → Bar Grafik → Ana Ekran → Tarih Ayarları → Saat ve Tarih Ayarları → Ayarlar → Maks. kW Ayarı → Ayarlar → Ana Ekran → Bar Grafik
+
+**Sayfa bazlı süre:**
+- Bar Grafik: 93 sn
+- Ana Ekran: 31 sn
+- Güç Göstergesi: 28 sn
+- Ayarlar: 9 sn
+- Maks. kW Ayarı: 7 sn
+- Saat ve Tarih Ayarları: 2 sn
+- Tarih Ayarları: 2 sn
