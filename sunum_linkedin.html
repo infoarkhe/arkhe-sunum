@@ -851,6 +851,45 @@
         letter-spacing: 0.02em;
       }
 
+      /* Problem slaytı — dikey scroll, kartlar tek sütun */
+      #slide-problem {
+        overflow-y: auto;
+        padding: 4vh 5vw 6vh;
+        justify-content: flex-start;
+      }
+
+      .problem-items {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .problem-item {
+        padding: 18px 18px;
+      }
+
+      .problem-item .desc {
+        /* clamp min'inin altına düşemiyor; portrait'te küçültelim */
+        font-size: 14px;
+      }
+
+      .problem-item .title {
+        font-size: 22px;
+      }
+
+      .problem-headline-big {
+        font-size: 52px;
+        margin-bottom: 20px;
+      }
+
+      .problem-headline {
+        font-size: 22px;
+      }
+
+      .problem-label {
+        margin-top: 1vh;
+      }
+
     }
   </style>
 </head>
@@ -1207,12 +1246,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v81</div>
+    v82</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v81';
+    const CURRENT_VERSION = 'v82';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
