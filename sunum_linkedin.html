@@ -1,0 +1,1460 @@
+<!DOCTYPE html>
+<html lang="tr">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arkhe Enerjimetre — Sunum</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --white: #ffffff;
+      --black: #0a0a0a;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-700: #333;
+      --accent: #00b4d8;
+      --accent-dark: #0077a8;
+      --red: #e63946;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      font-family: var(--font-body);
+      overflow: hidden;
+      cursor: none;
+    }
+
+    /* ── SLIDE CONTAINER ── */
+    #deck {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SLIDE 1: KAPAK ── */
+    #slide-kapak {
+      background: #FFFFFF;
+    }
+
+    .kapak-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      max-height: 100vh;
+    }
+
+    .kapak-brand {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 60px);
+      letter-spacing: 0.35em;
+      color: var(--gray-700);
+      line-height: 1;
+    }
+
+    .kapak-line {
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      margin: 18px 0 16px;
+    }
+
+    .kapak-sub {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 2vw, 24px);
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    .kapak-version {
+      font-family: var(--font-body);
+      font-size: clamp(18px, 2.5vw, 32px);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .kapak-product {
+      font-family: var(--font-display);
+      font-size: min(14vw, 15vh);
+      letter-spacing: 0.15em;
+      color: var(--black);
+      line-height: 0.9;
+    }
+
+    .kapak-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60vh;
+      height: 60vh;
+      opacity: 0.04;
+      animation: kapak-spin 60s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes kapak-spin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .kapak-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    /* ── SLIDE 2: PROBLEM ── */
+    #slide-problem {
+      background: #FFFFFF;
+      padding: 40px 10vw 60px;
+      justify-content: flex-start;
+      padding-top: 2vh;
+    }
+
+    .problem-label {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 44px);
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      margin-top: 4vh;
+      text-align: left;
+      width: 100%;
+    }
+
+    .problem-headline {
+      font-family: var(--font-body);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--gray-700);
+      width: 100%;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .problem-headline-big {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 130px);
+      line-height: 0.95;
+      color: var(--black);
+      width: 100%;
+      margin-bottom: 32px;
+      margin-top: 8px;
+      text-align: left;
+    }
+
+    .problem-headline-big span {
+      color: var(--accent);
+    }
+
+    .problem-items {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .problem-item {
+      flex: 1;
+      padding: 22px 22px;
+      border: 1.5px solid var(--gray-200);
+      border-top: 3px solid var(--black);
+    }
+
+    .problem-item .num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .problem-item .title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .problem-item .desc {
+      font-size: clamp(13px, 1.4vw, 17px);
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* ── SLIDE 3: ÜRÜN (video sahneleri) ── */
+    #slide-urun {
+      background: #FFFFFF;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+
+    .video-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      gap: 40px;
+      padding: 0 60px;
+    }
+
+    .video-scene.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Tek sahneler: video solda, açıklama sağda */
+    .video-scene.side-left {
+      flex-direction: row;
+    }
+
+
+    .video-scene video {
+      position: absolute;
+      left: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      max-height: 75vh;
+      max-width: 45vw;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      box-shadow: none;
+    }
+
+    .scene-info {
+      position: absolute;
+      left: 52vw;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 35vw;
+      z-index: 1;
+    }
+
+    /* Intro sahnesi — video tam ekran arkada, metin ortada */
+    .intro-scene video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(1.1) !important;
+      width: 100vw !important;
+      max-width: none !important;
+      max-height: none !important;
+      height: 100vh !important;
+      object-fit: cover !important;
+      opacity: 0.1;
+      filter: blur(3px) grayscale(40%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .intro-scene .scene-info-bg {
+      display: none;
+    }
+
+    .intro-scene .scene-label {
+      display: none;
+    }
+
+    .intro-shell {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 95vw;
+      padding: 50px 70px;
+      background: #ffffff;
+      z-index: 2;
+    }
+
+    /* Üstte kalın accent çizgi */
+    .intro-shell::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    /* Sağ altta ince köşe çizgileri */
+    .intro-shell::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      height: 2px;
+      background: var(--black);
+    }
+
+    .intro-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 36px;
+      margin-right: -90px;
+
+    }
+
+    .intro-badge {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 65px);
+      letter-spacing: 0.1em;
+      color: var(--black);
+      text-align: left;
+      line-height: 1;
+      flex: 0 1 auto;
+      padding-top: 0em;
+    }
+
+    .intro-badge .slash {
+      color: var(--accent);
+      margin-right: 4px;
+    }
+
+    .intro-logo {
+      width: clamp(70px, 7vw, 110px);
+      height: clamp(70px, 7vw, 110px);
+      animation: kapak-spin 60s linear infinite;
+      flex-shrink: 0;
+      display: block;
+      position: relative;
+      top: 50px;
+    }
+
+    .intro-text {
+      font-family: var(--font-body);
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--gray-700);
+      text-align: left;
+    }
+
+    .intro-text .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .scene-info-bg {
+      position: absolute;
+      left: 50vw;
+      top: 0;
+      width: 50vw;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .scene-info-bg svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scene-info-bg .fiber {
+      fill: none;
+      stroke-width: 0.8;
+      stroke-linecap: round;
+      opacity: 0.12;
+    }
+
+    .scene-info-bg canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wave-bg {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40vw;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wave-bg canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .scene-info li {
+      font-family: var(--font-body);
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.4;
+      list-style: none;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .scene-info li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      transform: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .scene-label {
+      position: absolute;
+      top: 32px;
+      left: 40px;
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      z-index: 10;
+    }
+
+    /* ── KARŞILAŞTIRMA TABLOSU ── */
+    .compare-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .compare-scene .scene-label {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-bottom: 8px;
+    }
+
+    .compare-table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .compare-table th {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: 0.1em;
+      padding: 22px 28px;
+      text-align: center;
+      color: var(--white);
+      background: var(--black);
+    }
+
+    .compare-table th:first-child {
+      background: transparent;
+      color: var(--gray-400);
+    }
+
+    .compare-table th.accent {
+      background: var(--accent);
+    }
+
+    .compare-table td {
+      font-family: var(--font-body);
+      font-size: clamp(20px, 2.4vw, 30px);
+      padding: 20px 28px;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .compare-table .check {
+      color: var(--accent);
+      font-size: 32px;
+    }
+
+    .compare-table .dash {
+      color: var(--gray-200);
+      font-size: 32px;
+    }
+
+    /* ── DEMO TEKLİFİ ── */
+    .demo-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .demo-badge {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 40px);
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      background: rgba(0, 180, 216, 0.06);
+      padding: 12px 36px;
+      border-radius: 40px;
+    }
+
+    .demo-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 0.95;
+      color: var(--black);
+    }
+
+    .demo-steps {
+      display: flex;
+      gap: 48px;
+      margin-top: 16px;
+    }
+
+    .demo-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 340px;
+    }
+
+    .demo-step-gift {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 0;
+      /* SVG siyah fill → accent rengine dönüştür */
+      filter: invert(55%) sepia(95%) saturate(1870%) hue-rotate(156deg) brightness(92%) contrast(101%);
+    }
+
+    .demo-step-num {
+      font-family: var(--font-display);
+      font-size: 64px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .demo-step-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 48px);
+      color: var(--black);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+    }
+
+    .demo-step-desc {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 300;
+      color: var(--gray-400);
+      line-height: 1.5;
+    }
+
+    .demo-gift {
+      margin-top: 24px;
+      padding: 20px 40px;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      background: rgba(0, 180, 216, 0.03);
+    }
+
+    .demo-gift-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.8vw, 36px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+    }
+
+    .demo-gift-title .gift-check {
+      color: #2ecc71;
+    }
+
+    .demo-gift-desc {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-700);
+      margin-top: 8px;
+    }
+
+    /* ── CONTACT SLAYT ── */
+    .contact-thanks {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 10vw, 140px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+
+    .contact-line {
+      width: 120px;
+      height: 3px;
+      background: var(--accent);
+      margin: 24px 0;
+    }
+
+    .contact-name {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 38px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+    }
+
+    .contact-phone {
+      font-family: var(--font-body);
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .contact-company {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-400);
+    }
+
+    .contact-emails {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-700);
+      letter-spacing: 0.02em;
+    }
+
+    .rec-label {
+      color: #e63946;
+      z-index: 10;
+      animation: rec-blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes rec-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* ── NAVİGASYON İNDİKATÖRÜ ── */
+    #nav-indicator {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+
+    #nav-indicator.hidden {
+      opacity: 0;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+
+    .dot.group-active {
+      background: var(--black);
+    }
+
+    /* ── CORNER LOGO (kapak hariç) ── */
+    #corner-logo {
+      position: fixed;
+      top: 28px;
+      right: 40px;
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      animation: corner-spin 60s linear infinite;
+      z-index: 100;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    #corner-logo.visible {
+      opacity: 1;
+    }
+
+    @keyframes corner-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── SAHNE COUNTER (ürün slaytında) ── */
+    #scene-counter {
+      position: fixed;
+      bottom: 28px;
+      right: 40px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--gray-400);
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #scene-counter.visible {
+      opacity: 1;
+    }
+
+    /* ── SLIDE NUMARASI ── */
+    #slide-num {
+      position: fixed;
+      bottom: 28px;
+      left: 40px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--gray-200);
+      z-index: 100;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div id="deck">
+
+    <!-- SLAYT 1: KAPAK -->
+    <div class="slide active" id="slide-kapak">
+      <div class="kapak-inner">
+        <div class="kapak-product">ENERJİMETRE</div>
+        <div class="kapak-version">V1 & V1S</div>
+        <div class="kapak-line"></div>
+        <div class="kapak-brand">ARKHE</div>
+        <div class="kapak-sub">Endüstriyel Üretim Çözümleri</div>
+      </div>
+      <img src="logo.svg" class="kapak-logo" alt="">
+    </div>
+
+    <!-- SLAYT 2: PROBLEM -->
+    <div class="slide" id="slide-problem">
+      <div class="wave-bg"><canvas></canvas></div>
+      <div class="problem-label">// Neden Enerjimetre?</div>
+      <div class="problem-headline">Fabrikanızdaki enerji kaçağını</div>
+      <div class="problem-headline-big">GÖRÜYOR MUSUNUZ?</div>
+      <div class="problem-items">
+        <div class="problem-item">
+          <div class="num">01</div>
+          <div class="title">Görünmez Maliyetler</div>
+          <div class="desc">Mesai dışı ve mola saatlerindeki enerji tüketimi faturaya yansır ama fark edilmez.</div>
+        </div>
+        <div class="problem-item">
+          <div class="num">02</div>
+          <div class="title">Anlık Güç Aşımları</div>
+          <div class="desc">Limit aşımı yalnızca cezalı tarife değildir — altında yatan bir arıza demektir. Fark
+            edilmeyen aşımlar zamanla makinede kalıcı hasara yol açar.</div>
+        </div>
+        <div class="problem-item">
+          <div class="num">03</div>
+          <div class="title">Standart Analizörlerin Körlüğü</div>
+          <div class="desc">Piyasadaki şebeke analizörleri yalnızca toplam tüketimi ölçer, problemin kaynağını
+            göstermez.</div>
+        </div>
+      </div>
+      <div class="problem-items">
+        <div class="problem-item">
+          <div class="num">04</div>
+          <div class="title">Kanıtsız Tartışma</div>
+          <div class="desc">Saha ve yönetim arasında "kim ne kadar harcıyor" tartışması hep söylem üzerinden yürür — ölçüm olmadan kesin yargı imkansızdır.</div>
+        </div>
+        <div class="problem-item">
+          <div class="num">05</div>
+          <div class="title">Merkezi Sistemin Yetersizliği</div>
+          <div class="desc">Merkezi ölçüm makine bazında çözünürlük vermez — hangi cihazın sorunlu olduğunu
+            göremezsiniz.</div>
+        </div>
+        <div class="problem-item">
+          <div class="num">06</div>
+          <div class="title">Tarife Körü</div>
+          <div class="desc">Türkiye'de 3 zamanlı tarife uygulanır: 06–17 gündüz, 17–22 puant, 22–06 gece. Çoğu işletme
+            hangi saatte ne çektiğini bilmez, puantta gizli kayıplar verir.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLAYT 3: ÜRÜN — 12 video sahnesi -->
+    <div class="slide" id="slide-urun">
+      <div class="video-stage">
+
+        <!-- SAHNE 1: Ana Ekran -->
+        <div class="video-scene active side-left intro-scene" data-scene="0">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/01_ana_ekran.mp4" type="video/mp4">
+            <source src="videos/01_ana_ekran.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <div class="intro-shell">
+            <div class="intro-header">
+              <div class="intro-badge"><span class="slash">//</span> ÇÖZÜM — ENERJİMETRE</div>
+              <img src="logo.svg" class="intro-logo" alt="">
+            </div>
+            <div class="intro-text">
+              Üretim hattındaki her makineye doğrudan takılan, kendi ekranıyla çalışan, <span class="accent">makine
+                seviyesinde</span> enerji görünürlüğü sağlayan kompakt bir endüstriyel ölçüm birimidir. Anlık güç
+              sıçramalarını, verim düşüşlerini ve gizli kayıpları gerçek zamanlı olarak gösterir, <span
+                class="accent">yetkilinin belirlediği eşik değerlerde uyarı verir</span>.
+            </div>
+          </div>
+          <div class="scene-label">Enerjimetre</div>
+        </div>
+
+        <!-- SAHNE 9: Alarm Sistemi -->
+        <div class="video-scene side-left" data-scene="1">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/09_alarm.mp4" type="video/mp4">
+            <source src="videos/09_alarm.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>3 boyutlu alarm sistemi</b></li>
+            <li><b>Ön tanımlı + özel</b></li>
+            <li><b>Anomali analizi</b></li>
+          </ul>
+          <div class="scene-label">Alarm Sistemi</div>
+        </div>
+
+        <!-- SAHNE 7: Barchart -->
+        <div class="video-scene side-left" data-scene="2">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/07_barchart.mp4" type="video/mp4">
+            <source src="videos/07_barchart.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Tarife saatlerine göre renkli dilimler</b></li>
+            <li><b>12 aylık geriye dönük kayıt</b></li>
+            <li><b>Puantta gizli kayıp tespiti</b></li>
+          </ul>
+          <div class="scene-label">Tüketim Grafiği</div>
+        </div>
+
+        <!-- SAHNE 8: Günlük Rapor -->
+        <div class="video-scene side-left" data-scene="3">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/08_gunluk_rapor.mp4" type="video/mp4">
+            <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Mesai / mesai dışı / mola ayrımı</b></li>
+            <li><b>Alarm sayaçları + limit sapmaları</b></li>
+            <li><b>1 aylık otomatik kayıt</b></li>
+          </ul>
+          <div class="scene-label">Günlük Rapor</div>
+        </div>
+
+        <!-- SAHNE 10: RS485 Ayarları -->
+        <div class="video-scene side-left" data-scene="4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/10_rs485.mp4" type="video/mp4">
+            <source src="videos/10_rs485.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Evrensel uyumluluk</b></li>
+            <li><b>Esnek parametreleme</b></li>
+          </ul>
+          <div class="scene-label">RS485 Haberleşme</div>
+        </div>
+
+        <!-- SAHNE 2: Power Gauge -->
+        <div class="video-scene side-left" data-scene="5">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/02_power_gauge.mp4" type="video/mp4">
+            <source src="videos/02_power_gauge.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Histerik görünürlük</b></li>
+            <li><b>Alarm göstergeleri</b></li>
+          </ul>
+          <div class="scene-label">Güç / Kadran</div>
+        </div>
+
+        <!-- SAHNE 3: Power Big -->
+        <div class="video-scene side-left" data-scene="6">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/03_power_big.mp4" type="video/mp4">
+            <source src="videos/03_power_big.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Büyük rakam gösterimi</b></li>
+            <li><b>Alarm göstergeleri</b></li>
+          </ul>
+          <div class="scene-label">Güç / Büyük</div>
+        </div>
+
+        <!-- SAHNE 4: Power Osiloskop -->
+        <div class="video-scene side-left" data-scene="7">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/04_power_osiloskop.mp4" type="video/mp4">
+            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Gerçek zamanlı dalga formu</b></li>
+            <li><b>Ani dalgalanma takibi</b></li>
+          </ul>
+          <div class="scene-label">Güç / Sinyal</div>
+        </div>
+
+        <!-- SAHNE 5: CO2 Gauge -->
+        <div class="video-scene side-left" data-scene="8">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/05_co2_gauge.mp4" type="video/mp4">
+            <source src="videos/05_co2_gauge.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Geleceğe yatırım</b></li>
+            <li><b>Üretim bazlı karbon kimliği</b></li>
+          </ul>
+          <div class="scene-label">CO₂ / Kadran</div>
+        </div>
+
+        <!-- SAHNE 6: CO2 Big -->
+        <div class="video-scene side-left" data-scene="9">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/06_co2_big.mp4" type="video/mp4">
+            <source src="videos/06_co2_big.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Anlık CO₂ emisyonu</b></li>
+          </ul>
+          <div class="scene-label">CO₂ / Büyük</div>
+        </div>
+
+        <!-- SAHNE 11: Şifre Koruma -->
+        <div class="video-scene side-left" data-scene="10">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/11_sifre.mp4" type="video/mp4">
+            <source src="videos/11_sifre.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Yetkisiz erişim engeli</b></li>
+            <li><b>Ayar koruması</b></li>
+          </ul>
+          <div class="scene-label">Şifre Koruması</div>
+        </div>
+
+        <!-- SAHNE 12: Dil Seçeneği -->
+        <div class="video-scene side-left" data-scene="11">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">
+            <source src="http://localhost:8080/videos/12_dil.mp4" type="video/mp4">
+            <source src="videos/12_dil.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Türkçe / İngilizce arayüz</b></li>
+          </ul>
+          <div class="scene-label">TR / EN Dil Desteği</div>
+        </div>
+
+        <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
+        <div class="video-scene demo-scene" data-scene="12">
+          <div class="scene-label rec-label">&#9679; Canlı Demo</div>
+          <iframe id="live-stream"
+            src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
+            style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:85vw; height:85vh; border:none; border-radius:18px; background:#000; z-index:5;"
+            allow="autoplay; camera; microphone; encrypted-media" allowfullscreen>
+          </iframe>
+        </div>
+
+        <!-- SAHNE 14: Karşılaştırma Tablosu -->
+        <div class="video-scene compare-scene" data-scene="13">
+          <div class="wave-bg"><canvas></canvas></div>
+          <div class="scene-label">Model Karşılaştırma</div>
+          <table class="compare-table">
+            <tr>
+              <th></th>
+              <th>V1</th>
+              <th class="accent">V1S</th>
+            </tr>
+            <tr>
+              <td>Anlık Güç Göstergesi</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Osiloskop Görünümü</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>CO₂ Takibi</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Tüketim Grafiği</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Günlük Raporlama</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Alarm Sistemi</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Tarife Bazlı Analiz</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>RS485 / Modbus</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+          </table>
+        </div>
+
+        <!-- SAHNE 15: Demo Teklifi -->
+        <div class="video-scene demo-scene" data-scene="14">
+          <div class="wave-bg"><canvas></canvas></div>
+          <div class="demo-title">ÜCRETSİZ DEMO</div>
+          <div class="demo-badge">ENERJİMETRE V1S İLE 2 HAFTALIK DENEME</div>
+          <div class="demo-steps">
+            <div class="demo-step">
+              <div class="demo-step-num">01</div>
+              <div class="demo-step-title">KURULUM & KAYIT</div>
+              <div class="demo-step-desc">V1S hattınıza bağlanır, ilk hafta sessizce enerji tüketiminizi kayıt altına
+                alır.</div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">02</div>
+              <div class="demo-step-title">AKTİF ÇALIŞMA</div>
+              <div class="demo-step-desc">İkinci hafta tüm özellikler açılır — alarm, rapor, tarife analizi canlı olarak
+                çalışır.</div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">03</div>
+              <div class="demo-step-title">ANALİZ & RAPOR</div>
+              <div class="demo-step-desc">2 haftanın sonunda fabrikanızın standby enerji maliyetini raporluyoruz.</div>
+            </div>
+            <div class="demo-step">
+              <img src="gift.svg" class="demo-step-gift" alt="">
+              <div class="demo-step-title">UNITER DASHBOARD</div>
+              <div class="demo-step-desc">Uniter Dashboard aşamasına geçildiğinde ücretsiz güncelleme desteği dahildir.</div>
+            </div>
+          </div>
+          <div class="demo-gift">
+            <div class="demo-gift-title"><span class="gift-check">&#10004;</span> STANDBY MALİYET RAPORU HEDİYE</div>
+            <div class="demo-gift-desc">Mesai dışı ve mola saatlerindeki enerji kaçağınızı ilk kez rakamlarla görün.
+            </div>
+          </div>
+        </div>
+
+        <!-- SAHNE 16: Teşekkürler & İletişim -->
+        <div class="video-scene" data-scene="15"
+          style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
+          <img src="logo.svg" class="kapak-logo" alt="">
+          <div
+            style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="contact-thanks">TEŞEKKÜRLER</div>
+            <div class="contact-line"></div>
+            <div class="contact-name">Muhammed Azad Kılıçarslan</div>
+            <div class="contact-phone">+90 532 596 44 92</div>
+            <div class="contact-emails">mak@arkheindustry.com | info@arkheips.com</div>
+            <div class="contact-company">Arkhe Endüstriyel Üretim Çözümleri A. Ş.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAVİGASYON -->
+  <div id="nav-indicator">
+    <div class="dot" data-section="0"></div>
+    <div class="dot" data-section="1"></div>
+    <div class="dot" data-section="2"></div>
+    <div class="dot" data-section="3"></div>
+    <div class="dot" data-section="4"></div>
+  </div>
+
+
+  <img id="corner-logo" src="logo.svg" alt="">
+  <div id="scene-counter"></div>
+  <div id="slide-num"></div>
+  <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
+    v49</div>
+
+  <script>
+    // ── STATE ──
+    const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
+    const TOTAL_SCENES = 16;
+
+    let currentSlide = 0;
+    let currentScene = 0; // sadece slayt 2 için geçerli
+
+    // ── ELEMENTS ──
+    const slides = SLIDES.map(id => document.getElementById(id));
+    const scenes = document.querySelectorAll('.video-scene');
+    const dots = document.querySelectorAll('.dot');
+    const sceneCounter = document.getElementById('scene-counter');
+    const slideNum = document.getElementById('slide-num');
+    const navIndicator = document.getElementById('nav-indicator');
+    const cornerLogo = document.getElementById('corner-logo');
+
+    // Native tarafından çağrılabilir — belirli bir sahneye atla
+    window.goToScene = function (sceneIdx) {
+      currentSlide = 2;
+      currentScene = sceneIdx;
+      render();
+    };
+
+    // ── RENDER ──
+    function render() {
+      // Slide visibility
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === currentSlide);
+      });
+
+      // Scene visibility (sadece slayt 2'de)
+      if (currentSlide === 2) {
+        scenes.forEach((s, i) => {
+          const isActive = i === currentScene;
+          s.classList.toggle('active', isActive);
+          // Video yönetimi
+          const video = s.querySelector('video');
+          if (video) {
+            if (isActive) {
+              video.play().catch(() => { });
+            } else {
+              video.pause();
+            }
+          }
+        });
+        sceneCounter.textContent = `${currentScene + 1} / ${TOTAL_SCENES}`;
+        sceneCounter.classList.add('visible');
+      } else {
+        sceneCounter.classList.remove('visible');
+      }
+
+      // Corner logo — kapak, intro sahnesi ve son sahne hariç
+      const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
+      const isIntroScene = currentSlide === 2 && currentScene === 0;
+      cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene && !isIntroScene);
+
+      // Nav dots — kapak ve teşekkürler hariç
+      // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
+      const isKapak = currentSlide === 0;
+      const isTesekkkurler = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
+
+      if (isKapak || isTesekkkurler) {
+        navIndicator.classList.add('hidden');
+      } else {
+        navIndicator.classList.remove('hidden');
+        let activeSection = -1;
+        if (currentSlide === 1) {
+          activeSection = 0; // Problem
+        } else if (currentSlide === 2) {
+          if (currentScene <= 11) activeSection = 1;      // Ürün videoları
+          else if (currentScene === 12) activeSection = 2; // Canlı Demo
+          else if (currentScene === 13) activeSection = 3; // Karşılaştırma
+          else if (currentScene === 14) activeSection = 4; // Ücretsiz Demo
+        }
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === activeSection);
+        });
+      }
+
+      // Slide num
+      if (currentSlide < 2) {
+        slideNum.textContent = `${currentSlide + 1} / ${SLIDES.length}`;
+      } else {
+        slideNum.textContent = '';
+      }
+    }
+
+    // ── NAVİGASYON ──
+    function next() {
+      if (currentSlide < 2) {
+        currentSlide++;
+        if (currentSlide === 2) currentScene = 0;
+      } else if (currentSlide === 2) {
+        if (currentScene < TOTAL_SCENES - 1) {
+          currentScene++;
+        }
+        // Son sahnedeyse ileri tuşu çalışmaz
+      }
+      render();
+    }
+
+    function prev() {
+      if (currentSlide === 2) {
+        if (currentScene > 0) {
+          currentScene--;
+        } else {
+          currentSlide = 1;
+        }
+      } else if (currentSlide > 0) {
+        currentSlide--;
+      }
+      render();
+    }
+
+    // ── KLAVYE / KUMANDA ──
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        next();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        prev();
+      }
+    });
+
+    // ── DOKUNMATİK: tek dokunuş → ileri, soldan sağa swipe → önceki ──
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    const SWIPE_THRESHOLD = 50;   // px — bu mesafenin üstündeki yatay hareket swipe sayılır
+    const TAP_MAX_MOVE = 10;      // px — bu mesafenin altındaki hareket tap sayılır
+    const TAP_MAX_TIME = 300;     // ms — bu sürenin altındaki dokunuş tap sayılır
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length !== 1) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      const dt = Date.now() - touchStartTime;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      // Tek dokunuş → ileri
+      if (absDx < TAP_MAX_MOVE && absDy < TAP_MAX_MOVE && dt < TAP_MAX_TIME) {
+        next();
+        return;
+      }
+
+      // Soldan sağa kaydırma → önceki (yatay hareket dikey hareketten baskın olmalı)
+      if (dx > SWIPE_THRESHOLD && absDx > absDy) {
+        prev();
+      }
+    }, { passive: true });
+
+    // ── VİDEO SIYAH FLASH ÖNLEMİ ──
+    // Tüm videolar arka planda yükleniyor, aktif olunca anında hazır
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('canplaythrough', () => {
+        // Hazır ama aktif değilse durdur
+        if (!v.closest('.video-scene.active')) {
+          v.pause();
+          v.currentTime = 0;
+        }
+      });
+      // Loop geçişinde flash önlemi
+      v.addEventListener('timeupdate', () => {
+        if (v.duration && v.currentTime > v.duration - 0.15) {
+          v.currentTime = 0.01;
+        }
+      });
+    });
+
+    // ── FULLSCREEN: ilk tuşa basışta tam ekran ──
+    function goFullscreen() {
+      const el = document.documentElement;
+      const rfs = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (rfs) rfs.call(el);
+      document.removeEventListener('keydown', goFullscreen);
+      document.removeEventListener('click', goFullscreen);
+    }
+    document.addEventListener('keydown', goFullscreen);
+    document.addEventListener('click', goFullscreen);
+    document.addEventListener('touchstart', goFullscreen);
+
+    // WebView'da otomatik fullscreen dene
+    setTimeout(() => {
+      goFullscreen();
+    }, 500);
+
+    // ── WAVE ANİMASYONU (sadece aktif sahne) ──
+    const LINE_COUNT = 14;
+    const SPEED = 0.0003;
+
+    function drawWaveOnCanvas(canvas, time) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.parentElement.offsetWidth;
+      const h = canvas.parentElement.offsetHeight;
+      if (canvas.width !== w) canvas.width = w;
+      if (canvas.height !== h) canvas.height = h;
+
+      ctx.clearRect(0, 0, w, h);
+      const center = LINE_COUNT / 2;
+
+      for (let i = 0; i < LINE_COUNT; i++) {
+        const baseX = w * 0.15 + (i / LINE_COUNT) * w * 0.7;
+        const isAccent = (i === 4 || i === 9);
+        const phase = i * 0.35;
+        const dist = Math.abs(i - center) / center;
+        const depth = 1 - dist * 0.6;
+
+        ctx.beginPath();
+        ctx.strokeStyle = isAccent
+          ? `rgba(0,180,216,${0.15 * depth})`
+          : `rgba(170,170,170,${0.18 * depth})`;
+        ctx.lineWidth = 1.0 + depth * 0.8;
+
+        for (let y = 0; y <= h; y += 4) {
+          const wave1 = Math.sin((y * 0.004) + (time * SPEED) + phase) * 30 * depth;
+          const wave2 = Math.sin((y * 0.008) + (time * SPEED * 0.6) + phase) * 15 * depth;
+          const perspective = Math.sin((y * 0.002) + (time * SPEED * 0.4)) * 20;
+          const x = baseX + wave1 + wave2 + perspective * (i - center) * 0.08;
+          if (y === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+    }
+
+    function drawWave(time) {
+      // Aktif sahnenin info-bg canvas'ı
+      const sceneCanvas = document.querySelector('.video-scene.active .scene-info-bg canvas');
+      if (sceneCanvas) drawWaveOnCanvas(sceneCanvas, time);
+
+      // Aktif sahnenin wave-bg canvas'ı
+      const waveCanvas = document.querySelector('.video-scene.active .wave-bg canvas');
+      if (waveCanvas) drawWaveOnCanvas(waveCanvas, time);
+
+      // Problem slaytı (slide 2 aktifse)
+      if (currentSlide === 1) {
+        const problemCanvas = document.querySelector('#slide-problem .wave-bg canvas');
+        if (problemCanvas) drawWaveOnCanvas(problemCanvas, time);
+      }
+
+      requestAnimationFrame(drawWave);
+    }
+
+    requestAnimationFrame(drawWave);
+
+    // ── İLK RENDER ──
+    render();
+  </script>
+</body>
+
+</html>
