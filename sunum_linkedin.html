@@ -1196,9 +1196,27 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v71</div>
+    v72</div>
 
   <script>
+    // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
+    // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
+    const CURRENT_VERSION = 'v72';
+    (function checkVersion() {
+      const url = 'version.txt?_=' + Date.now();
+      fetch(url, { cache: 'no-store' })
+        .then(r => r.ok ? r.text() : null)
+        .then(serverVer => {
+          if (!serverVer) return;
+          serverVer = serverVer.trim();
+          if (serverVer && serverVer !== CURRENT_VERSION) {
+            // Eski sürüm cache'te → query string ile yeniden yükle
+            window.location.replace('sunum_linkedin.html?v=' + encodeURIComponent(serverVer));
+          }
+        })
+        .catch(() => { /* offline ise sessiz geç */ });
+    })();
+
     // ── STATE ──
     const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
     const TOTAL_SCENES = 16;
