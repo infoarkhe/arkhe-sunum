@@ -1277,12 +1277,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v86</div>
+    v87</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v86';
+    const CURRENT_VERSION = 'v87';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -1422,6 +1422,40 @@
         prev();
       }
     });
+
+    // ── PROBLEM SLAYTI: JS WHEEL FALLBACK ──
+    // Native scroll bazı durumlarda engellenebiliyor; wheel'i manuel ele al
+    window.addEventListener('wheel', (e) => {
+      const slide = document.querySelector('.slide.active');
+      if (!slide || slide.id !== 'slide-problem') return;
+      const wrapper = slide.querySelector('.problem-content');
+      if (!wrapper) return;
+      e.preventDefault();
+      wrapper.scrollTop += e.deltaY;
+    }, { passive: false });
+
+    // ── PROBLEM SLAYTI: JS TOUCH SCROLL FALLBACK ──
+    // Mobil için: touchmove ile manuel scroll (eğer native fail ediyorsa)
+    let scrollTouchStartY = 0;
+    let scrollTouchLastY = 0;
+    document.addEventListener('touchstart', (e) => {
+      const slide = document.querySelector('.slide.active');
+      if (!slide || slide.id !== 'slide-problem') return;
+      if (e.touches.length !== 1) return;
+      scrollTouchStartY = e.touches[0].clientY;
+      scrollTouchLastY = e.touches[0].clientY;
+    }, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+      const slide = document.querySelector('.slide.active');
+      if (!slide || slide.id !== 'slide-problem') return;
+      const wrapper = slide.querySelector('.problem-content');
+      if (!wrapper) return;
+      if (e.touches.length !== 1) return;
+      const y = e.touches[0].clientY;
+      const dy = scrollTouchLastY - y;
+      wrapper.scrollTop += dy;
+      scrollTouchLastY = y;
+    }, { passive: true });
 
     // ── DOKUNMATİK: tek dokunuş → ileri, soldan sağa swipe → önceki ──
     let touchStartX = 0;
