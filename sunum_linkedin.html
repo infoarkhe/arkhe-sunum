@@ -856,17 +856,15 @@
         letter-spacing: 0.02em;
       }
 
-      /* Problem slaytı — slide flex container kalır, scroll içerideki wrapper'da */
+      /* Problem slaytı — wrapper position:absolute ile flex'ten kaçar, garantili scroll */
       #slide-problem {
-        padding: 0;                      /* padding wrapper'a taşındı */
-        justify-content: stretch;
-        align-items: stretch;
+        padding: 0;
       }
 
       .problem-content {
-        flex: 1;                         /* slide'ın tüm yüksekliğini kapla */
-        min-height: 0;                   /* flex scroll için kritik trick */
-        overflow-y: scroll;              /* gerçek scroll burada */
+        position: absolute;              /* flex parent'tan kaç */
+        inset: 0;                        /* slide'ı tamamen kapla */
+        overflow-y: scroll;              /* GERÇEK scroll konteynırı */
         overflow-x: hidden;
         padding: 4vh 5vw 6vh;
         touch-action: pan-y;
@@ -874,16 +872,19 @@
         overscroll-behavior: contain;
       }
 
-      /* Scrollbar görünür ve tıklanabilir olsun (Chrome desktop) */
+      /* Scrollbar belirgin (Chrome desktop) */
       .problem-content::-webkit-scrollbar {
-        width: 8px;
+        width: 10px;
       }
       .problem-content::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.2);
-        border-radius: 4px;
+        background: rgba(0,0,0,0.4);
+        border-radius: 5px;
+      }
+      .problem-content::-webkit-scrollbar-thumb:hover {
+        background: rgba(0,0,0,0.6);
       }
       .problem-content::-webkit-scrollbar-track {
-        background: transparent;
+        background: rgba(0,0,0,0.04);
       }
 
       .problem-items {
@@ -1276,12 +1277,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v85</div>
+    v86</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v85';
+    const CURRENT_VERSION = 'v86';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
