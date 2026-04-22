@@ -854,8 +854,13 @@
       /* Problem slaytı — dikey scroll, kartlar tek sütun */
       #slide-problem {
         overflow-y: auto;
+        overflow-x: hidden;
         padding: 4vh 5vw 6vh;
         justify-content: flex-start;
+        align-items: stretch;
+        touch-action: pan-y;            /* tarayıcıya: dikey pan'ı serbest bırak */
+        -webkit-overflow-scrolling: touch;  /* iOS momentum */
+        overscroll-behavior: contain;
       }
 
       .problem-items {
@@ -1246,12 +1251,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v82</div>
+    v83</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v82';
+    const CURRENT_VERSION = 'v83';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
