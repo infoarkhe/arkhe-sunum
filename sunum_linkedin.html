@@ -213,6 +213,11 @@
       color: var(--accent);
     }
 
+    .problem-content {
+      /* Mod 1'de sadece passthrough — width 100% al, başka şey yapma */
+      width: 100%;
+    }
+
     .problem-items {
       display: flex;
       gap: 32px;
@@ -851,28 +856,33 @@
         letter-spacing: 0.02em;
       }
 
-      /* Problem slaytı — dikey scroll, kartlar tek sütun */
+      /* Problem slaytı — slide flex container kalır, scroll içerideki wrapper'da */
       #slide-problem {
-        display: block !important;       /* flex'ten block'a — scroll davranışı netleşir */
-        overflow-y: scroll;              /* auto yerine scroll: scrollbar her zaman aktif */
+        padding: 0;                      /* padding wrapper'a taşındı */
+        justify-content: stretch;
+        align-items: stretch;
+      }
+
+      .problem-content {
+        flex: 1;                         /* slide'ın tüm yüksekliğini kapla */
+        min-height: 0;                   /* flex scroll için kritik trick */
+        overflow-y: scroll;              /* gerçek scroll burada */
         overflow-x: hidden;
         padding: 4vh 5vw 6vh;
-        height: 100%;
-        max-height: 100vh;
         touch-action: pan-y;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
       }
 
-      /* Scrollbar görünür ve tıklanabilir olsun (Chrome) */
-      #slide-problem::-webkit-scrollbar {
+      /* Scrollbar görünür ve tıklanabilir olsun (Chrome desktop) */
+      .problem-content::-webkit-scrollbar {
         width: 8px;
       }
-      #slide-problem::-webkit-scrollbar-thumb {
+      .problem-content::-webkit-scrollbar-thumb {
         background: rgba(0,0,0,0.2);
         border-radius: 4px;
       }
-      #slide-problem::-webkit-scrollbar-track {
+      .problem-content::-webkit-scrollbar-track {
         background: transparent;
       }
 
@@ -931,45 +941,47 @@
     <!-- SLAYT 2: PROBLEM -->
     <div class="slide" id="slide-problem">
       <div class="wave-bg"><canvas></canvas></div>
-      <div class="problem-label">// Neden Enerjimetre?</div>
-      <div class="problem-headline">Fabrikanızdaki enerji kaçağını</div>
-      <div class="problem-headline-big">GÖRÜYOR MUSUNUZ?</div>
-      <div class="problem-items">
-        <div class="problem-item">
-          <div class="num">01</div>
-          <div class="title">Görünmez Maliyetler</div>
-          <div class="desc">Mesai dışı ve mola saatlerindeki enerji tüketimi faturaya yansır ama fark edilmez.</div>
+      <div class="problem-content">
+        <div class="problem-label">// Neden Enerjimetre?</div>
+        <div class="problem-headline">Fabrikanızdaki enerji kaçağını</div>
+        <div class="problem-headline-big">GÖRÜYOR MUSUNUZ?</div>
+        <div class="problem-items">
+          <div class="problem-item">
+            <div class="num">01</div>
+            <div class="title">Görünmez Maliyetler</div>
+            <div class="desc">Mesai dışı ve mola saatlerindeki enerji tüketimi faturaya yansır ama fark edilmez.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">02</div>
+            <div class="title">Anlık Güç Aşımları</div>
+            <div class="desc">Limit aşımı yalnızca cezalı tarife değildir — altında yatan bir arıza demektir. Fark
+              edilmeyen aşımlar zamanla makinede kalıcı hasara yol açar.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">03</div>
+            <div class="title">Standart Analizörlerin Körlüğü</div>
+            <div class="desc">Piyasadaki şebeke analizörleri yalnızca toplam tüketimi ölçer, problemin kaynağını
+              göstermez.</div>
+          </div>
         </div>
-        <div class="problem-item">
-          <div class="num">02</div>
-          <div class="title">Anlık Güç Aşımları</div>
-          <div class="desc">Limit aşımı yalnızca cezalı tarife değildir — altında yatan bir arıza demektir. Fark
-            edilmeyen aşımlar zamanla makinede kalıcı hasara yol açar.</div>
-        </div>
-        <div class="problem-item">
-          <div class="num">03</div>
-          <div class="title">Standart Analizörlerin Körlüğü</div>
-          <div class="desc">Piyasadaki şebeke analizörleri yalnızca toplam tüketimi ölçer, problemin kaynağını
-            göstermez.</div>
-        </div>
-      </div>
-      <div class="problem-items">
-        <div class="problem-item">
-          <div class="num">04</div>
-          <div class="title">Kanıtsız Tartışma</div>
-          <div class="desc">Saha ve yönetim arasında "kim ne kadar harcıyor" tartışması hep söylem üzerinden yürür — ölçüm olmadan kesin yargı imkansızdır.</div>
-        </div>
-        <div class="problem-item">
-          <div class="num">05</div>
-          <div class="title">Merkezi Sistemin Yetersizliği</div>
-          <div class="desc">Merkezi ölçüm makine bazında çözünürlük vermez — hangi cihazın sorunlu olduğunu
-            göremezsiniz.</div>
-        </div>
-        <div class="problem-item">
-          <div class="num">06</div>
-          <div class="title">Tarife Körü</div>
-          <div class="desc">Türkiye'de 3 zamanlı tarife uygulanır: 06–17 gündüz, 17–22 puant, 22–06 gece. Çoğu işletme
-            hangi saatte ne çektiğini bilmez, puantta gizli kayıplar verir.</div>
+        <div class="problem-items">
+          <div class="problem-item">
+            <div class="num">04</div>
+            <div class="title">Kanıtsız Tartışma</div>
+            <div class="desc">Saha ve yönetim arasında "kim ne kadar harcıyor" tartışması hep söylem üzerinden yürür — ölçüm olmadan kesin yargı imkansızdır.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">05</div>
+            <div class="title">Merkezi Sistemin Yetersizliği</div>
+            <div class="desc">Merkezi ölçüm makine bazında çözünürlük vermez — hangi cihazın sorunlu olduğunu
+              göremezsiniz.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">06</div>
+            <div class="title">Tarife Körü</div>
+            <div class="desc">Türkiye'de 3 zamanlı tarife uygulanır: 06–17 gündüz, 17–22 puant, 22–06 gece. Çoğu işletme
+              hangi saatte ne çektiğini bilmez, puantta gizli kayıplar verir.</div>
+          </div>
         </div>
       </div>
     </div>
@@ -1264,12 +1276,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v84</div>
+    v85</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v84';
+    const CURRENT_VERSION = 'v85';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
