@@ -60,17 +60,6 @@
       cursor: auto;
     }
 
-    /* Chrome Android'in video'ya eklediği overlay/PiP/control çubuğunu gizle */
-    video::-webkit-media-controls,
-    video::-webkit-media-controls-enclosure,
-    video::-webkit-media-controls-panel,
-    video::-webkit-media-controls-overlay-play-button,
-    video::-webkit-media-controls-start-playback-button {
-      display: none !important;
-      -webkit-appearance: none !important;
-      opacity: 0 !important;
-    }
-
     /* ── SLIDE CONTAINER ── */
     #deck {
       width: 100%;
@@ -912,7 +901,7 @@
 
         <!-- SAHNE 1: Ana Ekran -->
         <div class="video-scene active side-left intro-scene" data-scene="0">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/01_ana_ekran.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/01_ana_ekran.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <div class="intro-shell">
@@ -932,7 +921,7 @@
 
         <!-- SAHNE 9: Alarm Sistemi -->
         <div class="video-scene side-left" data-scene="1">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/09_alarm.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/09_alarm.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -945,7 +934,7 @@
 
         <!-- SAHNE 7: Barchart -->
         <div class="video-scene side-left" data-scene="2">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/07_barchart.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/07_barchart.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -958,7 +947,7 @@
 
         <!-- SAHNE 8: Günlük Rapor -->
         <div class="video-scene side-left" data-scene="3">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -971,7 +960,7 @@
 
         <!-- SAHNE 10: RS485 Ayarları -->
         <div class="video-scene side-left" data-scene="4">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/10_rs485.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/10_rs485.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -983,7 +972,7 @@
 
         <!-- SAHNE 2: Power Gauge -->
         <div class="video-scene side-left" data-scene="5">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/02_power_gauge.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/02_power_gauge.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -995,7 +984,7 @@
 
         <!-- SAHNE 3: Power Big -->
         <div class="video-scene side-left" data-scene="6">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/03_power_big.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/03_power_big.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1007,7 +996,7 @@
 
         <!-- SAHNE 4: Power Osiloskop -->
         <div class="video-scene side-left" data-scene="7">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1019,7 +1008,7 @@
 
         <!-- SAHNE 5: CO2 Gauge -->
         <div class="video-scene side-left" data-scene="8">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/05_co2_gauge.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/05_co2_gauge.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1031,7 +1020,7 @@
 
         <!-- SAHNE 6: CO2 Big -->
         <div class="video-scene side-left" data-scene="9">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/06_co2_big.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/06_co2_big.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1042,7 +1031,7 @@
 
         <!-- SAHNE 11: Şifre Koruma -->
         <div class="video-scene side-left" data-scene="10">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/11_sifre.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/11_sifre.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1054,7 +1043,7 @@
 
         <!-- SAHNE 12: Dil Seçeneği -->
         <div class="video-scene side-left" data-scene="11">
-          <video autoplay loop muted playsinline preload="auto" disablepictureinpicture disableremoteplayback controlslist="nodownload nofullscreen noremoteplayback noplaybackrate" poster="panel_gorsel.png">            <source src="videos/12_dil.mp4" type="video/mp4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/12_dil.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
           <ul class="scene-info">
@@ -1196,12 +1185,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v72</div>
+    v73</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v72';
+    const CURRENT_VERSION = 'v73';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
