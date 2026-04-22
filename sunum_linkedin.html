@@ -47,11 +47,17 @@
       background: #FFFFFF;
       font-family: var(--font-body);
       overflow: hidden;
+      cursor: auto !important;
       -webkit-user-select: none;
       -ms-user-select: none;
       user-select: none;
       -webkit-touch-callout: none;
       -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Cursor'u her elementte garantile */
+    *, *::before, *::after {
+      cursor: auto;
     }
 
     /* Chrome Android'in video'ya eklediği overlay/PiP/control çubuğunu gizle */
@@ -1190,7 +1196,7 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v49</div>
+    v71</div>
 
   <script>
     // ── STATE ──
