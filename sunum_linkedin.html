@@ -870,21 +870,13 @@
         touch-action: pan-y;
         -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+        scrollbar-width: none;           /* Firefox: scrollbar gizle */
+        -ms-overflow-style: none;        /* IE/Edge legacy */
       }
 
-      /* Scrollbar belirgin (Chrome desktop) */
+      /* Chrome / Safari / Edge yeni: scrollbar gizle */
       .problem-content::-webkit-scrollbar {
-        width: 10px;
-      }
-      .problem-content::-webkit-scrollbar-thumb {
-        background: rgba(0,0,0,0.4);
-        border-radius: 5px;
-      }
-      .problem-content::-webkit-scrollbar-thumb:hover {
-        background: rgba(0,0,0,0.6);
-      }
-      .problem-content::-webkit-scrollbar-track {
-        background: rgba(0,0,0,0.04);
+        display: none;
       }
 
       .problem-items {
@@ -1277,12 +1269,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v87</div>
+    v88</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v87';
+    const CURRENT_VERSION = 'v88';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
