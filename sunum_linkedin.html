@@ -853,14 +853,27 @@
 
       /* Problem slaytı — dikey scroll, kartlar tek sütun */
       #slide-problem {
-        overflow-y: auto;
+        display: block !important;       /* flex'ten block'a — scroll davranışı netleşir */
+        overflow-y: scroll;              /* auto yerine scroll: scrollbar her zaman aktif */
         overflow-x: hidden;
         padding: 4vh 5vw 6vh;
-        justify-content: flex-start;
-        align-items: stretch;
-        touch-action: pan-y;            /* tarayıcıya: dikey pan'ı serbest bırak */
-        -webkit-overflow-scrolling: touch;  /* iOS momentum */
+        height: 100%;
+        max-height: 100vh;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
         overscroll-behavior: contain;
+      }
+
+      /* Scrollbar görünür ve tıklanabilir olsun (Chrome) */
+      #slide-problem::-webkit-scrollbar {
+        width: 8px;
+      }
+      #slide-problem::-webkit-scrollbar-thumb {
+        background: rgba(0,0,0,0.2);
+        border-radius: 4px;
+      }
+      #slide-problem::-webkit-scrollbar-track {
+        background: transparent;
       }
 
       .problem-items {
@@ -1251,12 +1264,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v83</div>
+    v84</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v83';
+    const CURRENT_VERSION = 'v84';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
