@@ -832,6 +832,26 @@
       color: var(--gray-200);
       z-index: 100;
     }
+
+    /* ─────────────────────────────────────────────────────────────
+       MOD 2: TELEFON DİKEY (portrait, dar ekran)
+       Sadece bu modda devreye giren override'lar.
+       ───────────────────────────────────────────────────────────── */
+    @media (orientation: portrait) and (max-width: 900px) {
+
+      /* Açılış (kapak) sayfası */
+      .kapak-logo {
+        /* Logo ekrana sığsın: yüksekliğe veya genişliğe, hangisi küçükse */
+        width: min(60vh, 90vw);
+        height: min(60vh, 90vw);
+      }
+
+      .kapak-sub {
+        /* "Endüstriyel Üretim Çözümleri" — harfler bitişik */
+        letter-spacing: 0.02em;
+      }
+
+    }
   </style>
 </head>
 
@@ -1187,12 +1207,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v80</div>
+    v81</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v80';
+    const CURRENT_VERSION = 'v81';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
