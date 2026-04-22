@@ -911,12 +911,12 @@
         margin-top: 1vh;
       }
 
-      /* Sağ üst dönen logo — sıkıştır + 0.25 oranında küçült (80 → 20px) */
+      /* Sağ üst dönen logo — sıkıştır + 0.75 oranında (80 → 60px) */
       #corner-logo {
         top: 8px;
         right: 8px;
-        width: 20px;
-        height: 20px;
+        width: 60px;
+        height: 60px;
       }
 
     }
@@ -1277,12 +1277,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v91</div>
+    v92</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v91';
+    const CURRENT_VERSION = 'v92';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
