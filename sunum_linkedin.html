@@ -1027,17 +1027,18 @@
 
       /* === ÇÖZÜM SLAYTI (intro scene, data-scene=0) === */
 
-      /* Background video — native boyut, ortalı; viewport orta kısmı görünür (crop) */
+      /* Background video — native boyut, viewport tam ortada (containing block bypass) */
       .intro-scene video {
         width: auto !important;
         height: auto !important;
         max-width: none !important;
         max-height: none !important;
         object-fit: initial !important;
-        position: absolute !important;
-        left: 50% !important;
-        top: 50% !important;
-        transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
+        position: fixed !important;
+        left: 50vw !important;
+        top: 50vh !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 0;
       }
 
       /* Kart — explicit width ile zorla genişlet (max-width tek başına auto'da sığıyor) */
@@ -2430,12 +2431,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v159</div>
+    v160</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v159';
+    const CURRENT_VERSION = 'v160';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
