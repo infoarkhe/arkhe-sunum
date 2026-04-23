@@ -1690,14 +1690,17 @@
       }
 
       .video-scene[data-scene="14"] .demo-steps {
-        flex: 1;
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 6px;
-        margin: 4px 0;
+        position: absolute;
+        right: 12px;
+        top: 12px;
+        bottom: 36px;
+        width: 52vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: min-content;
+        gap: 10px;
+        margin: 0;
         overflow-y: auto;
-        max-width: 60vw;
-        width: 60vw;
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
@@ -1707,39 +1710,37 @@
       }
 
       .video-scene[data-scene="14"] .demo-step {
-        flex-direction: row;
+        flex-direction: column;
         align-items: flex-start;
         max-width: 100%;
         width: 100%;
-        gap: 10px;
+        gap: 4px;
         text-align: left;
       }
 
       .video-scene[data-scene="14"] .demo-step-num {
-        font-size: 24px;
-        flex-shrink: 0;
-        min-width: 32px;
+        font-size: 32px;
         line-height: 1;
+        margin-bottom: 2px;
       }
 
       .video-scene[data-scene="14"] .demo-step-gift {
-        width: 26px;
-        height: 26px;
-        flex-shrink: 0;
-        margin-top: 2px;
+        width: 32px;
+        height: 32px;
+        margin-bottom: 2px;
       }
 
       .video-scene[data-scene="14"] .demo-step-title {
-        font-size: 12px;
-        letter-spacing: 0.04em;
+        font-size: 14px;
+        letter-spacing: 0.05em;
         white-space: normal;
         text-align: left;
         line-height: 1.1;
       }
 
       .video-scene[data-scene="14"] .demo-step-desc {
-        font-size: 9px;
-        line-height: 1.3;
+        font-size: 11px;
+        line-height: 1.35;
         text-align: left;
       }
 
@@ -2268,12 +2269,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v144</div>
+    v145</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v144';
+    const CURRENT_VERSION = 'v145';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
