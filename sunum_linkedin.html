@@ -931,9 +931,10 @@
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
-      /* Kart — zorla sığar, biraz geniş + ekrana ortalı (transform zaten merkezliyor) */
+      /* Kart — explicit width ile zorla genişlet (max-width tek başına auto'da sığıyor) */
       .intro-shell {
-        max-width: 94vw;
+        width: 95vw;
+        max-width: 95vw;
         padding: 78px 26px 12px;      /* üst 78px: absolute logoya yer açar */
       }
 
@@ -1410,12 +1411,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v105</div>
+    v106</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v105';
+    const CURRENT_VERSION = 'v106';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
