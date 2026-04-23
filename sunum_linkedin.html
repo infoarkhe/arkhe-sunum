@@ -1330,8 +1330,8 @@
         font-weight: 600;
       }
 
-      /* Sayfa altı nokta nav-indicator — sola yaslı */
-      #nav-indicator {
+      /* Sayfa altı nokta nav-indicator — SADECE compare slaytında sola yaslı */
+      body.compare-active #nav-indicator {
         left: 24px;
         transform: none;
       }
@@ -1721,12 +1721,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v130</div>
+    v131</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v130';
+    const CURRENT_VERSION = 'v131';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -1827,6 +1827,9 @@
       } else {
         slideNum.textContent = '';
       }
+
+      // Compare slaytı için body class (mod 3'te nav-indicator override için)
+      document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 13);
     }
 
     // ── NAVİGASYON ──
