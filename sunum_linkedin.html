@@ -1293,6 +1293,108 @@
         border-radius: 8px;
       }
 
+      /* === ÜCRETSİZ DEMO (sahne 15) — mod 2: dikey scroll, problem slaytı mantığı ===
+         Sıra: title+badge üstte, steps ortada (tek sütun, kaydırılabilir), gift+no-bs altta */
+      .video-scene[data-scene="14"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        padding: 4vh 5vw 6vh !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        grid-template-rows: initial;
+        grid-template-columns: initial;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .video-scene[data-scene="14"]::-webkit-scrollbar {
+        display: none;
+      }
+
+      .video-scene[data-scene="14"] .demo-title {
+        font-size: 64px;
+        line-height: 0.95;
+        text-align: center;
+        margin: 0;
+      }
+
+      .video-scene[data-scene="14"] .demo-badge {
+        font-size: 14px;
+        padding: 8px 18px;
+        align-self: center;
+        letter-spacing: 0.18em;
+        line-height: 1.25;
+      }
+
+      .video-scene[data-scene="14"] .demo-steps {
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+        margin: 6px 0 0;
+        width: 100%;
+      }
+
+      .video-scene[data-scene="14"] .demo-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+        gap: 4px;
+        padding: 10px 12px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-num {
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-gift {
+        width: 38px;
+        height: 38px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-title {
+        font-size: 19px;
+        letter-spacing: 0.05em;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.15;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-desc {
+        font-size: 13px;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift {
+        align-self: stretch;
+        margin: 8px 0 0;
+        padding: 12px 16px;
+        border-radius: 10px;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-title {
+        font-size: 16px;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-desc {
+        font-size: 13px;
+        margin-top: 4px;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-no-bs {
+        font-size: 13px;
+        margin-top: 6px;
+        text-align: center;
+      }
+
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 2: tablo gizli, kartlar dikey stack (V1S üstte) === */
       .compare-scene {
         display: flex !important;
@@ -2285,12 +2387,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v147</div>
+    v148</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v147';
+    const CURRENT_VERSION = 'v148';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -2434,35 +2536,46 @@
       }
     });
 
-    // ── PROBLEM SLAYTI: JS WHEEL FALLBACK (desktop) ──
-    window.addEventListener('wheel', (e) => {
+    // ── SCROLLABLE SLAYT TESPİTİ (problem + ücretsiz demo portrait) ──
+    function _getScrollableTarget() {
       const slide = document.querySelector('.slide.active');
-      if (!slide || slide.id !== 'slide-problem') return;
-      const wrapper = slide.querySelector('.problem-content');
-      if (!wrapper) return;
+      if (!slide) return null;
+      if (slide.id === 'slide-problem') {
+        return slide.querySelector('.problem-content');
+      }
+      // Ücretsiz demo (data-scene="14") — sadece portrait modda scroll'lu
+      const activeScene = document.querySelector('.video-scene.active');
+      if (activeScene && activeScene.dataset.scene === '14') {
+        if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
+          return activeScene;
+        }
+      }
+      return null;
+    }
+
+    // ── JS WHEEL FALLBACK (desktop) ──
+    window.addEventListener('wheel', (e) => {
+      const target = _getScrollableTarget();
+      if (!target) return;
       e.preventDefault();
-      wrapper.scrollTop += e.deltaY;
+      target.scrollTop += e.deltaY;
     }, { passive: false });
 
-    // ── PROBLEM SLAYTI: JS TOUCH SCROLL (mobil) ──
-    // preventDefault ile native scroll'u kapatıyoruz ki çift hesaplama olmasın
+    // ── JS TOUCH SCROLL (mobil) — preventDefault ile native ile çakışma yok ──
     let scrollTouchLastY = 0;
     document.addEventListener('touchstart', (e) => {
-      const slide = document.querySelector('.slide.active');
-      if (!slide || slide.id !== 'slide-problem') return;
+      if (!_getScrollableTarget()) return;
       if (e.touches.length !== 1) return;
       scrollTouchLastY = e.touches[0].clientY;
     }, { passive: true });
     document.addEventListener('touchmove', (e) => {
-      const slide = document.querySelector('.slide.active');
-      if (!slide || slide.id !== 'slide-problem') return;
-      const wrapper = slide.querySelector('.problem-content');
-      if (!wrapper) return;
+      const target = _getScrollableTarget();
+      if (!target) return;
       if (e.touches.length !== 1) return;
-      e.preventDefault();   // native touch-scroll'u devre dışı bırak
+      e.preventDefault();
       const y = e.touches[0].clientY;
       const dy = scrollTouchLastY - y;
-      wrapper.scrollTop += dy;
+      target.scrollTop += dy;
       scrollTouchLastY = y;
     }, { passive: false });
 
