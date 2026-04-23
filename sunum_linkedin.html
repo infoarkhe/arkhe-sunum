@@ -931,20 +931,18 @@
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
-      /* Kart — zorla sığar, üstte logo için biraz daha pay */
+      /* Kart — zorla sığar, biraz geniş + ekrana ortalı (transform zaten merkezliyor) */
       .intro-shell {
-        max-width: 90vw;
-        padding: 18px 26px 10px;      /* üst 18 (logo için), alt 10 */
+        max-width: 94vw;
+        padding: 78px 26px 12px;      /* üst 78px: absolute logoya yer açar */
       }
 
-      /* Header — logo ÜSTTE (ortada), badge ALTTA (ortada) */
+      /* Header — sadece badge kalıyor (logo absolute oldu) */
       .intro-header {
-        flex-direction: column-reverse;
-        align-items: center;
-        gap: 8px;
         margin-bottom: 6px;
         margin-right: 0;
         text-align: center;
+        justify-content: center;
       }
 
       .intro-badge {
@@ -952,14 +950,16 @@
         line-height: 1;
       }
 
-      /* Logo — base CSS'te position:relative + top:50px var, zorla sıfırla.
-         Margin ile ince ayar: sağa 8px, aşağı 16px */
+      /* Logo — kartın doğrudan absolute çocuğu, üstte ortalı.
+         corner-spin animasyonu (sadece rotate) kullan ki transform conflict olmasın */
       .intro-logo {
+        position: absolute !important;
+        top: 12px;
+        left: 50%;
         width: 60px;
         height: 60px;
-        position: static !important;
-        top: auto !important;
-        margin: 16px 0 0 8px !important;
+        margin: 0 0 0 -30px !important;       /* -width/2 ile yatayda merkez */
+        animation: corner-spin 60s linear infinite !important;
       }
 
       .intro-text {
@@ -1410,12 +1410,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v104</div>
+    v105</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v104';
+    const CURRENT_VERSION = 'v105';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
