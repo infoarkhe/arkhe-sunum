@@ -962,17 +962,20 @@
         display: contents;
       }
 
-      /* Header tipografi — mod 2 (portrait) ile aynı boyutlar */
+      /* Header tipografi — kompakt, headline büyüdü */
       .problem-label {
-        margin-top: 1vh;
-        /* font-size default clamp'te kalır */
+        margin-top: 0;
+        margin-bottom: 0;
       }
       .problem-headline {
         font-size: 22px;
+        margin-bottom: 0;
       }
       .problem-headline-big {
-        font-size: 52px;
-        margin-bottom: 20px;
+        font-size: 70px;
+        margin-top: 0;
+        margin-bottom: 6px;
+        line-height: 0.9;
       }
 
       /* Kart içi tipografi mod 3 için */
@@ -1358,12 +1361,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v96</div>
+    v97</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v96';
+    const CURRENT_VERSION = 'v97';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
