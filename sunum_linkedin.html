@@ -920,6 +920,33 @@
       }
 
     }
+
+    /* ─────────────────────────────────────────────────────────────
+       MOD 3: TELEFON YATAY (landscape, kısa ekran)
+       Mod 1 desktop layout'u korur, sadece içerik sığsın diye scroll açar.
+       ───────────────────────────────────────────────────────────── */
+    @media (orientation: landscape) and (max-height: 500px) {
+
+      /* Problem slaytı — desktop 2x3 grid kalır, scroll edilebilir olur */
+      #slide-problem {
+        padding: 0;
+      }
+
+      .problem-content {
+        position: absolute;
+        inset: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        padding: 3vh 5vw 4vh;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .problem-content::-webkit-scrollbar {
+        display: none;
+      }
+
+    }
   </style>
 </head>
 
@@ -1277,12 +1304,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v92</div>
+    v93</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v92';
+    const CURRENT_VERSION = 'v93';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
