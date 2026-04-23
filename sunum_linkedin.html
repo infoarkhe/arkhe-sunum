@@ -1034,6 +1034,9 @@
         max-width: none !important;
         max-height: none !important;
         object-fit: initial !important;
+        position: absolute !important;
+        left: 50% !important;
+        top: 50% !important;
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
@@ -2427,12 +2430,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v158</div>
+    v159</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v158';
+    const CURRENT_VERSION = 'v159';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
