@@ -965,7 +965,7 @@
       /* Header tipografi — kompakt, headline büyüdü */
       .problem-label {
         margin-top: 0;
-        margin-bottom: 0;
+        margin-bottom: -8px;          /* sub-headline ile arası daralsın */
       }
       .problem-headline {
         font-size: 22px;
@@ -1361,12 +1361,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v98</div>
+    v99</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v98';
+    const CURRENT_VERSION = 'v99';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
