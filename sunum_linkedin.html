@@ -1056,14 +1056,14 @@
       /* === ÇÖZÜM SLAYTI (intro scene) — desktop layout sığdırılmış === */
 
       .intro-shell {
-        padding: 14px 50px;            /* dikey daha sıkı, yatay açıldı */
-        width: 96vw;
-        max-width: 96vw;               /* explicit + max ile genişliği zorla */
+        padding: 14px 40px;
+        width: 92vw;
+        max-width: 92vw;               /* 96 → 92: biraz daha dar */
       }
 
       .intro-header {
-        margin-bottom: 8px;            /* daha sıkı (14 → 8) */
-        margin-right: -50px;
+        margin-bottom: 8px;
+        margin-right: -20px;           /* -50 → -20 (overhang azaldı) */
       }
 
       .intro-badge {
@@ -1071,14 +1071,14 @@
       }
 
       .intro-logo {
-        width: 70px;
-        height: 70px;
-        top: 12px;                     /* overhang azaldı (30 → 12), kart yüksekliğini artırmaz */
+        width: 50px;                   /* 70 → 50: daha küçük, yukarı taşma yok */
+        height: 50px;
+        top: 0;                        /* offset sıfır */
       }
 
       .intro-text {
-        font-size: 16px;               /* 18 → 16 */
-        line-height: 1.35;             /* 1.4 → 1.35 */
+        font-size: 16px;
+        line-height: 1.35;
       }
 
     }
@@ -1439,12 +1439,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v109</div>
+    v110</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v109';
+    const CURRENT_VERSION = 'v110';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
