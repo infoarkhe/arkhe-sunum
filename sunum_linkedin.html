@@ -952,13 +952,14 @@
         line-height: 1;
       }
 
-      /* Logo — base CSS'te position:relative + top:50px var, zorla sıfırla */
+      /* Logo — base CSS'te position:relative + top:50px var, zorla sıfırla.
+         Margin ile ince ayar: sağa 8px, aşağı 16px */
       .intro-logo {
         width: 60px;
         height: 60px;
         position: static !important;
         top: auto !important;
-        margin: 0 !important;
+        margin: 16px 0 0 8px !important;
       }
 
       .intro-text {
@@ -1409,12 +1410,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v103</div>
+    v104</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v103';
+    const CURRENT_VERSION = 'v104';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
