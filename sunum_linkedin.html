@@ -311,10 +311,10 @@
       height: auto;
       object-fit: contain;
       display: block;
-      background: #ffffff;
+      background: transparent;
       box-shadow: none;
-      /* Chrome video shadow DOM kenar pikselleri (sub-pixel artifact) icin clip */
-      clip-path: inset(1px 4px 4px 1px);
+      /* Chrome desktop sub-pixel anti-alias artifact (alt 2px siyah çizgi) için clip */
+      clip-path: inset(0 0 2px 0);
     }
 
     .scene-info {
@@ -1721,12 +1721,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v135</div>
+    v136</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v135';
+    const CURRENT_VERSION = 'v136';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
