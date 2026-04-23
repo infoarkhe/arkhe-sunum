@@ -1099,9 +1099,13 @@
         position: relative;
         top: auto;
         left: auto;
-        font-size: 32px;
-        margin: 0 0 4px;
-        text-align: center;
+        font-size: 56px;
+        line-height: 0.95;
+        margin: 0 0 8px;
+        text-align: left;
+        align-self: flex-start;
+        max-width: 270px;       /* Model | Karsilastirma satira sigsin diye sinir */
+        padding-left: 4vw;
       }
 
       .compare-scene .compare-table {
@@ -1129,12 +1133,12 @@
 
       .compare-card-title {
         font-family: var(--font-display);
-        font-size: 24px;
+        font-size: 28px;
         text-align: center;
         letter-spacing: 0.15em;
         color: var(--black);
-        margin-bottom: 6px;
-        padding-bottom: 4px;
+        margin-bottom: 8px;
+        padding-bottom: 6px;
         border-bottom: 1px solid var(--gray-200);
       }
 
@@ -1150,10 +1154,11 @@
       }
 
       .compare-card-list li {
-        font-size: 15px;
-        line-height: 1.5;
-        padding: 2px 0;
+        font-size: 19px;
+        line-height: 1.45;
+        padding: 3px 0;
         color: var(--gray-700);
+        white-space: nowrap;
       }
 
       .compare-card-list li.extra {
@@ -1797,12 +1802,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v137</div>
+    v138</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v137';
+    const CURRENT_VERSION = 'v138';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
