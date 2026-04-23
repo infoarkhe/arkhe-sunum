@@ -1235,6 +1235,36 @@
         display: none;
       }
 
+      /* === KARŞILAŞTIRMA TABLOSU (sahne 14) — desktop layout sığdırılmış === */
+      .compare-scene {
+        gap: 8px;
+        padding: 0 16px;
+      }
+
+      .compare-scene .scene-label {
+        font-size: 36px;
+        margin-bottom: 2px;
+      }
+
+      .compare-table {
+        width: 96%;
+      }
+
+      .compare-table th {
+        font-size: 16px;
+        padding: 6px 10px;
+      }
+
+      .compare-table td {
+        font-size: 13px;
+        padding: 5px 10px;
+      }
+
+      .compare-table .check,
+      .compare-table .dash {
+        font-size: 18px;
+      }
+
     }
   </style>
 </head>
@@ -1593,12 +1623,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v118</div>
+    v119</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v118';
+    const CURRENT_VERSION = 'v119';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
