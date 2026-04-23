@@ -1056,13 +1056,14 @@
       /* === ÇÖZÜM SLAYTI (intro scene) — desktop layout sığdırılmış === */
 
       .intro-shell {
-        padding: 22px 40px;            /* desktop 50/70 → 22/40 (kompakt) */
-        max-width: 92vw;
+        padding: 14px 50px;            /* dikey daha sıkı, yatay açıldı */
+        width: 96vw;
+        max-width: 96vw;               /* explicit + max ile genişliği zorla */
       }
 
       .intro-header {
-        margin-bottom: 14px;           /* 36 → 14 */
-        margin-right: -50px;           /* -90 → -50 (logo overhang azaldı) */
+        margin-bottom: 8px;            /* daha sıkı (14 → 8) */
+        margin-right: -50px;
       }
 
       .intro-badge {
@@ -1072,12 +1073,12 @@
       .intro-logo {
         width: 70px;
         height: 70px;
-        top: 30px;                     /* desktop 50 → 30 (overhang azaldı) */
+        top: 12px;                     /* overhang azaldı (30 → 12), kart yüksekliğini artırmaz */
       }
 
       .intro-text {
-        font-size: 18px;
-        line-height: 1.4;
+        font-size: 16px;               /* 18 → 16 */
+        line-height: 1.35;             /* 1.4 → 1.35 */
       }
 
     }
@@ -1438,12 +1439,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v108</div>
+    v109</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v108';
+    const CURRENT_VERSION = 'v109';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
