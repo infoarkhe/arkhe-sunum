@@ -931,16 +931,16 @@
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
-      /* Kart — zorla sığar, dikey daha da kompakt */
+      /* Kart — zorla sığar, üstte logo için biraz daha pay */
       .intro-shell {
         max-width: 90vw;
-        padding: 10px 26px;           /* üst/alt daha da daraldı (14→10) */
+        padding: 18px 26px 10px;      /* üst 18 (logo için), alt 10 */
       }
 
       /* Header — logo ÜSTTE (ortada), badge ALTTA (ortada) */
       .intro-header {
         flex-direction: column-reverse;
-        align-items: center;          /* flex-start → center: logo başlığın tam üstünde ortalı */
+        align-items: center;
         gap: 8px;
         margin-bottom: 6px;
         margin-right: 0;
@@ -952,10 +952,13 @@
         line-height: 1;
       }
 
+      /* Logo — base CSS'te position:relative + top:50px var, zorla sıfırla */
       .intro-logo {
         width: 60px;
         height: 60px;
-        top: 0;
+        position: static !important;
+        top: auto !important;
+        margin: 0 !important;
       }
 
       .intro-text {
@@ -1406,12 +1409,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v102</div>
+    v103</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v102';
+    const CURRENT_VERSION = 'v103';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
