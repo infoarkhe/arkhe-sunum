@@ -923,27 +923,56 @@
 
     /* ─────────────────────────────────────────────────────────────
        MOD 3: TELEFON YATAY (landscape, kısa ekran)
-       Mod 1 desktop layout'u korur, sadece içerik sığsın diye scroll açar.
+       Mod 1 desktop 2x3 layout'u korur, font/padding agresif küçülür → sığar
        ───────────────────────────────────────────────────────────── */
     @media (orientation: landscape) and (max-height: 500px) {
 
-      /* Problem slaytı — desktop 2x3 grid kalır, scroll edilebilir olur */
       #slide-problem {
-        padding: 0;
+        padding: 2vh 4vw;
+        overflow: hidden;
       }
 
-      .problem-content {
-        position: absolute;
-        inset: 0;
-        overflow-y: scroll;
-        overflow-x: hidden;
-        padding: 3vh 5vw 4vh;
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+      /* .problem-content default passthrough; scroll yok */
+
+      .problem-label {
+        font-size: 12px;
+        margin-top: 0;
+        margin-bottom: 2px;
       }
 
-      .problem-content::-webkit-scrollbar {
-        display: none;
+      .problem-headline {
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      .problem-headline-big {
+        font-size: 28px;
+        margin-bottom: 8px;
+        margin-top: 2px;
+      }
+
+      .problem-items {
+        gap: 8px;
+        margin-bottom: 8px;
+      }
+
+      .problem-item {
+        padding: 8px 10px;
+      }
+
+      .problem-item .num {
+        font-size: 22px;
+        margin-bottom: 2px;
+      }
+
+      .problem-item .title {
+        font-size: 14px;
+        margin-bottom: 2px;
+      }
+
+      .problem-item .desc {
+        font-size: 10px;
+        line-height: 1.3;
       }
 
     }
@@ -1304,12 +1333,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v93</div>
+    v94</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v93';
+    const CURRENT_VERSION = 'v94';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
