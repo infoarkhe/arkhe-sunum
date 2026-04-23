@@ -1264,12 +1264,13 @@
         display: none;
       }
 
-      /* Kartlar — sağda, kalan alanı kapla */
+      /* Kartlar — sağda, kompakt genişlik */
       .compare-cards {
         display: flex;
         flex-direction: row;
         gap: 8px;
-        flex: 1;                       /* kalan yatay alanı kapla */
+        flex: 0 0 auto;
+        max-width: 440px;              /* kalan alanı doldurma — kompakt */
         align-items: stretch;
       }
 
@@ -1322,6 +1323,12 @@
       .compare-card-list li.extra {
         color: var(--accent);
         font-weight: 600;
+      }
+
+      /* Sayfa altı nokta nav-indicator — sola yaslı */
+      #nav-indicator {
+        left: 24px;
+        transform: none;
       }
 
     }
@@ -1709,12 +1716,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v124</div>
+    v125</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v124';
+    const CURRENT_VERSION = 'v125';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
