@@ -744,8 +744,8 @@
     .demo-step-desc {
       font-family: var(--font-body);
       font-size: clamp(16px, 1.8vw, 22px);
-      font-weight: 300;
-      color: var(--gray-400);
+      font-weight: 400;
+      color: var(--gray-700);
       line-height: 1.5;
     }
 
@@ -771,10 +771,10 @@
     .demo-no-bs {
       font-family: var(--font-body);
       font-size: clamp(13px, 1.4vw, 18px);
-      font-weight: 300;
+      font-weight: 400;
       font-style: italic;
-      color: var(--gray-400);
-      margin-top: 12px;
+      color: var(--gray-700);
+      margin-top: 0;
       text-align: center;
       letter-spacing: 0.02em;
     }
@@ -1293,6 +1293,11 @@
         border-radius: 8px;
       }
 
+      /* Mod 2 ucretsiz demo aktifken corner-logo gizle */
+      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+        display: none !important;
+      }
+
       /* === ÜCRETSİZ DEMO (sahne 15) — mod 2: dikey scroll, problem slaytı mantığı ===
          Sıra: title+badge üstte, steps ortada (tek sütun, kaydırılabilir), gift+no-bs altta */
       .video-scene[data-scene="14"] {
@@ -1357,7 +1362,7 @@
       }
 
       .video-scene[data-scene="14"] .demo-step-title {
-        font-size: 19px;
+        font-size: 26px;
         letter-spacing: 0.05em;
         white-space: normal;
         text-align: center;
@@ -1365,7 +1370,7 @@
       }
 
       .video-scene[data-scene="14"] .demo-step-desc {
-        font-size: 13px;
+        font-size: 16px;
         line-height: 1.4;
         text-align: center;
       }
@@ -1373,26 +1378,32 @@
       .video-scene[data-scene="14"] .demo-gift {
         align-self: stretch;
         margin: 8px 0 0;
-        padding: 12px 16px;
-        border-radius: 10px;
+        padding: 12px 16px 4px;
+        border-radius: 10px 10px 0 0;
       }
 
       .video-scene[data-scene="14"] .demo-gift-title {
-        font-size: 16px;
+        font-size: 17px;
         letter-spacing: 0.06em;
         text-align: center;
       }
 
       .video-scene[data-scene="14"] .demo-gift-desc {
-        font-size: 13px;
+        font-size: 14px;
         margin-top: 4px;
         text-align: center;
       }
 
       .video-scene[data-scene="14"] .demo-no-bs {
-        font-size: 13px;
-        margin-top: 6px;
+        font-size: 14px;
+        margin: 0;
+        padding: 6px 16px 12px;
+        border: 2px solid var(--accent);
+        border-top: 0;
+        border-radius: 0 0 10px 10px;
+        background: rgba(0, 180, 216, 0.03);
         text-align: center;
+        align-self: stretch;
       }
 
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 2: tablo gizli, kartlar dikey stack (V1S üstte) === */
@@ -1750,10 +1761,10 @@
       .demo-no-bs {
       font-family: var(--font-body);
       font-size: clamp(13px, 1.4vw, 18px);
-      font-weight: 300;
+      font-weight: 400;
       font-style: italic;
-      color: var(--gray-400);
-      margin-top: 12px;
+      color: var(--gray-700);
+      margin-top: 0;
       text-align: center;
       letter-spacing: 0.02em;
     }
@@ -1859,30 +1870,36 @@
       .video-scene[data-scene="14"] .demo-gift {
         align-self: flex-start;
         margin: 0;
-        padding: 8px 14px;
-        border-radius: 8px;
+        padding: 8px 14px 4px;
+        border-radius: 8px 8px 0 0;
         max-width: 40vw;
         box-sizing: border-box;
       }
 
       .video-scene[data-scene="14"] .demo-gift-title {
-        font-size: 13px;
+        font-size: 14px;
         letter-spacing: 0.06em;
         line-height: 1.15;
       }
 
       .video-scene[data-scene="14"] .demo-gift-desc {
-        font-size: 11px;
+        font-size: 12px;
         margin-top: 3px;
         line-height: 1.3;
       }
 
       .video-scene[data-scene="14"] .demo-no-bs {
-        font-size: 11px;
-        margin-top: 4px;
+        font-size: 12px;
+        margin: 0;
+        padding: 4px 14px 8px;
+        border: 2px solid var(--accent);
+        border-top: 0;
+        border-radius: 0 0 8px 8px;
+        background: rgba(0, 180, 216, 0.03);
         text-align: left;
         align-self: flex-start;
         max-width: 40vw;
+        box-sizing: border-box;
         line-height: 1.3;
       }
 
@@ -2387,12 +2404,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v148</div>
+    v149</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v148';
+    const CURRENT_VERSION = 'v149';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
