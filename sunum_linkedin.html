@@ -1667,39 +1667,49 @@
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
-        justify-content: flex-start !important;
-        gap: 4px !important;
-        padding: 8px 0 36px 16px !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding: 0 0 0 18px !important;
         overflow: hidden !important;
         text-align: left;
       }
 
+      /* Mod 3'te ücretsiz demo aktifken sağ üst dönen logoyu gizle */
+      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+        display: none !important;
+      }
+
       .video-scene[data-scene="14"] .demo-title {
-        font-size: 28px;
+        font-size: 38px;
         line-height: 0.95;
         text-align: left;
         margin: 0;
+        max-width: 40vw;
       }
 
       .video-scene[data-scene="14"] .demo-badge {
-        font-size: 10px;
-        padding: 4px 12px;
-        letter-spacing: 0.2em;
+        font-size: 12px;
+        padding: 5px 14px;
+        letter-spacing: 0.18em;
         border-radius: 16px;
         align-self: flex-start;
+        max-width: 40vw;
+        line-height: 1.25;
       }
 
       .video-scene[data-scene="14"] .demo-steps {
         position: absolute;
         right: 12px;
-        top: 12px;
-        bottom: 36px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 80vh;
         width: 52vw;
         display: grid;
         grid-template-columns: 1fr 1fr;
         grid-auto-rows: min-content;
-        gap: 10px;
+        gap: 14px;
         margin: 0;
+        padding: 4px;
         overflow-y: auto;
         scrollbar-width: none;
         -ms-overflow-style: none;
@@ -1719,9 +1729,9 @@
       }
 
       .video-scene[data-scene="14"] .demo-step-num {
-        font-size: 32px;
+        font-size: 38px;
         line-height: 1;
-        margin-bottom: 2px;
+        margin-bottom: 3px;
       }
 
       .video-scene[data-scene="14"] .demo-step-gift {
@@ -1731,41 +1741,47 @@
       }
 
       .video-scene[data-scene="14"] .demo-step-title {
-        font-size: 14px;
+        font-size: 16px;
         letter-spacing: 0.05em;
         white-space: normal;
         text-align: left;
-        line-height: 1.1;
+        line-height: 1.15;
       }
 
       .video-scene[data-scene="14"] .demo-step-desc {
-        font-size: 11px;
-        line-height: 1.35;
+        font-size: 12px;
+        line-height: 1.4;
         text-align: left;
       }
 
       .video-scene[data-scene="14"] .demo-gift {
         align-self: flex-start;
         margin: 0;
-        padding: 4px 12px;
-        border-radius: 6px;
+        padding: 8px 14px;
+        border-radius: 8px;
+        max-width: 40vw;
+        box-sizing: border-box;
       }
 
       .video-scene[data-scene="14"] .demo-gift-title {
-        font-size: 11px;
+        font-size: 13px;
         letter-spacing: 0.06em;
+        line-height: 1.15;
       }
 
       .video-scene[data-scene="14"] .demo-gift-desc {
-        font-size: 9px;
-        margin-top: 1px;
+        font-size: 11px;
+        margin-top: 3px;
+        line-height: 1.3;
       }
 
       .video-scene[data-scene="14"] .demo-no-bs {
-        font-size: 9px;
-        margin-top: 3px;
+        font-size: 11px;
+        margin-top: 4px;
         text-align: left;
         align-self: flex-start;
+        max-width: 40vw;
+        line-height: 1.3;
       }
 
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: yatay layout, label sol orta + kartlar sağda === */
@@ -2269,12 +2285,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v145</div>
+    v146</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v145';
+    const CURRENT_VERSION = 'v146';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
