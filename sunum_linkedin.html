@@ -2054,12 +2054,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v140</div>
+    v141</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v140';
+    const CURRENT_VERSION = 'v141';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -2253,8 +2253,8 @@
 
     document.addEventListener('touchend', (e) => {
       if (e.changedTouches.length !== 1) return;
-      // Sahne 13 sag panelindeki tap sunumu ilerletmesin
-      if (e.target && e.target.closest && e.target.closest('.demo-side-panel')) return;
+      // Sadece Telegram butonu tap sunumu ilerletmesin (panel diğer alanlarına dokunmak normal next yapar)
+      if (e.target && e.target.closest && e.target.closest('.demo-tg-button')) return;
       const t = e.changedTouches[0];
       const dx = t.clientX - touchStartX;
       const dy = t.clientY - touchStartY;
