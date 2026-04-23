@@ -1240,18 +1240,23 @@
         display: none;
       }
 
-      /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: tablo gizli, 2 kart aktif === */
+      /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: yatay layout, label sol orta + kartlar sağda === */
       .compare-scene {
-        gap: 12px;
-        padding: 16px 24px;
-        justify-content: flex-start;   /* içerik yukarıdan başlasın (kartlar yukarı shift) */
+        flex-direction: row;           /* column → row: yatay */
+        align-items: center;           /* dikey ortalı */
+        justify-content: flex-start;   /* sola yasla */
+        gap: 32px;
+        padding: 0 24px;
       }
 
       .compare-scene .scene-label {
-        align-self: flex-start;        /* label sola yaslı */
         font-size: 40px;
-        margin-bottom: 2px;
+        align-self: center;            /* sol orta */
         text-align: left;
+        flex: 0 0 auto;
+        max-width: 220px;
+        line-height: 1;
+        margin: 0;
       }
 
       /* Tabloyu gizle */
@@ -1259,21 +1264,25 @@
         display: none;
       }
 
-      /* Kartları göster — yan yana 2 kutu (dar, yakın, ortalı) */
+      /* Kartlar — sağda, kalan alanı kapla */
       .compare-cards {
         display: flex;
         flex-direction: row;
-        gap: 8px;                      /* 16 → 8: kartlar birbirine yakın */
-        max-width: 560px;              /* 800 → 560: kartlar daralır */
+        gap: 8px;
+        flex: 1;                       /* kalan yatay alanı kapla */
         align-items: stretch;
       }
 
       .compare-card {
-        flex: 1;
+        flex: 1;                       /* V1 → 1 birim */
         background: var(--white);
         border: 1.5px solid var(--gray-200);
         border-top: 4px solid var(--gray-700);
         padding: 12px 14px 14px;
+      }
+
+      .compare-card.v1s {
+        flex: 1.4;                     /* V1S → daha geniş (ekstra özellikler için) */
       }
 
       .compare-card.v1s {
@@ -1700,12 +1709,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v122</div>
+    v123</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v122';
+    const CURRENT_VERSION = 'v123';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
