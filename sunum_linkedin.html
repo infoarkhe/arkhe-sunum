@@ -969,6 +969,117 @@
         text-align: center;
       }
 
+      /* === VİDEO SAHNELERİ (data-scene 1–11) — mod 2 portrait ===
+         Grid: başlık üstte, video ortada (max-height cap), açıklama altta */
+      .video-scene {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: 100%;
+        padding: 3vh 5vw;
+        gap: 0.5vh;
+        justify-items: center;
+        align-content: center;
+        overflow: hidden;
+        flex-direction: initial;
+      }
+
+      /* Sahne başlığı — sol üst, satır 1 */
+      .video-scene .scene-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        grid-row: 1;
+        justify-self: start;
+        margin: 0;
+        padding: 0;
+        font-size: clamp(43px, 9.8vw, 66px);
+        letter-spacing: 0.08em;
+        line-height: 1;
+      }
+
+      /* Intro sahnesi (sahne 0) label zaten gizli — dokunma */
+      .intro-scene .scene-label {
+        display: none;
+      }
+
+      /* Video — başlığın altında, doğal yükseklik (cap'li) */
+      .video-scene video {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        grid-row: 2;
+        justify-self: center;
+        align-self: start;
+        width: 100%;
+        max-width: 92vw;
+        max-height: 58vh;
+        height: auto;
+        margin: -3vh 0 -3vh;
+        object-fit: contain;
+        z-index: 2;
+        min-height: 0;
+      }
+
+      /* Intro sahnesi (sahne 0) videosu — tam ekran arka plan davranışı korunsun
+         (mod 2 intro override'ları yukarıda tanımlı) */
+      .intro-scene video {
+        /* width/height/max'leri yukarıdaki intro override'ı zaten yönetiyor — burada karışma */
+      }
+
+      /* Açıklama listesi — video altında, sola yaslı */
+      .scene-info {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        grid-row: 3;
+        justify-self: start;
+        align-self: start;
+        max-width: 100%;
+        width: 100%;
+        margin: 2.5vh 0 0;
+        padding: 0;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .scene-info li {
+        font-size: clamp(24px, 6vw, 34px);
+        line-height: 1.3;
+        padding-left: 28px;
+        text-align: left;
+      }
+
+      .scene-info li::before {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0.55em;
+        width: 12px;
+        height: 12px;
+        margin: 0;
+        vertical-align: baseline;
+        transform: none;
+      }
+
+      /* Fiber arka plan — mod 2'de yatay şerit (alt 38vh), scene-info bölgesini kaplar */
+      .video-scene .scene-info-bg {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        height: 38vh;
+        z-index: 0;
+      }
+
+      /* Intro sahnesi (sahne 0) canvas'ı global rule'da gizli kalsın */
+      .intro-scene .scene-info-bg {
+        display: none;
+      }
+
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -1080,6 +1191,48 @@
       .intro-text {
         font-size: 16px;
         line-height: 1.35;
+      }
+
+      /* === VİDEO SAHNELERİ (data-scene 1–11) — mod 3 landscape ===
+         Desktop layout sığdırılmış: sol video / sağ metin */
+      .video-scene {
+        gap: 32px;
+        padding: 0 40px;
+      }
+
+      .video-scene video {
+        left: 4vw;
+        max-width: 46vw;
+        max-height: 78vh;
+      }
+
+      .scene-info {
+        left: 52vw;
+        max-width: 42vw;
+        gap: 16px;
+      }
+
+      .scene-info li {
+        font-size: clamp(24px, 4.8vh, 38px);
+        line-height: 1.35;
+        padding-left: 26px;
+      }
+
+      .scene-info li::before {
+        width: 10px;
+        height: 10px;
+        top: 0.6em;
+      }
+
+      .video-scene .scene-label {
+        top: 16px;
+        left: 24px;
+        font-size: clamp(46px, 11vh, 82px);
+        letter-spacing: 0.12em;
+      }
+
+      .intro-scene .scene-label {
+        display: none;
       }
 
     }
@@ -1440,12 +1593,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v117</div>
+    v118</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v117';
+    const CURRENT_VERSION = 'v118';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -1694,6 +1847,9 @@
     const LINE_COUNT = 14;
     const SPEED = 0.0003;
 
+    // Mod 2 (portrait) için yatay fiber. Desktop ve mod 3 dikey kalır.
+    const _portraitMQ = window.matchMedia('(orientation: portrait) and (max-width: 900px)');
+
     function drawWaveOnCanvas(canvas, time) {
       const ctx = canvas.getContext('2d');
       const w = canvas.parentElement.offsetWidth;
@@ -1702,10 +1858,13 @@
       if (canvas.height !== h) canvas.height = h;
 
       ctx.clearRect(0, 0, w, h);
+      const horizontal = _portraitMQ.matches;
+      const major = horizontal ? w : h;        // çizginin uzandığı eksen
+      const minor = horizontal ? h : w;        // çizgilerin dağıldığı eksen
       const center = LINE_COUNT / 2;
 
       for (let i = 0; i < LINE_COUNT; i++) {
-        const baseX = w * 0.15 + (i / LINE_COUNT) * w * 0.7;
+        const basePos = minor * 0.15 + (i / LINE_COUNT) * minor * 0.7;
         const isAccent = (i === 4 || i === 9);
         const phase = i * 0.35;
         const dist = Math.abs(i - center) / center;
@@ -1717,12 +1876,15 @@
           : `rgba(170,170,170,${0.18 * depth})`;
         ctx.lineWidth = 1.0 + depth * 0.8;
 
-        for (let y = 0; y <= h; y += 4) {
-          const wave1 = Math.sin((y * 0.004) + (time * SPEED) + phase) * 30 * depth;
-          const wave2 = Math.sin((y * 0.008) + (time * SPEED * 0.6) + phase) * 15 * depth;
-          const perspective = Math.sin((y * 0.002) + (time * SPEED * 0.4)) * 20;
-          const x = baseX + wave1 + wave2 + perspective * (i - center) * 0.08;
-          if (y === 0) ctx.moveTo(x, y);
+        for (let t = 0; t <= major; t += 4) {
+          const wave1 = Math.sin((t * 0.004) + (time * SPEED) + phase) * 30 * depth;
+          const wave2 = Math.sin((t * 0.008) + (time * SPEED * 0.6) + phase) * 15 * depth;
+          const perspective = Math.sin((t * 0.002) + (time * SPEED * 0.4)) * 20;
+          const offset = wave1 + wave2 + perspective * (i - center) * 0.08;
+          const pos = basePos + offset;
+          const x = horizontal ? t : pos;
+          const y = horizontal ? pos : t;
+          if (t === 0) ctx.moveTo(x, y);
           else ctx.lineTo(x, y);
         }
         ctx.stroke();
