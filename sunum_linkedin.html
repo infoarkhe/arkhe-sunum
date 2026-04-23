@@ -1243,12 +1243,15 @@
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: tablo gizli, 2 kart aktif === */
       .compare-scene {
         gap: 12px;
-        padding: 0 24px;
+        padding: 16px 24px;
+        justify-content: flex-start;   /* içerik yukarıdan başlasın (kartlar yukarı shift) */
       }
 
       .compare-scene .scene-label {
+        align-self: flex-start;        /* label sola yaslı */
         font-size: 40px;
         margin-bottom: 2px;
+        text-align: left;
       }
 
       /* Tabloyu gizle */
@@ -1697,12 +1700,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v121</div>
+    v122</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v121';
+    const CURRENT_VERSION = 'v122';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
