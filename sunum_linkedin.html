@@ -2009,7 +2009,7 @@
     /* Scroll arrow indicators — kaydırılabilir slaytlarda yanıp söner */
     .scroll-arrow {
       position: fixed;
-      right: 16px;
+      left: 16px;
       font-size: 18px;
       color: var(--gray-400);
       z-index: 99;
@@ -2427,12 +2427,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v157</div>
+    v158</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v157';
+    const CURRENT_VERSION = 'v158';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
