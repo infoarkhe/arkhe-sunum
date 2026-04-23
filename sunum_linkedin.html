@@ -1175,6 +1175,26 @@
         display: none;
       }
 
+      /* === SAHNE 16 (Tesekkurler) — MOD 2: kapak gibi davransin (flex column, no grid, no clip) ===
+         video-scene grid layout'unu override et, overflow visible (logo kesilmesin) */
+      .video-scene[data-scene="15"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        grid-template-rows: initial;
+        grid-template-columns: initial;
+      }
+
+      /* Mavi cizgi daha uzun (kapak'taki gibi belirgin) */
+      .contact-line {
+        width: 240px;
+        margin: 28px 0;
+      }
+
       /* === SAHNE 13 (Canli Demo) — MOD 2: dikey, iframe + panel bitisik === */
       .demo-scene {
         display: flex !important;
@@ -2054,12 +2074,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v141</div>
+    v142</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v141';
+    const CURRENT_VERSION = 'v142';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
