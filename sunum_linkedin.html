@@ -919,6 +919,49 @@
         height: 60px;
       }
 
+      /* === ÇÖZÜM SLAYTI (intro scene, data-scene=0) === */
+
+      /* Background video — native boyut, ortalı; viewport orta kısmı görünür (crop) */
+      .intro-scene video {
+        width: auto !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: initial !important;
+        transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
+      }
+
+      /* Kart — zorla sığar */
+      .intro-shell {
+        max-width: 90vw;
+        padding: 24px 26px;
+      }
+
+      /* Header — dikey stack: badge üstte, logo altta. Overhang kaldırıldı */
+      .intro-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        margin-bottom: 18px;
+        margin-right: 0;
+      }
+
+      .intro-badge {
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      .intro-logo {
+        width: 60px;
+        height: 60px;
+        top: 0;            /* desktop'taki top:50px overhang'i sıfırla */
+      }
+
+      .intro-text {
+        font-size: 18px;
+        line-height: 1.5;
+      }
+
     }
 
     /* ─────────────────────────────────────────────────────────────
@@ -1361,12 +1404,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v99</div>
+    v100</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v99';
+    const CURRENT_VERSION = 'v100';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
