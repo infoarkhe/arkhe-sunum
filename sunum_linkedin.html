@@ -583,6 +583,11 @@
       font-size: 32px;
     }
 
+    /* Compare cards — default'ta gizli; mod 3 (landscape) media query'sinde aktif olur */
+    .compare-cards {
+      display: none;
+    }
+
     /* ── DEMO TEKLİFİ ── */
     .demo-scene {
       display: flex;
@@ -1235,34 +1240,76 @@
         display: none;
       }
 
-      /* === KARŞILAŞTIRMA TABLOSU (sahne 14) — desktop layout sığdırılmış === */
+      /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: tablo gizli, 2 kart aktif === */
       .compare-scene {
-        gap: 8px;
-        padding: 0 16px;
+        gap: 12px;
+        padding: 0 24px;
       }
 
       .compare-scene .scene-label {
-        font-size: 36px;
+        font-size: 40px;
         margin-bottom: 2px;
       }
 
-      .compare-table {
+      /* Tabloyu gizle */
+      .compare-scene .compare-table {
+        display: none;
+      }
+
+      /* Kartları göster — yan yana 2 kutu */
+      .compare-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 16px;
         width: 96%;
+        max-width: 800px;
+        align-items: stretch;
       }
 
-      .compare-table th {
-        font-size: 16px;
-        padding: 6px 10px;
+      .compare-card {
+        flex: 1;
+        background: var(--white);
+        border: 1.5px solid var(--gray-200);
+        border-top: 4px solid var(--gray-700);
+        padding: 12px 16px 14px;
       }
 
-      .compare-table td {
+      .compare-card.v1s {
+        border-top-color: var(--accent);
+      }
+
+      .compare-card-title {
+        font-family: var(--font-display);
+        font-size: 26px;
+        text-align: center;
+        letter-spacing: 0.15em;
+        color: var(--black);
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .compare-card.v1s .compare-card-title {
+        color: var(--accent-dark);
+      }
+
+      .compare-card-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: var(--font-body);
+      }
+
+      .compare-card-list li {
         font-size: 13px;
-        padding: 5px 10px;
+        line-height: 1.4;
+        padding: 3px 0;
+        color: var(--gray-700);
       }
 
-      .compare-table .check,
-      .compare-table .dash {
-        font-size: 18px;
+      .compare-card-list li.extra {
+        color: var(--accent);
+        font-weight: 600;
       }
 
     }
@@ -1551,6 +1598,33 @@
               <td class="check">&#10003;</td>
             </tr>
           </table>
+
+          <!-- Mod 3 (landscape) için iki kart yapısı; default'ta gizli, mod 3'te aktif -->
+          <div class="compare-cards">
+            <div class="compare-card">
+              <div class="compare-card-title">V1</div>
+              <ul class="compare-card-list">
+                <li>Anlık Güç Göstergesi</li>
+                <li>Osiloskop Görünümü</li>
+                <li>CO₂ Takibi</li>
+                <li>Tüketim Grafiği</li>
+                <li>RS485 / Modbus</li>
+              </ul>
+            </div>
+            <div class="compare-card v1s">
+              <div class="compare-card-title">V1S</div>
+              <ul class="compare-card-list">
+                <li>Anlık Güç Göstergesi</li>
+                <li>Osiloskop Görünümü</li>
+                <li>CO₂ Takibi</li>
+                <li>Tüketim Grafiği</li>
+                <li>RS485 / Modbus</li>
+                <li class="extra">Günlük Raporlama</li>
+                <li class="extra">Alarm Sistemi</li>
+                <li class="extra">Tarife Bazlı Analiz</li>
+              </ul>
+            </div>
+          </div>
         </div>
 
         <!-- SAHNE 15: Demo Teklifi -->
@@ -1623,12 +1697,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v119</div>
+    v120</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v119';
+    const CURRENT_VERSION = 'v120';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
