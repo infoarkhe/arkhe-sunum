@@ -941,7 +941,7 @@
         grid-template-columns: 1fr 1fr;
         column-gap: 12px;
         row-gap: 12px;
-        padding: 14px 4vw 18px;
+        padding: 14px 4vw 60px;       /* alt: nav-indicator ile çakışmasın */
         scrollbar-width: none;
         -ms-overflow-style: none;
       }
@@ -1361,12 +1361,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v97</div>
+    v98</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v97';
+    const CURRENT_VERSION = 'v98';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
