@@ -2006,6 +2006,33 @@
       }
     }
 
+    /* Scroll arrow indicators — kaydırılabilir slaytlarda yanıp söner */
+    .scroll-arrow {
+      position: fixed;
+      right: 16px;
+      font-size: 18px;
+      color: var(--gray-400);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      font-family: var(--font-body);
+      line-height: 1;
+    }
+    #scroll-arrow-up {
+      top: 14px;
+    }
+    #scroll-arrow-down {
+      bottom: 14px;
+    }
+    .scroll-arrow.visible {
+      animation: scroll-arrow-blink 1.4s ease-in-out infinite;
+    }
+    @keyframes scroll-arrow-blink {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 0.12; }
+    }
+
   </style>
 </head>
 
@@ -2394,16 +2421,18 @@
   </div>
 
 
+  <div id="scroll-arrow-up" class="scroll-arrow">▲</div>
+  <div id="scroll-arrow-down" class="scroll-arrow">▼</div>
   <img id="corner-logo" src="logo.svg" alt="">
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v156</div>
+    v157</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v156';
+    const CURRENT_VERSION = 'v157';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -2507,6 +2536,9 @@
 
       // Compare slaytı için body class (mod 3'te nav-indicator override için)
       document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 13);
+
+      // Scroll oklarını güncelle (slayt değişimi sonrası)
+      requestAnimationFrame(updateScrollArrows);
     }
 
     // ── NAVİGASYON ──
@@ -2589,6 +2621,36 @@
       target.scrollTop += dy;
       scrollTouchLastY = y;
     }, { passive: false });
+
+    // ── SCROLL ARROW INDICATOR ──
+    const _scrollArrowUp = document.getElementById('scroll-arrow-up');
+    const _scrollArrowDown = document.getElementById('scroll-arrow-down');
+
+    function updateScrollArrows() {
+      const target = _getScrollableTarget();
+      if (!target) {
+        _scrollArrowUp.classList.remove('visible');
+        _scrollArrowDown.classList.remove('visible');
+        return;
+      }
+      const top = target.scrollTop;
+      const max = target.scrollHeight - target.clientHeight;
+      // Eğer içerik scroll'a sığıyorsa (max<=0) okları gizle
+      if (max <= 5) {
+        _scrollArrowUp.classList.remove('visible');
+        _scrollArrowDown.classList.remove('visible');
+        return;
+      }
+      const atTop = top <= 5;
+      const atBottom = top >= max - 5;
+      _scrollArrowUp.classList.toggle('visible', !atTop);
+      _scrollArrowDown.classList.toggle('visible', !atBottom);
+    }
+
+    // Scroll target'a scroll event eklemek dinamik; her wheel/touchmove sonrası tekrar guncelle
+    window.addEventListener('wheel', () => requestAnimationFrame(updateScrollArrows), { passive: true });
+    window.addEventListener('touchmove', () => requestAnimationFrame(updateScrollArrows), { passive: true });
+    window.addEventListener('resize', updateScrollArrows);
 
     // ── DOKUNMATİK: tek dokunuş → ileri, soldan sağa swipe → önceki ──
     let touchStartX = 0;
