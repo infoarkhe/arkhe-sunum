@@ -931,19 +931,20 @@
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
-      /* Kart — zorla sığar, dikey kompakt (şerit olmasın) */
+      /* Kart — zorla sığar, dikey daha da kompakt */
       .intro-shell {
         max-width: 90vw;
-        padding: 14px 26px;           /* dikey padding 24→14: üst/alt kırpıldı */
+        padding: 10px 26px;           /* üst/alt daha da daraldı (14→10) */
       }
 
-      /* Header — logo ÜSTTE, badge altta (column-reverse). Overhang kaldırıldı */
+      /* Header — logo ÜSTTE (ortada), badge ALTTA (ortada) */
       .intro-header {
         flex-direction: column-reverse;
-        align-items: flex-start;
-        gap: 10px;
-        margin-bottom: 6px;           /* başlık-metin arası baya daraldı (18→6) */
+        align-items: center;          /* flex-start → center: logo başlığın tam üstünde ortalı */
+        gap: 8px;
+        margin-bottom: 6px;
         margin-right: 0;
+        text-align: center;
       }
 
       .intro-badge {
@@ -958,9 +959,9 @@
       }
 
       .intro-text {
-        font-size: 18px;
-        line-height: 1.5;
-        text-align: justify;          /* yaslı, sola dayalı değil */
+        font-size: 16px;              /* 18→16 (0.9x) */
+        line-height: 1.4;             /* 1.5→1.4 (daha kompakt) */
+        text-align: left;             /* justify'dan geri sol yaslı */
       }
 
     }
@@ -1405,12 +1406,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v101</div>
+    v102</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v101';
+    const CURRENT_VERSION = 'v102';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
