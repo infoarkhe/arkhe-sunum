@@ -966,7 +966,7 @@
       .intro-text {
         font-size: 16px;              /* 18→16 (0.9x) */
         line-height: 1.4;             /* 1.5→1.4 (daha kompakt) */
-        text-align: left;             /* justify'dan geri sol yaslı */
+        text-align: center;
       }
 
     }
@@ -1411,12 +1411,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v106</div>
+    v107</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v106';
+    const CURRENT_VERSION = 'v107';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
