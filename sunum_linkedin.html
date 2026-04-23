@@ -931,18 +931,18 @@
         transform: translate(-50%, -50%) !important;   /* scale(1.1) kaldırıldı, native boyut */
       }
 
-      /* Kart — zorla sığar */
+      /* Kart — zorla sığar, dikey kompakt (şerit olmasın) */
       .intro-shell {
         max-width: 90vw;
-        padding: 24px 26px;
+        padding: 14px 26px;           /* dikey padding 24→14: üst/alt kırpıldı */
       }
 
-      /* Header — dikey stack: badge üstte, logo altta. Overhang kaldırıldı */
+      /* Header — logo ÜSTTE, badge altta (column-reverse). Overhang kaldırıldı */
       .intro-header {
-        flex-direction: column;
+        flex-direction: column-reverse;
         align-items: flex-start;
-        gap: 14px;
-        margin-bottom: 18px;
+        gap: 10px;
+        margin-bottom: 6px;           /* başlık-metin arası baya daraldı (18→6) */
         margin-right: 0;
       }
 
@@ -954,12 +954,13 @@
       .intro-logo {
         width: 60px;
         height: 60px;
-        top: 0;            /* desktop'taki top:50px overhang'i sıfırla */
+        top: 0;
       }
 
       .intro-text {
         font-size: 18px;
         line-height: 1.5;
+        text-align: justify;          /* yaslı, sola dayalı değil */
       }
 
     }
@@ -1404,12 +1405,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v100</div>
+    v101</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v100';
+    const CURRENT_VERSION = 'v101';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
