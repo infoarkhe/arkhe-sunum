@@ -1185,3 +1185,52 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Güç Göstergesi → Ana Ekra
 - Günlük Rapor: 1 sn
 - Saat Ayarları: 1 sn
 - Saat ve Tarih Ayarları: 0 sn
+
+---
+
+## Oturum #1 — 2026-04-27 04:31:40
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 04:31:40 |
+| **Bitiş** | 04:31:55 |
+| **Süre** | 15 sn (0 dk 15 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi
+
+**Sayfa bazlı süre:**
+- Güç Göstergesi: 12 sn
+- Ana Ekran: 1 sn
+
+---
+
+## Oturum #2 — 2026-04-27 04:35:23
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 04:35:23 |
+| **Bitiş** | 04:36:03 |
+| **Süre** | 40 sn (0 dk 40 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 12 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran → Ayarlar → Ana Ekran → Günlük Rapor → Ana Ekran → Saat Ayarları → Saat ve Tarih Ayarları → Ayarlar
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 19 sn
+- Ayarlar: 5 sn
+- Günlük Rapor: 5 sn
+- Saat Ayarları: 2 sn
+- Saat ve Tarih Ayarları: 2 sn
+- Bar Grafik: 2 sn
+- Çizgi Grafik: 2 sn
