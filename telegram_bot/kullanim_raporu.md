@@ -1234,3 +1234,24 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran → Ayarl
 - Saat ve Tarih Ayarları: 2 sn
 - Bar Grafik: 2 sn
 - Çizgi Grafik: 2 sn
+
+---
+
+## Oturum #3 — 2026-04-27 09:04:39
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 09:04:39 |
+| **Bitiş** | 09:04:42 |
+| **Süre** | 3 sn (0 dk 3 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 3 sn
