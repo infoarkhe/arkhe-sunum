@@ -1303,3 +1303,24 @@ Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana 
 - Güç Büyük: 9 sn
 - CO₂ Göstergesi: 4 sn
 - Ayarlar: 0 sn
+
+---
+
+## Oturum #6 — 2026-04-27 13:49:11
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 13:49:11 |
+| **Bitiş** | 13:49:39 |
+| **Süre** | 27 sn (0 dk 27 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 27 sn
