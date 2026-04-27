@@ -1324,3 +1324,31 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 27 sn
+
+---
+
+## Oturum #7 — 2026-04-27 13:49:40
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | W |
+| **Telegram ID** | `7149991939` |
+| **Başlangıç** | 2026-04-27 13:49:40 |
+| **Bitiş** | 13:53:03 |
+| **Süre** | 202 sn (3 dk 22 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 19 |
+| **En çok ziyaret** | Ana Ekran (7x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → CO₂ Göstergesi → CO₂ Büyük → CO₂ Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Ayarlar → Ana Ekran → CO₂ Göstergesi → CO₂ Büyük
+
+**Sayfa bazlı süre:**
+- CO₂ Büyük: 78 sn
+- Ana Ekran: 46 sn
+- Güç Büyük: 44 sn
+- Çizgi Grafik: 23 sn
+- CO₂ Göstergesi: 5 sn
+- Güç Göstergesi: 1 sn
+- Ayarlar: 1 sn
+- Bar Grafik: 1 sn
