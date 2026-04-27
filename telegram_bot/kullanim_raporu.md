@@ -1277,3 +1277,29 @@ Ana Ekran → Güç Göstergesi
 **Sayfa bazlı süre:**
 - Güç Göstergesi: 60 sn
 - Ana Ekran: 21 sn
+
+---
+
+## Oturum #5 — 2026-04-27 13:18:46
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | W |
+| **Telegram ID** | `7149991939` |
+| **Başlangıç** | 2026-04-27 13:18:46 |
+| **Bitiş** | 13:20:40 |
+| **Süre** | 114 sn (1 dk 54 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 11 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → CO₂ Büyük → CO₂ Göstergesi → Ana Ekran → Ayarlar → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 76 sn
+- Güç Göstergesi: 11 sn
+- CO₂ Büyük: 10 sn
+- Güç Büyük: 9 sn
+- CO₂ Göstergesi: 4 sn
+- Ayarlar: 0 sn
