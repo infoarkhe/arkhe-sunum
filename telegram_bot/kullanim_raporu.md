@@ -1431,3 +1431,26 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik
 - Bar Grafik: 68 sn
 - Çizgi Grafik: 56 sn
 - Ana Ekran: 6 sn
+
+---
+
+## Oturum #11 — 2026-04-27 17:10:58
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 17:10:58 |
+| **Bitiş** | 17:11:43 |
+| **Süre** | 44 sn (0 dk 44 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 6 |
+| **En çok ziyaret** | Ana Ekran (3x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Günlük Rapor → Ana Ekran → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Günlük Rapor: 25 sn
+- Ana Ekran: 9 sn
+- Güç Göstergesi: 8 sn
