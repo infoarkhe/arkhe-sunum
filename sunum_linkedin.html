@@ -523,7 +523,7 @@
     .demo-scene #live-stream {
       left: 2vw !important;
       top: 50% !important;
-      transform: translateY(-50%) matrix3d(0.838178, -0.009322, 0.000000, -0.000010, 0.155709, 0.977420, 0.000000, 0.000212, 0.000000, 0.000000, 1.000000, 0.000000, 130.000000, 86.000000, 0.000000, 1.000000) !important;
+      transform: translateY(-50%) !important;
       width: 66vw !important;
       aspect-ratio: 16 / 9 !important;
       height: auto !important;
@@ -1647,7 +1647,7 @@
       .demo-scene #live-stream {
         left: 2vw !important;
         top: 50% !important;
-        transform: translateY(-50%) matrix3d(0.838178, -0.009322, 0.000000, -0.000010, 0.155709, 0.977420, 0.000000, 0.000212, 0.000000, 0.000000, 1.000000, 0.000000, 130.000000, 86.000000, 0.000000, 1.000000) !important;
+        transform: translateY(-50%) !important;
         width: 62vw !important;
         aspect-ratio: 16 / 9 !important;
         height: auto !important;
@@ -2266,7 +2266,7 @@
           <div class="scene-label rec-label">&#9679; Canlı Demo</div>
           <iframe id="live-stream"
             src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
-            style="position:absolute; left:50%; top:50%; transform: translate(-50%,-50%) matrix3d(0.838178, -0.009322, 0.000000, -0.000010, 0.155709, 0.977420, 0.000000, 0.000212, 0.000000, 0.000000, 1.000000, 0.000000, 130.000000, 86.000000, 0.000000, 1.000000); width:85vw; height:85vh; border:none; border-radius:18px; background:#000; z-index:5; pointer-events:none;"
+            style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:85vw; height:85vh; border:none; border-radius:18px; background:#000; z-index:5; pointer-events:none;"
             allow="autoplay; camera; microphone; encrypted-media" allowfullscreen>
           </iframe>
           <div class="demo-side-panel">
@@ -2431,12 +2431,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v163</div>
+    v164</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v163';
+    const CURRENT_VERSION = 'v164';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
