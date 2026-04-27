@@ -1408,3 +1408,26 @@ Ana Ekran → CO₂ Göstergesi → CO₂ Büyük → CO₂ Göstergesi → Ana 
 - Günlük Rapor: 6 sn
 - Güç Büyük: 4 sn
 - Saat ve Tarih Ayarları: 0 sn
+
+---
+
+## Oturum #10 — 2026-04-27 14:05:18
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-27 14:05:18 |
+| **Bitiş** | 14:07:30 |
+| **Süre** | 131 sn (2 dk 11 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 4 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik
+
+**Sayfa bazlı süre:**
+- Bar Grafik: 68 sn
+- Çizgi Grafik: 56 sn
+- Ana Ekran: 6 sn
