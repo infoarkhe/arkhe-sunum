@@ -1352,3 +1352,28 @@ Ana Ekran → CO₂ Göstergesi → CO₂ Büyük → CO₂ Göstergesi → Ana 
 - Güç Göstergesi: 1 sn
 - Ayarlar: 1 sn
 - Bar Grafik: 1 sn
+
+---
+
+## Oturum #8 — 2026-04-27 13:55:19
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | W |
+| **Telegram ID** | `7149991939` |
+| **Başlangıç** | 2026-04-27 13:55:19 |
+| **Bitiş** | 13:57:26 |
+| **Süre** | 126 sn (2 dk 6 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 7 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → CO₂ Büyük
+
+**Sayfa bazlı süre:**
+- CO₂ Büyük: 83 sn
+- Güç Büyük: 19 sn
+- Ana Ekran: 19 sn
+- CO₂ Göstergesi: 2 sn
+- Güç Göstergesi: 2 sn
