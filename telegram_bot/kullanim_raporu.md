@@ -1480,3 +1480,24 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Saat Ayarları → Saat ve Tar
 - Ayarlar: 2 sn
 - Güç Göstergesi: 1 sn
 - Saat ve Tarih Ayarları: 1 sn
+
+---
+
+## Oturum #13 — 2026-04-28 16:54:51
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-28 16:54:51 |
+| **Bitiş** | 16:55:51 |
+| **Süre** | 60 sn (1 dk 0 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 60 sn
