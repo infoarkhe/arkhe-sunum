@@ -1618,3 +1618,26 @@ Ana Ekran → Günlük Rapor → Ana Ekran → Tarih Ayarları → Saat ve Tarih
 - Tarih Ayarları: 2 sn
 - Günlük Rapor: 2 sn
 - Ayarlar: 1 sn
+
+---
+
+## Oturum #4 — 2026-04-29 10:01:40
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-04-29 10:01:40 |
+| **Bitiş** | 10:01:58 |
+| **Süre** | 18 sn (0 dk 18 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 5 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 11 sn
+- Güç Büyük: 3 sn
+- Güç Göstergesi: 3 sn
