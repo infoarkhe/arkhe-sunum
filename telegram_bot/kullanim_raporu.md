@@ -1773,3 +1773,26 @@ Ana Ekran → Bar Grafik → Ana Ekran → Günlük Rapor → Ana Ekran
 - Ana Ekran: 5 sn
 - Bar Grafik: 1 sn
 - Günlük Rapor: 1 sn
+
+---
+
+## Oturum #3 — 2026-05-06 18:01:04
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-06 18:01:04 |
+| **Bitiş** | 18:01:45 |
+| **Süre** | 40 sn (0 dk 40 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 5 |
+| **En çok ziyaret** | Ana Ekran (3x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → CO₂ Göstergesi → Ana Ekran → Bar Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 24 sn
+- CO₂ Göstergesi: 8 sn
+- Bar Grafik: 7 sn
