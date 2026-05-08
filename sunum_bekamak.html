@@ -620,7 +620,8 @@
 
     .combo-grid {
       display: grid;
-      gap: 16px;
+      column-gap: 16px;
+      row-gap: 8px;
       width: 100%;
       max-width: 1500px;
       height: 80vh;
@@ -642,6 +643,15 @@
       justify-content: flex-start;
     }
 
+    /* Sol kolon ikili + sag ust tekli birlikte yukari (ust kenarlar hizali) */
+    .power-combo .combo-cell:nth-child(1),
+    .power-combo .combo-cell:nth-child(2) {
+      margin-top: -150px;          /* ikili ust + tekli, ayni hizada yukari */
+    }
+    .power-combo .combo-cell:nth-child(3) {
+      margin-top: -150px;
+    }
+
     /* Text hücresi: sol-üst hizalı (yazı yukarı) */
     .power-combo .combo-cell.combo-text {
       align-items: flex-start;
@@ -658,6 +668,25 @@
       grid-row: 1 / span 2;
     }
 
+    /* CO2-combo: video cellleri (1 ve 3) sol-ust hizali, ikili+yazi grup olarak yukari (-150) */
+    .co2-combo .combo-cell {
+      align-items: flex-start;
+    }
+    .co2-combo .combo-cell:nth-child(1),
+    .co2-combo .combo-cell:nth-child(3) {
+      justify-content: flex-start;
+    }
+    .co2-combo .combo-cell:nth-child(1),
+    .co2-combo .combo-cell:nth-child(2),
+    .co2-combo .combo-cell:nth-child(3) {
+      margin-top: -150px;        /* power-combo ile ayni grup lift */
+    }
+    /* yazi: dikey ortali kalsin (ikili merkezine denk gelsin) */
+    .co2-combo .combo-cell.combo-text {
+      align-items: flex-start;
+      justify-content: center;
+    }
+
     .combo-cell {
       position: relative;
       display: flex;
@@ -670,7 +699,7 @@
       position: relative !important;
       left: auto !important;
       top: auto !important;
-      transform: scale(0.8) !important;
+      transform: scale(0.85) !important;
       width: 100% !important;
       height: 100% !important;
       max-width: none !important;
@@ -683,7 +712,7 @@
       flex-direction: column;
       align-items: flex-start;
       justify-content: center;
-      padding: 0 1.5vw;
+      padding: 0 1.5vw 0 5vw;        /* sol padding artti — yazi saga kaydi */
       text-align: left;
     }
 
