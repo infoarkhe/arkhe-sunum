@@ -522,35 +522,35 @@
     /* === SAHNE 13 (Canli Demo) — DESKTOP: iframe sola, saga QR + buton paneli === */
     .demo-scene #live-stream {
       left: 2vw !important;
-      top: 50% !important;
+      top: 58% !important;
       transform: translateY(-50%) !important;
-      width: 66vw !important;
+      width: 70vw !important;
       aspect-ratio: 16 / 9 !important;
       height: auto !important;
-      max-height: 90vh !important;
+      max-height: 95vh !important;
     }
 
     .demo-side-panel {
       position: absolute;
-      right: 7vw;
-      top: 50%;
+      right: 2vw;
+      top: 58%;
       transform: translateY(-50%);
-      width: 24vw;
-      max-width: 360px;
+      width: 26vw;
+      max-width: 420px;
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 14px;
-      padding: 28px 24px;
+      gap: 16px;
+      padding: 32px 28px;
       background: #fff;
       border: 1px solid var(--gray-200);
-      border-radius: 16px;
+      border-radius: 18px;
       z-index: 6;
     }
 
     .demo-side-hint {
       font-family: var(--font-body);
-      font-size: clamp(13px, 0.95vw, 17px);
+      font-size: clamp(15px, 1.1vw, 20px);
       font-weight: 400;
       color: var(--gray-700);
       text-align: center;
@@ -559,7 +559,7 @@
 
     .demo-qr {
       width: 100%;
-      max-width: 240px;
+      max-width: 280px;
       height: auto;
       display: block;
     }
@@ -590,15 +590,15 @@
     .demo-tg-button {
       display: block;
       width: 100%;
-      padding: 14px 20px;
+      padding: 16px 22px;
       background: var(--accent);
       color: #fff;
       font-family: var(--font-display);
-      font-size: clamp(16px, 1.2vw, 20px);
+      font-size: clamp(18px, 1.4vw, 24px);
       letter-spacing: 0.12em;
       text-align: center;
       text-decoration: none;
-      border-radius: 10px;
+      border-radius: 12px;
       transition: background 0.2s ease;
       cursor: pointer;
     }
@@ -747,15 +747,15 @@
 
     .compare-table {
       border-collapse: collapse;
-      width: 90%;
-      max-width: 1200px;
+      width: 75%;
+      max-width: 950px;
     }
 
     .compare-table th {
       font-family: var(--font-display);
-      font-size: clamp(24px, 3vw, 36px);
+      font-size: clamp(20px, 2.4vw, 30px);
       letter-spacing: 0.1em;
-      padding: 22px 28px;
+      padding: 16px 22px;
       text-align: center;
       color: var(--white);
       background: var(--black);
@@ -772,8 +772,8 @@
 
     .compare-table td {
       font-family: var(--font-body);
-      font-size: clamp(20px, 2.4vw, 30px);
-      padding: 20px 28px;
+      font-size: clamp(16px, 1.9vw, 24px);
+      padding: 14px 22px;
       text-align: center;
       border-bottom: 1px solid var(--gray-200);
       color: var(--gray-700);
@@ -797,6 +797,86 @@
     /* Compare cards — default'ta gizli; mod 3 (landscape) media query'sinde aktif olur */
     .compare-cards {
       display: none;
+    }
+
+
+    /* === SSS SLAYTI === */
+    .faq-scene {
+      display: flex !important;
+      flex-direction: column !important;
+      align-items: stretch !important;
+      justify-content: center !important;
+      padding: 6vh 8vw !important;
+      gap: 0 !important;
+    }
+
+    .faq-scene .scene-label {
+      /* Default top:32px left:40px konumu */
+    }
+
+    .faq-content {
+      display: flex;
+      flex-direction: column;
+      gap: 4vh;
+      width: 100%;
+      max-width: 1300px;
+      margin: 6vh auto 0;
+    }
+
+    .faq-item {
+      border-left: 4px solid var(--accent);
+      padding-left: 28px;
+    }
+
+    .faq-q {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 3.4vw, 50px);
+      letter-spacing: 0.04em;
+      color: var(--black);
+      margin-bottom: 18px;
+      line-height: 1.15;
+    }
+
+    .faq-a {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.4vw, 22px);
+      color: var(--gray-700);
+      line-height: 1.55;
+      font-weight: 400;
+    }
+
+    .faq-a p {
+      margin: 8px 0;
+    }
+
+    .faq-a ul {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+
+    .faq-a li {
+      position: relative;
+      padding-left: 26px;
+      margin-bottom: 18px;
+      font-size: clamp(22px, 1.9vw, 32px);
+      line-height: 1.4;
+    }
+
+    .faq-a li::before {
+      content: '•';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-weight: 700;
+      font-size: 1.2em;
+      line-height: 1;
+      top: 0.05em;
+    }
+
+    .faq-a b {
+      color: var(--accent);
+      font-weight: 600;
     }
 
     /* ── DEMO TEKLİFİ ── */
@@ -1588,6 +1668,44 @@
         text-align: center;
       }
 
+      /* === SSS — MOD 2: scrollable, kompakt === */
+      .faq-scene {
+        padding: 4vh 5vw 6vh !important;
+        justify-content: flex-start !important;
+        overflow-y: scroll !important;
+        scrollbar-width: none;
+      }
+      .faq-scene::-webkit-scrollbar { display: none; }
+
+      .faq-scene .scene-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: clamp(43px, 9.8vw, 66px);
+        margin: 0 0 12px;
+        align-self: flex-start;
+      }
+
+      .faq-content {
+        gap: 24px;
+        margin: 8px 0 0;
+      }
+
+      .faq-item {
+        padding-left: 16px;
+        border-left-width: 3px;
+      }
+
+      .faq-q {
+        font-size: 22px;
+        margin-bottom: 8px;
+      }
+
+      .faq-a {
+        font-size: 14px;
+        line-height: 1.45;
+      }
+
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 2: tablo gizli, kartlar dikey stack (V1S üstte) === */
       .compare-scene {
         display: flex !important;
@@ -2106,6 +2224,42 @@
         line-height: 1.3;
       }
 
+      /* === SSS — MOD 3: kompakt, scrollable === */
+      .faq-scene {
+        padding: 1vh 4vw 4vh !important;
+        justify-content: flex-start !important;
+        overflow-y: auto !important;
+        scrollbar-width: none;
+      }
+      .faq-scene::-webkit-scrollbar { display: none; }
+
+      .faq-scene .scene-label {
+        top: 8px;
+        left: 16px;
+        font-size: clamp(36px, 8vh, 54px);
+      }
+
+      .faq-content {
+        gap: 14px;
+        margin: 8vh auto 0;
+        max-width: 95%;
+      }
+
+      .faq-item {
+        padding-left: 14px;
+        border-left-width: 3px;
+      }
+
+      .faq-q {
+        font-size: 16px;
+        margin-bottom: 6px;
+      }
+
+      .faq-a {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
       /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: yatay layout, label sol orta + kartlar sağda === */
       .compare-scene {
         flex-direction: row;
@@ -2534,8 +2688,34 @@
           </div>
         </div>
 
+        <!-- SAHNE SSS: Sıkça Sorulan Sorular -->
+        <div class="video-scene faq-scene" data-scene="11">
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <div class="scene-label">SSS</div>
+          <div class="faq-content">
+            <div class="faq-item">
+              <div class="faq-q">Isı ile çalışan tezgahlarda cihazı kapatmak verimli mi?</div>
+              <div class="faq-a">
+                <ul>
+                  <li><b>Muzon, Yıldırım & Twoney (2007)</b> — kısa duruşlarda kapatma <b>%13</b> tasarruf.</li>
+                  <li><b>Modos, Sucha & Hanzaalek (2020)</b> — süre eşiği aşılınca tekrar ısınma maliyeti tasarrufu siler.</li>
+                </ul>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-q">Günün sonunda kapatılmayan makineler faturayı ne kadar etkiliyor?</div>
+              <div class="faq-a">
+                <ul>
+                  <li><b>Gutowski et al. (2005)</b> — Toyota: standby + yan ekipman, fabrika tüketiminin <b>%85</b>'i.</li>
+                  <li><b>EPA Energy Star</b> — kapatılmayan ekipmanlar toplamın <b>%15–25</b>'ini götürür.</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <!-- SAHNE 15: Demo Teklifi -->
-        <div class="video-scene demo-scene" data-scene="11">
+        <div class="video-scene demo-scene" data-scene="12">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="demo-title">ÜCRETSİZ DEMO</div>
           <div class="demo-badge">ENERJİMETRE V1S İLE 2 HAFTALIK DENEME</div>
@@ -2572,7 +2752,7 @@
         </div>
 
         <!-- SAHNE 16: Teşekkürler & İletişim -->
-        <div class="video-scene" data-scene="12"
+        <div class="video-scene" data-scene="13"
           style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
           <img src="logo.svg" class="kapak-logo" alt="">
           <div
@@ -2615,7 +2795,7 @@
 
     // ── STATE ──
     const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
-    const TOTAL_SCENES = 13;
+    const TOTAL_SCENES = 14;
 
     let currentSlide = 0;
     let currentScene = 0; // sadece slayt 2 için geçerli
@@ -2681,10 +2861,11 @@
         if (currentSlide === 1) {
           activeSection = 0; // Problem
         } else if (currentSlide === 2) {
-          if (currentScene <= 8) activeSection = 1;       // Ürün videoları (sahne 0-8)
+          if (currentScene <= 8) activeSection = 1;       // Ürün videoları
           else if (currentScene === 9) activeSection = 2;  // Canlı Demo
           else if (currentScene === 10) activeSection = 3; // Karşılaştırma
-          else if (currentScene === 11) activeSection = 4; // Ücretsiz Demo
+          else if (currentScene === 11) activeSection = 3; // SSS (karsilastirma ile ayni dot)
+          else if (currentScene === 12) activeSection = 4; // Ücretsiz Demo
         }
         dots.forEach((d, i) => {
           d.classList.toggle('active', i === activeSection);
@@ -2699,7 +2880,7 @@
       }
 
       // Compare slaytı için body class (mod 3'te nav-indicator override için)
-      document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 10);
+      document.body.classList.toggle('compare-active', currentSlide === 2 && (currentScene === 10 || currentScene === 11));
 
       // Scroll oklarını güncelle (slayt değişimi sonrası)
       requestAnimationFrame(updateScrollArrows);
@@ -2750,9 +2931,9 @@
       if (slide.id === 'slide-problem') {
         return slide.querySelector('.problem-content');
       }
-      // Ücretsiz demo (data-scene="11") — sadece portrait modda scroll'lu
+      // Ücretsiz demo (data-scene="12") — sadece portrait modda scroll'lu
       const activeScene = document.querySelector('.video-scene.active');
-      if (activeScene && activeScene.dataset.scene === '14') {
+      if (activeScene && (activeScene.dataset.scene === '12' || activeScene.dataset.scene === '11')) {
         if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
           return activeScene;
         }
