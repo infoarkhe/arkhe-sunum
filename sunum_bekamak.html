@@ -647,14 +647,14 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      overflow: hidden;
+      overflow: visible;       /* taşmaya izin */
     }
 
     .combo-cell video {
       position: relative !important;
       left: auto !important;
       top: auto !important;
-      transform: none !important;
+      transform: scale(1.12) !important;   /* %12 büyüt — komşu cell'e taşar ama border kalınlığı kadar */
       width: 100% !important;
       height: 100% !important;
       max-width: none !important;
@@ -673,23 +673,15 @@
 
     .combo-title {
       font-family: var(--font-display);
-      font-size: clamp(40px, 5vw, 80px);
+      font-size: clamp(56px, 7.5vw, 130px);
       color: var(--black);
       line-height: 0.95;
-      margin-bottom: 18px;
+      margin: 0;
       letter-spacing: 0.04em;
     }
 
     .combo-body {
-      font-family: var(--font-body);
-      font-size: clamp(16px, 1.6vw, 22px);
-      color: var(--gray-700);
-      line-height: 1.5;
-    }
-
-    .combo-body b {
-      color: var(--accent);
-      font-weight: 600;
+      display: none;        /* bekamak: alt yazi yok, sadece basliki tut */
     }
 
     /* ── KARŞILAŞTIRMA TABLOSU ── */
@@ -1313,15 +1305,15 @@
       }
 
       .combo-title {
-        font-size: 44px;
-        margin-bottom: 12px;
+        font-size: clamp(48px, 11vw, 72px);
+        margin: 0;
         text-align: center;
         align-self: center;
+        line-height: 0.95;
       }
 
       .combo-body {
-        font-size: 16px;
-        text-align: center;
+        display: none;
       }
 
       .video-scene.power-combo .scene-label,
@@ -1789,13 +1781,13 @@
 
       /* === KOMBINE SAHNELER — MOD 3: kompakt === */
       .combo-title {
-        font-size: 32px;
-        margin-bottom: 8px;
+        font-size: clamp(40px, 8vh, 64px);
+        margin: 0;
+        line-height: 0.95;
       }
 
       .combo-body {
-        font-size: 13px;
-        line-height: 1.35;
+        display: none;
       }
 
       .video-scene.power-combo .combo-grid,
@@ -2611,15 +2603,14 @@
         scenes.forEach((s, i) => {
           const isActive = i === currentScene;
           s.classList.toggle('active', isActive);
-          // Video yönetimi
-          const video = s.querySelector('video');
-          if (video) {
+          // Video yonetimi — TUM videolar (combo sahnelerinde 2-3 adet var, hepsini paralel oynat)
+          s.querySelectorAll('video').forEach(video => {
             if (isActive) {
               video.play().catch(() => { });
             } else {
               video.pause();
             }
-          }
+          });
         });
         sceneCounter.textContent = `${currentScene + 1} / ${TOTAL_SCENES}`;
         sceneCounter.classList.add('visible');
