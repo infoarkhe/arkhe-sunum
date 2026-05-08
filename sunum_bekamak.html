@@ -632,6 +632,22 @@
       grid-template-rows: 1fr 1fr;
     }
 
+    /* Power-combo: tüm hücreler üst-hizalı (videolar yukarı) */
+    .power-combo .combo-cell {
+      align-items: flex-start;
+    }
+
+    /* Sol kolon (1 ve 3. çocuk): videolar sola yaslı */
+    .power-combo .combo-cell:nth-child(odd) {
+      justify-content: flex-start;
+    }
+
+    /* Text hücresi: sol-üst hizalı (yazı yukarı) */
+    .power-combo .combo-cell.combo-text {
+      align-items: flex-start;
+      justify-content: flex-start;
+    }
+
     .co2-combo .combo-grid {
       grid-template-columns: 1fr 1fr;
       grid-template-rows: 1fr 1fr;
