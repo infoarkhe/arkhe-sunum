@@ -607,6 +607,91 @@
       background: var(--accent-dark);
     }
 
+
+    /* === KOMBINE SAHNELER (Güç + CO2) === */
+    .video-scene.power-combo,
+    .video-scene.co2-combo {
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      padding: 0 5vw;
+      gap: 0;
+    }
+
+    .combo-grid {
+      display: grid;
+      gap: 16px;
+      width: 100%;
+      max-width: 1500px;
+      height: 80vh;
+      max-height: 800px;
+    }
+
+    .power-combo .combo-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .co2-combo .combo-grid {
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 1fr 1fr;
+    }
+
+    .co2-combo .combo-cell.combo-text {
+      grid-column: 2;
+      grid-row: 1 / span 2;
+    }
+
+    .combo-cell {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .combo-cell video {
+      position: relative !important;
+      left: auto !important;
+      top: auto !important;
+      transform: none !important;
+      width: 100% !important;
+      height: 100% !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: contain !important;
+      background: transparent;
+    }
+
+    .combo-cell.combo-text {
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 0 1.5vw;
+      text-align: left;
+    }
+
+    .combo-title {
+      font-family: var(--font-display);
+      font-size: clamp(40px, 5vw, 80px);
+      color: var(--black);
+      line-height: 0.95;
+      margin-bottom: 18px;
+      letter-spacing: 0.04em;
+    }
+
+    .combo-body {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.6vw, 22px);
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .combo-body b {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
     /* ── KARŞILAŞTIRMA TABLOSU ── */
     .compare-scene {
       display: flex;
@@ -1190,9 +1275,68 @@
         display: none;
       }
 
+      /* === KOMBINE SAHNELER — MOD 2: tek sutun stack === */
+      .video-scene.power-combo,
+      .video-scene.co2-combo {
+        padding: 4vh 5vw !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important;
+        overflow-y: auto !important;
+        scrollbar-width: none;
+      }
+
+      .video-scene.power-combo::-webkit-scrollbar,
+      .video-scene.co2-combo::-webkit-scrollbar {
+        display: none;
+      }
+
+      .power-combo .combo-grid,
+      .co2-combo .combo-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto auto auto;
+        height: auto;
+        max-height: none;
+        gap: 10px;
+      }
+
+      .co2-combo .combo-cell.combo-text {
+        grid-column: 1;
+        grid-row: auto;
+      }
+
+      .combo-cell video {
+        max-height: 28vh !important;
+      }
+
+      .combo-cell.combo-text {
+        padding: 8px 0;
+      }
+
+      .combo-title {
+        font-size: 44px;
+        margin-bottom: 12px;
+        text-align: center;
+        align-self: center;
+      }
+
+      .combo-body {
+        font-size: 16px;
+        text-align: center;
+      }
+
+      .video-scene.power-combo .scene-label,
+      .video-scene.co2-combo .scene-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: clamp(43px, 9.8vw, 66px);
+        margin: 0 0 6px 0;
+        align-self: flex-start;
+      }
+
       /* === SAHNE 16 (Tesekkurler) — MOD 2: kapak gibi davransin (flex column, no grid, no clip) ===
          video-scene grid layout'unu override et, overflow visible (logo kesilmesin) */
-      .video-scene[data-scene="15"] {
+      .video-scene[data-scene="9"] {
         display: flex !important;
         flex-direction: column !important;
         align-items: center !important;
@@ -1298,13 +1442,13 @@
       }
 
       /* Mod 2 ucretsiz demo aktifken corner-logo gizle */
-      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+      body:has(.video-scene.active[data-scene="8"]) #corner-logo {
         display: none !important;
       }
 
       /* === ÜCRETSİZ DEMO (sahne 15) — mod 2: dikey scroll, problem slaytı mantığı ===
          Sıra: title+badge üstte, steps ortada (tek sütun, kaydırılabilir), gift+no-bs altta */
-      .video-scene[data-scene="14"] {
+      .video-scene[data-scene="8"] {
         display: flex !important;
         flex-direction: column !important;
         align-items: stretch !important;
@@ -1319,18 +1463,18 @@
         -ms-overflow-style: none;
       }
 
-      .video-scene[data-scene="14"]::-webkit-scrollbar {
+      .video-scene[data-scene="8"]::-webkit-scrollbar {
         display: none;
       }
 
-      .video-scene[data-scene="14"] .demo-title {
+      .video-scene[data-scene="8"] .demo-title {
         font-size: 64px;
         line-height: 0.95;
         text-align: center;
         margin: 0;
       }
 
-      .video-scene[data-scene="14"] .demo-badge {
+      .video-scene[data-scene="8"] .demo-badge {
         font-size: 14px;
         padding: 8px 18px;
         align-self: center;
@@ -1338,7 +1482,7 @@
         line-height: 1.25;
       }
 
-      .video-scene[data-scene="14"] .demo-steps {
+      .video-scene[data-scene="8"] .demo-steps {
         flex-direction: column;
         gap: 14px;
         align-items: stretch;
@@ -1346,7 +1490,7 @@
         width: 100%;
       }
 
-      .video-scene[data-scene="14"] .demo-step {
+      .video-scene[data-scene="8"] .demo-step {
         flex-direction: column;
         align-items: center;
         text-align: center;
@@ -1355,17 +1499,17 @@
         padding: 10px 12px;
       }
 
-      .video-scene[data-scene="14"] .demo-step-num {
+      .video-scene[data-scene="8"] .demo-step-num {
         font-size: 38px;
         line-height: 1;
       }
 
-      .video-scene[data-scene="14"] .demo-step-gift {
+      .video-scene[data-scene="8"] .demo-step-gift {
         width: 38px;
         height: 38px;
       }
 
-      .video-scene[data-scene="14"] .demo-step-title {
+      .video-scene[data-scene="8"] .demo-step-title {
         font-size: 26px;
         letter-spacing: 0.05em;
         white-space: normal;
@@ -1373,32 +1517,32 @@
         line-height: 1.15;
       }
 
-      .video-scene[data-scene="14"] .demo-step-desc {
+      .video-scene[data-scene="8"] .demo-step-desc {
         font-size: 16px;
         line-height: 1.4;
         text-align: center;
       }
 
-      .video-scene[data-scene="14"] .demo-gift {
+      .video-scene[data-scene="8"] .demo-gift {
         align-self: stretch;
         margin: -8px 0 0;
         padding: 12px 16px;
         border-radius: 10px;
       }
 
-      .video-scene[data-scene="14"] .demo-gift-title {
+      .video-scene[data-scene="8"] .demo-gift-title {
         font-size: 17px;
         letter-spacing: 0.06em;
         text-align: center;
       }
 
-      .video-scene[data-scene="14"] .demo-gift-desc {
+      .video-scene[data-scene="8"] .demo-gift-desc {
         font-size: 14px;
         margin-top: 4px;
         text-align: center;
       }
 
-      .video-scene[data-scene="14"] .demo-no-bs {
+      .video-scene[data-scene="8"] .demo-no-bs {
         font-size: 14px;
         margin: 0 0 6vh;
         padding: 0;
@@ -1643,6 +1787,30 @@
         display: none;
       }
 
+      /* === KOMBINE SAHNELER — MOD 3: kompakt === */
+      .combo-title {
+        font-size: 32px;
+        margin-bottom: 8px;
+      }
+
+      .combo-body {
+        font-size: 13px;
+        line-height: 1.35;
+      }
+
+      .video-scene.power-combo .combo-grid,
+      .video-scene.co2-combo .combo-grid {
+        height: 78vh;
+        gap: 10px;
+      }
+
+      .video-scene.power-combo .scene-label,
+      .video-scene.co2-combo .scene-label {
+        top: 12px;
+        left: 16px;
+        font-size: clamp(40px, 9vh, 64px);
+      }
+
       /* === SAHNE 13 (Canli Demo) — MOD 3: iframe solda, panel sagda === */
       .demo-scene #live-stream {
         left: 2vw !important;
@@ -1701,7 +1869,7 @@
 
       /* === ÜCRETSİZ DEMO SAHNESİ (sahne 15) — mod 3: desktop layout sığdırılmış ===
          4 adım yan yana, font/padding agresif küçük ki landscape phone'a sığsın */
-      .video-scene[data-scene="14"] {
+      .video-scene[data-scene="8"] {
         gap: 8px;
         padding: 6px 16px;
       }
@@ -1777,7 +1945,7 @@
 
       /* === ÜCRETSİZ DEMO (sahne 15) — mod 3 LAYOUT OVERRIDE: sol kolon, scroll ===
          Title+badge sol üst, steps ortada scroll, gift+no-bs sol alt. Sağ taraf boş. */
-      .video-scene[data-scene="14"] {
+      .video-scene[data-scene="8"] {
         display: flex !important;
         flex-direction: column !important;
         align-items: flex-start !important;
@@ -1789,11 +1957,11 @@
       }
 
       /* Mod 3'te ücretsiz demo aktifken sağ üst dönen logoyu gizle */
-      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+      body:has(.video-scene.active[data-scene="8"]) #corner-logo {
         display: none !important;
       }
 
-      .video-scene[data-scene="14"] .demo-title {
+      .video-scene[data-scene="8"] .demo-title {
         font-size: 64px;
         line-height: 0.95;
         text-align: left;
@@ -1801,7 +1969,7 @@
         max-width: 42vw;
       }
 
-      .video-scene[data-scene="14"] .demo-badge {
+      .video-scene[data-scene="8"] .demo-badge {
         font-size: 12px;
         padding: 5px 14px;
         letter-spacing: 0.18em;
@@ -1811,7 +1979,7 @@
         line-height: 1.25;
       }
 
-      .video-scene[data-scene="14"] .demo-steps {
+      .video-scene[data-scene="8"] .demo-steps {
         position: absolute;
         right: 12px;
         top: 50%;
@@ -1829,11 +1997,11 @@
         -ms-overflow-style: none;
       }
 
-      .video-scene[data-scene="14"] .demo-steps::-webkit-scrollbar {
+      .video-scene[data-scene="8"] .demo-steps::-webkit-scrollbar {
         display: none;
       }
 
-      .video-scene[data-scene="14"] .demo-step {
+      .video-scene[data-scene="8"] .demo-step {
         flex-direction: column;
         align-items: flex-start;
         max-width: 100%;
@@ -1842,19 +2010,19 @@
         text-align: left;
       }
 
-      .video-scene[data-scene="14"] .demo-step-num {
+      .video-scene[data-scene="8"] .demo-step-num {
         font-size: 38px;
         line-height: 1;
         margin-bottom: 3px;
       }
 
-      .video-scene[data-scene="14"] .demo-step-gift {
+      .video-scene[data-scene="8"] .demo-step-gift {
         width: 32px;
         height: 32px;
         margin-bottom: 2px;
       }
 
-      .video-scene[data-scene="14"] .demo-step-title {
+      .video-scene[data-scene="8"] .demo-step-title {
         font-size: 16px;
         letter-spacing: 0.05em;
         white-space: normal;
@@ -1862,13 +2030,13 @@
         line-height: 1.15;
       }
 
-      .video-scene[data-scene="14"] .demo-step-desc {
+      .video-scene[data-scene="8"] .demo-step-desc {
         font-size: 12px;
         line-height: 1.4;
         text-align: left;
       }
 
-      .video-scene[data-scene="14"] .demo-gift {
+      .video-scene[data-scene="8"] .demo-gift {
         align-self: flex-start;
         margin: 0;
         padding: 8px 14px;
@@ -1877,19 +2045,19 @@
         box-sizing: border-box;
       }
 
-      .video-scene[data-scene="14"] .demo-gift-title {
+      .video-scene[data-scene="8"] .demo-gift-title {
         font-size: 14px;
         letter-spacing: 0.06em;
         line-height: 1.15;
       }
 
-      .video-scene[data-scene="14"] .demo-gift-desc {
+      .video-scene[data-scene="8"] .demo-gift-desc {
         font-size: 12px;
         margin-top: 3px;
         line-height: 1.3;
       }
 
-      .video-scene[data-scene="14"] .demo-no-bs {
+      .video-scene[data-scene="8"] .demo-no-bs {
         font-size: 12px;
         margin: 0;
         padding: 0;
@@ -2001,7 +2169,7 @@
     /* === SAHNE 13 — TELEFON ortak: corner-logo gizle, scene-counter sol alta === */
     @media (orientation: portrait) and (max-width: 900px),
            (orientation: landscape) and (max-height: 500px) {
-      body:has(.video-scene.active[data-scene="12"]) #corner-logo {
+      body:has(.video-scene.active[data-scene="9"]) #corner-logo {
         display: none !important;
       }
       #scene-counter {
@@ -2180,66 +2348,37 @@
         </div>
 
         <!-- SAHNE 2: Power Gauge -->
-        <div class="video-scene side-left" data-scene="5">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/02_power_gauge.mp4" type="video/mp4">
-          </video>
+        <!-- SAHNE COMBO: Güç (3 video 2x2 grid) -->
+        <div class="video-scene power-combo" data-scene="5">
           <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Histerik görünürlük</b></li>
-            <li><b>Alarm göstergeleri</b></li>
-          </ul>
-          <div class="scene-label">Güç / Kadran</div>
+          <div class="scene-label">Güç</div>
+          <div class="combo-grid">
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="videos/02_power_gauge.mp4" type="video/mp4"></video></div>
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="videos/03_power_big.mp4" type="video/mp4"></video></div>
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="videos/04_power_osiloskop.mp4" type="video/mp4"></video></div>
+            <div class="combo-cell combo-text">
+              <div class="combo-title">3 GÖRÜNÜM,<br>TEK VERİ</div>
+              <div class="combo-body">Aynı anlık güç değerini operatör <b>kadran</b>, <b>büyük rakam</b> ve <b>osiloskop dalga</b> olarak görür. Sahada hangisi rahat görünüyorsa o seçilir — veri aynı, sunum farklıdır.</div>
+            </div>
+          </div>
         </div>
 
-        <!-- SAHNE 3: Power Big -->
-        <div class="video-scene side-left" data-scene="6">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/03_power_big.mp4" type="video/mp4">
-          </video>
+        <!-- SAHNE COMBO: CO2 (2 video sol / metin sag) -->
+        <div class="video-scene co2-combo" data-scene="6">
           <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Büyük rakam gösterimi</b></li>
-            <li><b>Alarm göstergeleri</b></li>
-          </ul>
-          <div class="scene-label">Güç / Büyük</div>
-        </div>
-
-        <!-- SAHNE 4: Power Osiloskop -->
-        <div class="video-scene side-left" data-scene="7">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Gerçek zamanlı dalga formu</b></li>
-            <li><b>Ani dalgalanma takibi</b></li>
-          </ul>
-          <div class="scene-label">Güç / Sinyal</div>
-        </div>
-
-        <!-- SAHNE 5: CO2 Gauge -->
-        <div class="video-scene side-left" data-scene="8">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/05_co2_gauge.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Geleceğe yatırım</b></li>
-            <li><b>Üretim bazlı karbon kimliği</b></li>
-          </ul>
-          <div class="scene-label">CO₂ / Kadran</div>
-        </div>
-
-        <!-- SAHNE 6: CO2 Big -->
-        <div class="video-scene side-left" data-scene="9">
-          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/06_co2_big.mp4" type="video/mp4">
-          </video>
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <ul class="scene-info">
-            <li><b>Anlık CO₂ emisyonu</b></li>
-          </ul>
-          <div class="scene-label">CO₂ / Büyük</div>
+          <div class="scene-label">CO₂</div>
+          <div class="combo-grid">
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="videos/05_co2_gauge.mp4" type="video/mp4"></video></div>
+            <div class="combo-cell combo-text">
+              <div class="combo-title">KARBON<br>KİMLİĞİ</div>
+              <div class="combo-body">Anlık <b>CO₂ emisyonu</b> ve toplam birikim. Şebeke karbon faktörü × makinenin kWh tüketimi — sürdürülebilirlik raporlaması için <b>üretim bazlı</b> hazır veri.</div>
+            </div>
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="videos/06_co2_big.mp4" type="video/mp4"></video></div>
+          </div>
         </div>
 
         <!-- SAHNE 11: Şifre Koruma -->
-        <div class="video-scene side-left" data-scene="10">
+        <div class="video-scene side-left" data-scene="7">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/11_sifre.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2251,7 +2390,7 @@
         </div>
 
         <!-- SAHNE 12: Dil Seçeneği -->
-        <div class="video-scene side-left" data-scene="11">
+        <div class="video-scene side-left" data-scene="8">
           <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/12_dil.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2262,7 +2401,7 @@
         </div>
 
         <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
-        <div class="video-scene demo-scene" data-scene="12">
+        <div class="video-scene demo-scene" data-scene="9">
           <div class="scene-label rec-label">&#9679; Canlı Demo</div>
           <iframe id="live-stream"
             src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
@@ -2279,7 +2418,7 @@
         </div>
 
         <!-- SAHNE 14: Karşılaştırma Tablosu -->
-        <div class="video-scene compare-scene" data-scene="13">
+        <div class="video-scene compare-scene" data-scene="10">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="scene-label">Model Karşılaştırma</div>
           <table class="compare-table">
@@ -2359,7 +2498,7 @@
         </div>
 
         <!-- SAHNE 15: Demo Teklifi -->
-        <div class="video-scene demo-scene" data-scene="14">
+        <div class="video-scene demo-scene" data-scene="11">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="demo-title">ÜCRETSİZ DEMO</div>
           <div class="demo-badge">ENERJİMETRE V1S İLE 2 HAFTALIK DENEME</div>
@@ -2396,7 +2535,7 @@
         </div>
 
         <!-- SAHNE 16: Teşekkürler & İletişim -->
-        <div class="video-scene" data-scene="15"
+        <div class="video-scene" data-scene="12"
           style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
           <img src="logo.svg" class="kapak-logo" alt="">
           <div
@@ -2431,12 +2570,12 @@
   <div id="scene-counter"></div>
   <div id="slide-num"></div>
   <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
-    v164</div>
+    v165</div>
 
   <script>
     // ── OTOMATİK SÜRÜM KONTROLÜ (cache-bust) ──
     // version.txt'i her açılışta cache'siz çek; eğer farklıysa anında reload.
-    const CURRENT_VERSION = 'v164';
+    const CURRENT_VERSION = 'v165';
     (function checkVersion() {
       const url = 'version.txt?_=' + Date.now();
       fetch(url, { cache: 'no-store' })
@@ -2454,7 +2593,7 @@
 
     // ── STATE ──
     const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
-    const TOTAL_SCENES = 16;
+    const TOTAL_SCENES = 13;
 
     let currentSlide = 0;
     let currentScene = 0; // sadece slayt 2 için geçerli
@@ -2521,10 +2660,10 @@
         if (currentSlide === 1) {
           activeSection = 0; // Problem
         } else if (currentSlide === 2) {
-          if (currentScene <= 11) activeSection = 1;      // Ürün videoları
-          else if (currentScene === 12) activeSection = 2; // Canlı Demo
-          else if (currentScene === 13) activeSection = 3; // Karşılaştırma
-          else if (currentScene === 14) activeSection = 4; // Ücretsiz Demo
+          if (currentScene <= 8) activeSection = 1;       // Ürün videoları (sahne 0-8)
+          else if (currentScene === 9) activeSection = 2;  // Canlı Demo
+          else if (currentScene === 10) activeSection = 3; // Karşılaştırma
+          else if (currentScene === 11) activeSection = 4; // Ücretsiz Demo
         }
         dots.forEach((d, i) => {
           d.classList.toggle('active', i === activeSection);
@@ -2539,7 +2678,7 @@
       }
 
       // Compare slaytı için body class (mod 3'te nav-indicator override için)
-      document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 13);
+      document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 10);
 
       // Scroll oklarını güncelle (slayt değişimi sonrası)
       requestAnimationFrame(updateScrollArrows);
@@ -2590,7 +2729,7 @@
       if (slide.id === 'slide-problem') {
         return slide.querySelector('.problem-content');
       }
-      // Ücretsiz demo (data-scene="14") — sadece portrait modda scroll'lu
+      // Ücretsiz demo (data-scene="11") — sadece portrait modda scroll'lu
       const activeScene = document.querySelector('.video-scene.active');
       if (activeScene && activeScene.dataset.scene === '14') {
         if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
