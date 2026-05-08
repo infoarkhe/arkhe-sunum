@@ -1817,3 +1817,50 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 60 sn
+
+---
+
+## Oturum #2 — 2026-05-08 10:51:47
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-08 10:51:47 |
+| **Bitiş** | 10:53:58 |
+| **Süre** | 131 sn (2 dk 11 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 10 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → Çizgi Grafik → Ana Ekran → Saat Ayarları → Saat ve Tarih Ayarları → Ayarlar → Ana Ekran → Çizgi Grafik
+
+**Sayfa bazlı süre:**
+- Çizgi Grafik: 90 sn
+- Ana Ekran: 35 sn
+- Ayarlar: 1 sn
+- Saat Ayarları: 1 sn
+- Saat ve Tarih Ayarları: 1 sn
+
+---
+
+## Oturum #3 — 2026-05-08 10:58:05
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-08 10:58:05 |
+| **Bitiş** | 10:59:11 |
+| **Süre** | 65 sn (1 dk 5 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik
+
+**Sayfa bazlı süre:**
+- Çizgi Grafik: 60 sn
+- Ana Ekran: 4 sn
