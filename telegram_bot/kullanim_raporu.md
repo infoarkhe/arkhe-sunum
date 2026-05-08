@@ -1796,3 +1796,24 @@ Ana Ekran → CO₂ Göstergesi → Ana Ekran → Bar Grafik → Ana Ekran
 - Ana Ekran: 24 sn
 - CO₂ Göstergesi: 8 sn
 - Bar Grafik: 7 sn
+
+---
+
+## Oturum #1 — 2026-05-08 10:50:40
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-08 10:50:40 |
+| **Bitiş** | 10:51:41 |
+| **Süre** | 61 sn (1 dk 1 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 60 sn
