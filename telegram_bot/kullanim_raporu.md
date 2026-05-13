@@ -1908,3 +1908,29 @@ Ana Ekran → Çizgi Grafik → Ana Ekran
 **Sayfa bazlı süre:**
 - Ana Ekran: 85 sn
 - Çizgi Grafik: 4 sn
+
+---
+
+## Oturum #2 — 2026-05-13 12:08:59
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-13 12:08:59 |
+| **Bitiş** | 12:12:56 |
+| **Süre** | 236 sn (3 dk 56 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 16 |
+| **En çok ziyaret** | Ana Ekran (7x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran → Güç Göstergesi → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → CO₂ Büyük → CO₂ Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Günlük Rapor → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 103 sn
+- Çizgi Grafik: 58 sn
+- Günlük Rapor: 37 sn
+- Güç Göstergesi: 28 sn
+- CO₂ Göstergesi: 7 sn
+- CO₂ Büyük: 1 sn
