@@ -1934,3 +1934,25 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Güç Göstergesi → Güç Göste
 - Güç Göstergesi: 28 sn
 - CO₂ Göstergesi: 7 sn
 - CO₂ Büyük: 1 sn
+
+---
+
+## Oturum #1 — 2026-05-16 18:59:43
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-16 18:59:43 |
+| **Bitiş** | 18:59:50 |
+| **Süre** | 6 sn (0 dk 6 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 3 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 4 sn
+- Çizgi Grafik: 1 sn
