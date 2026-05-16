@@ -1980,3 +1980,25 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → C
 - CO₂ Göstergesi: 2 sn
 - Çizgi Grafik: 2 sn
 - Günlük Rapor: 1 sn
+
+---
+
+## Oturum #3 — 2026-05-16 19:01:17
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-05-16 19:01:17 |
+| **Bitiş** | 19:01:35 |
+| **Süre** | 18 sn (0 dk 18 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Çizgi Grafik
+
+**Sayfa bazlı süre:**
+- Çizgi Grafik: 9 sn
+- Ana Ekran: 8 sn
