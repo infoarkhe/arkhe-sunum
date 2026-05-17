@@ -1,0 +1,2788 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Arkhe Enerjimetre — Presentation</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap"
+    rel="stylesheet">
+  <style>
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      -webkit-user-select: none !important;
+      -moz-user-select: none !important;
+      -ms-user-select: none !important;
+      user-select: none !important;
+      -webkit-touch-callout: none !important;
+      -webkit-tap-highlight-color: transparent !important;
+    }
+
+    :root {
+      --white: #ffffff;
+      --black: #0a0a0a;
+      --gray-100: #f5f5f5;
+      --gray-200: #e8e8e8;
+      --gray-400: #999;
+      --gray-700: #333;
+      --accent: #00b4d8;
+      --accent-dark: #0077a8;
+      --red: #e63946;
+      --font-display: 'Bebas Neue', sans-serif;
+      --font-body: 'DM Sans', sans-serif;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      background: #FFFFFF;
+      font-family: var(--font-body);
+      overflow: hidden;
+      cursor: auto !important;
+      -webkit-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+      -webkit-touch-callout: none;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    /* Cursor'u her elementte garantile */
+    *, *::before, *::after {
+      cursor: auto;
+    }
+
+    /* ── SLIDE CONTAINER ── */
+    #deck {
+      width: 100%;
+      height: 100%;
+      position: relative;
+    }
+
+    .slide {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.45s ease;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .slide.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* ── SLIDE 1: KAPAK ── */
+    #slide-kapak {
+      background: #FFFFFF;
+    }
+
+    .kapak-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0;
+      max-height: 100vh;
+    }
+
+    .kapak-brand {
+      font-family: var(--font-display);
+      font-size: clamp(32px, 5vw, 60px);
+      letter-spacing: 0.35em;
+      color: var(--gray-700);
+      line-height: 1;
+    }
+
+    .kapak-line {
+      width: 100%;
+      height: 3px;
+      background: var(--accent);
+      margin: 18px 0 16px;
+    }
+
+    .kapak-sub {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 2vw, 24px);
+      font-weight: 300;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--gray-400);
+      margin-top: 4px;
+    }
+
+    .kapak-version {
+      font-family: var(--font-body);
+      font-size: clamp(18px, 2.5vw, 32px);
+      font-weight: 300;
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      margin-top: 8px;
+    }
+
+    .kapak-product {
+      font-family: var(--font-display);
+      font-size: min(14vw, 15vh);
+      letter-spacing: 0.15em;
+      color: var(--black);
+      line-height: 0.9;
+    }
+
+    .kapak-logo {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 60vh;
+      height: 60vh;
+      opacity: 0.10;
+      animation: kapak-spin 60s linear infinite;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    @keyframes kapak-spin {
+      from {
+        transform: translate(-50%, -50%) rotate(0deg);
+      }
+
+      to {
+        transform: translate(-50%, -50%) rotate(360deg);
+      }
+    }
+
+    .kapak-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+
+    /* ── SLIDE 2: PROBLEM ── */
+    #slide-problem {
+      background: #FFFFFF;
+      padding: 40px 10vw 60px;
+      justify-content: flex-start;
+      padding-top: 2vh;
+    }
+
+    .problem-label {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3.5vw, 44px);
+      letter-spacing: 0.4em;
+      color: var(--accent);
+      margin-bottom: 4px;
+      margin-top: 4vh;
+      text-align: left;
+      width: 100%;
+    }
+
+    .problem-headline {
+      font-family: var(--font-body);
+      font-size: clamp(28px, 4vw, 48px);
+      font-weight: 300;
+      line-height: 1.3;
+      color: var(--gray-700);
+      width: 100%;
+      margin-bottom: 8px;
+      text-align: left;
+    }
+
+    .problem-headline-big {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 9vw, 130px);
+      line-height: 0.95;
+      color: var(--black);
+      width: 100%;
+      margin-bottom: 32px;
+      margin-top: 8px;
+      text-align: left;
+    }
+
+    .problem-headline-big span {
+      color: var(--accent);
+    }
+
+    .problem-content {
+      /* Mod 1'de sadece passthrough — width 100% al, başka şey yapma */
+      width: 100%;
+    }
+
+    .problem-items {
+      display: flex;
+      gap: 32px;
+      width: 100%;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .problem-item {
+      flex: 1;
+      padding: 22px 22px;
+      border: 1.5px solid var(--gray-200);
+      border-top: 3px solid var(--black);
+    }
+
+    .problem-item .num {
+      font-family: var(--font-display);
+      font-size: 42px;
+      color: var(--accent);
+      line-height: 1;
+      margin-bottom: 10px;
+    }
+
+    .problem-item .title {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 2.4vw, 30px);
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+      letter-spacing: 0.05em;
+    }
+
+    .problem-item .desc {
+      font-size: clamp(13px, 1.4vw, 17px);
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.6;
+    }
+
+    /* ── SLIDE 3: ÜRÜN (video sahneleri) ── */
+    #slide-urun {
+      background: #FFFFFF;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 0;
+    }
+
+    .video-stage {
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .video-scene {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.35s ease;
+      gap: 40px;
+      padding: 0 60px;
+    }
+
+    .video-scene.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    /* Tek sahneler: video solda, açıklama sağda */
+    .video-scene.side-left {
+      flex-direction: row;
+    }
+
+
+    .video-scene video {
+      position: absolute;
+      left: 5vw;
+      top: 50%;
+      transform: translateY(-50%);
+      max-height: 75vh;
+      max-width: 45vw;
+      width: auto;
+      height: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      box-shadow: none;
+      /* Chrome desktop sub-pixel anti-alias artifact (alt 2px siyah çizgi) için clip */
+      clip-path: inset(0 0 2px 0);
+    }
+
+    .scene-info {
+      position: absolute;
+      left: 52vw;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      max-width: 35vw;
+      z-index: 1;
+    }
+
+    /* Intro sahnesi — video tam ekran arkada, metin ortada */
+    .intro-scene video {
+      position: absolute !important;
+      left: 50% !important;
+      top: 50% !important;
+      transform: translate(-50%, -50%) scale(1.1) !important;
+      width: 100vw !important;
+      max-width: none !important;
+      max-height: none !important;
+      height: 100vh !important;
+      object-fit: cover !important;
+      opacity: 0.1;
+      filter: blur(3px) grayscale(40%);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .intro-scene .scene-info-bg {
+      display: none;
+    }
+
+    .intro-scene .scene-label {
+      display: none;
+    }
+
+    .intro-shell {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      max-width: 95vw;
+      padding: 50px 70px;
+      background: #ffffff;
+      z-index: 2;
+    }
+
+    /* Üstte kalın accent çizgi */
+    .intro-shell::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--accent);
+    }
+
+    /* Sağ altta ince köşe çizgileri */
+    .intro-shell::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      width: 40%;
+      height: 2px;
+      background: var(--black);
+    }
+
+    .intro-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      margin-bottom: 36px;
+      margin-right: -90px;
+
+    }
+
+    .intro-badge {
+      font-family: var(--font-display);
+      font-size: clamp(28px, 3.5vw, 65px);
+      letter-spacing: 0.1em;
+      color: var(--black);
+      text-align: left;
+      line-height: 1;
+      flex: 0 1 auto;
+      padding-top: 0em;
+    }
+
+    .intro-badge .slash {
+      color: var(--accent);
+      margin-right: 4px;
+    }
+
+    .intro-logo {
+      width: clamp(70px, 7vw, 110px);
+      height: clamp(70px, 7vw, 110px);
+      animation: kapak-spin 60s linear infinite;
+      flex-shrink: 0;
+      display: block;
+      position: relative;
+      top: 50px;
+    }
+
+    .intro-text {
+      font-family: var(--font-body);
+      font-size: clamp(22px, 2.6vw, 34px);
+      font-weight: 300;
+      line-height: 1.5;
+      color: var(--gray-700);
+      text-align: left;
+    }
+
+    .intro-text .accent {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .scene-info-bg {
+      position: absolute;
+      left: 50vw;
+      top: 0;
+      width: 50vw;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .scene-info-bg svg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+
+    .scene-info-bg .fiber {
+      fill: none;
+      stroke-width: 0.8;
+      stroke-linecap: round;
+      opacity: 0.12;
+    }
+
+    .scene-info-bg canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .wave-bg {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 40vw;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .wave-bg canvas {
+      width: 100%;
+      height: 100%;
+    }
+
+    .scene-info li {
+      font-family: var(--font-body);
+      font-size: clamp(26px, 3.5vw, 44px);
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.4;
+      list-style: none;
+      padding-left: 28px;
+      position: relative;
+    }
+
+    .scene-info li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0.7em;
+      transform: none;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--accent);
+    }
+
+    .scene-label {
+      position: absolute;
+      top: 32px;
+      left: 40px;
+      font-family: var(--font-display);
+      font-size: clamp(52px, 8vw, 96px);
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gray-700);
+      z-index: 10;
+    }
+
+
+    /* === SAHNE 13 (Canli Demo) — DESKTOP: iframe sola, saga QR + buton paneli === */
+    .demo-scene #live-stream {
+      left: 2vw !important;
+      top: 50% !important;
+      transform: translateY(-50%) !important;
+      width: 66vw !important;
+      aspect-ratio: 16 / 9 !important;
+      height: auto !important;
+      max-height: 90vh !important;
+    }
+
+    .demo-side-panel {
+      position: absolute;
+      right: 7vw;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 24vw;
+      max-width: 360px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 28px 24px;
+      background: #fff;
+      border: 1px solid var(--gray-200);
+      border-radius: 16px;
+      z-index: 6;
+    }
+
+    .demo-side-hint {
+      font-family: var(--font-body);
+      font-size: clamp(13px, 0.95vw, 17px);
+      font-weight: 400;
+      color: var(--gray-700);
+      text-align: center;
+      line-height: 1.4;
+    }
+
+    .demo-qr {
+      width: 100%;
+      max-width: 240px;
+      height: auto;
+      display: block;
+    }
+
+    .demo-side-or {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin: 2px 0;
+    }
+
+    .demo-side-or::before,
+    .demo-side-or::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--gray-200);
+    }
+
+    .demo-side-or span {
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--gray-400);
+    }
+
+    .demo-tg-button {
+      display: block;
+      width: 100%;
+      padding: 14px 20px;
+      background: var(--accent);
+      color: #fff;
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.2vw, 20px);
+      letter-spacing: 0.12em;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 10px;
+      transition: background 0.2s ease;
+      cursor: pointer;
+    }
+
+    .demo-tg-button:hover {
+      background: var(--accent-dark);
+    }
+
+    /* ── KARŞILAŞTIRMA TABLOSU ── */
+    .compare-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .compare-scene .scene-label {
+      position: relative;
+      top: auto;
+      left: auto;
+      margin-bottom: 8px;
+    }
+
+    .compare-table {
+      border-collapse: collapse;
+      width: 90%;
+      max-width: 1200px;
+    }
+
+    .compare-table th {
+      font-family: var(--font-display);
+      font-size: clamp(24px, 3vw, 36px);
+      letter-spacing: 0.1em;
+      padding: 22px 28px;
+      text-align: center;
+      color: var(--white);
+      background: var(--black);
+    }
+
+    .compare-table th:first-child {
+      background: transparent;
+      color: var(--gray-400);
+    }
+
+    .compare-table th.accent {
+      background: var(--accent);
+    }
+
+    .compare-table td {
+      font-family: var(--font-body);
+      font-size: clamp(20px, 2.4vw, 30px);
+      padding: 20px 28px;
+      text-align: center;
+      border-bottom: 1px solid var(--gray-200);
+      color: var(--gray-700);
+    }
+
+    .compare-table td:first-child {
+      text-align: left;
+      font-weight: 500;
+    }
+
+    .compare-table .check {
+      color: var(--accent);
+      font-size: 32px;
+    }
+
+    .compare-table .dash {
+      color: var(--gray-200);
+      font-size: 32px;
+    }
+
+    /* Compare cards — default'ta gizli; mod 3 (landscape) media query'sinde aktif olur */
+    .compare-cards {
+      display: none;
+    }
+
+    /* ── DEMO TEKLİFİ ── */
+    .demo-scene {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 24px;
+      text-align: center;
+    }
+
+    .demo-badge {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 40px);
+      letter-spacing: 0.3em;
+      color: var(--accent);
+      background: rgba(0, 180, 216, 0.06);
+      padding: 12px 36px;
+      border-radius: 40px;
+    }
+
+    .demo-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 8vw, 120px);
+      line-height: 0.95;
+      color: var(--black);
+    }
+
+    .demo-steps {
+      display: flex;
+      gap: 48px;
+      margin-top: 16px;
+    }
+
+    .demo-step {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      max-width: 340px;
+    }
+
+    .demo-step-gift {
+      width: 64px;
+      height: 64px;
+      margin-bottom: 0;
+      /* SVG siyah fill → accent rengine dönüştür */
+      filter: invert(55%) sepia(95%) saturate(1870%) hue-rotate(156deg) brightness(92%) contrast(101%);
+    }
+
+    .demo-step-num {
+      font-family: var(--font-display);
+      font-size: 64px;
+      color: var(--accent);
+      line-height: 1;
+    }
+
+    .demo-step-title {
+      font-family: var(--font-display);
+      font-size: clamp(30px, 4vw, 48px);
+      color: var(--black);
+      white-space: nowrap;
+      letter-spacing: 0.08em;
+    }
+
+    .demo-step-desc {
+      font-family: var(--font-body);
+      font-size: clamp(16px, 1.8vw, 22px);
+      font-weight: 400;
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .demo-gift {
+      margin-top: 24px;
+      padding: 20px 40px;
+      border: 2px solid var(--accent);
+      border-radius: 12px;
+      background: rgba(0, 180, 216, 0.03);
+    }
+
+    .demo-gift-title {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 2.8vw, 36px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+    }
+
+    .demo-gift-title .gift-check {
+      color: #2ecc71;
+    }
+
+    .demo-no-bs {
+      font-family: var(--font-body);
+      font-size: clamp(13px, 1.4vw, 18px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gray-700);
+      margin-top: 0;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .demo-gift-desc {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-700);
+      margin-top: 8px;
+    }
+
+    /* ── CONTACT SLAYT ── */
+    .contact-thanks {
+      font-family: var(--font-display);
+      font-size: clamp(56px, 10vw, 140px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+      line-height: 1;
+    }
+
+    .contact-line {
+      width: 120px;
+      height: 3px;
+      background: var(--accent);
+      margin: 24px 0;
+    }
+
+    .contact-name {
+      font-family: var(--font-display);
+      font-size: clamp(22px, 3vw, 38px);
+      color: var(--black);
+      letter-spacing: 0.1em;
+    }
+
+    .contact-phone {
+      font-family: var(--font-body);
+      font-size: clamp(18px, 2.2vw, 28px);
+      font-weight: 300;
+      color: var(--accent);
+      letter-spacing: 0.05em;
+    }
+
+    .contact-company {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-400);
+    }
+
+    .contact-emails {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.6vw, 20px);
+      font-weight: 300;
+      color: var(--gray-700);
+      letter-spacing: 0.02em;
+    }
+
+    .rec-label {
+      color: #e63946;
+      z-index: 10;
+      animation: rec-blink 1.5s ease-in-out infinite;
+    }
+
+    @keyframes rec-blink {
+
+      0%,
+      100% {
+        opacity: 1;
+      }
+
+      50% {
+        opacity: 0.3;
+      }
+    }
+
+    /* ── NAVİGASYON İNDİKATÖRÜ ── */
+    #nav-indicator {
+      position: fixed;
+      bottom: 28px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      z-index: 100;
+      transition: opacity 0.3s;
+    }
+
+    #nav-indicator.hidden {
+      opacity: 0;
+    }
+
+    .dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gray-200);
+      transition: background 0.3s, transform 0.3s;
+    }
+
+    .dot.active {
+      background: var(--accent);
+      transform: scale(1.4);
+    }
+
+    .dot.group-active {
+      background: var(--black);
+    }
+
+    /* ── CORNER LOGO (kapak hariç) ── */
+    #corner-logo {
+      position: fixed;
+      top: 28px;
+      right: 40px;
+      width: 80px;
+      height: 80px;
+      opacity: 0;
+      animation: corner-spin 60s linear infinite;
+      z-index: 100;
+      transition: opacity 0.3s;
+      pointer-events: none;
+    }
+
+    #corner-logo.visible {
+      opacity: 1;
+    }
+
+    @keyframes corner-spin {
+      from {
+        transform: rotate(0deg);
+      }
+
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    /* ── SAHNE COUNTER (ürün slaytında) ── */
+    #scene-counter {
+      position: fixed;
+      bottom: 28px;
+      right: 40px;
+      font-family: var(--font-display);
+      font-size: 13px;
+      letter-spacing: 0.15em;
+      color: var(--gray-400);
+      z-index: 100;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+
+    #scene-counter.visible {
+      opacity: 1;
+    }
+
+    /* ── SLIDE NUMARASI ── */
+    #slide-num {
+      position: fixed;
+      bottom: 28px;
+      left: 40px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.2em;
+      color: var(--gray-200);
+      z-index: 100;
+      display: none;
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       MOD 2: TELEFON DİKEY (portrait, dar ekran)
+       Sadece bu modda devreye giren override'lar.
+       ───────────────────────────────────────────────────────────── */
+    @media (orientation: portrait) and (max-width: 900px) {
+
+      /* Açılış (kapak) sayfası */
+      .kapak-logo {
+        /* Logo ekrana sığsın: yüksekliğe veya genişliğe, hangisi küçükse */
+        width: min(60vh, 90vw);
+        height: min(60vh, 90vw);
+      }
+
+      .kapak-sub {
+        /* "Endüstriyel Üretim Çözümleri" — harfler bitişik */
+        letter-spacing: 0.02em;
+      }
+
+      /* Problem slaytı — wrapper position:absolute ile flex'ten kaçar, garantili scroll */
+      #slide-problem {
+        padding: 0;
+      }
+
+      .problem-content {
+        position: absolute;              /* flex parent'tan kaç */
+        inset: 0;                        /* slide'ı tamamen kapla */
+        overflow-y: scroll;              /* GERÇEK scroll konteynırı */
+        overflow-x: hidden;
+        padding: 4vh 5vw 6vh;
+        touch-action: pan-y;
+        -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
+        scrollbar-width: none;           /* Firefox: scrollbar gizle */
+        -ms-overflow-style: none;        /* IE/Edge legacy */
+      }
+
+      /* Chrome / Safari / Edge yeni: scrollbar gizle */
+      .problem-content::-webkit-scrollbar {
+        display: none;
+      }
+
+      .problem-items {
+        flex-direction: column;
+        gap: 16px;
+        margin-bottom: 16px;
+      }
+
+      .problem-item {
+        padding: 18px 18px;
+      }
+
+      .problem-item .desc {
+        /* clamp min'inin altına düşemiyor; portrait'te küçültelim */
+        font-size: 14px;
+      }
+
+      .problem-item .title {
+        font-size: 22px;
+      }
+
+      .problem-headline-big {
+        font-size: 52px;
+        margin-bottom: 20px;
+      }
+
+      .problem-headline {
+        font-size: 22px;
+      }
+
+      .problem-label {
+        margin-top: 1vh;
+      }
+
+      /* Sağ üst dönen logo — sıkıştır + 0.75 oranında (80 → 60px) */
+      #corner-logo {
+        top: 8px;
+        right: 8px;
+        width: 60px;
+        height: 60px;
+      }
+
+      /* === ÇÖZÜM SLAYTI (intro scene, data-scene=0) === */
+
+      /* Background video — native boyut, viewport tam ortada (containing block bypass) */
+      .intro-scene video {
+        width: auto !important;
+        height: auto !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: initial !important;
+        position: fixed !important;
+        left: 50vw !important;
+        top: 50vh !important;
+        transform: translate(-50%, -50%) !important;
+        z-index: 0;
+      }
+
+      /* Kart — explicit width ile zorla genişlet (max-width tek başına auto'da sığıyor) */
+      .intro-shell {
+        width: 95vw;
+        max-width: 95vw;
+        padding: 78px 26px 12px;      /* üst 78px: absolute logoya yer açar */
+      }
+
+      /* Header — sadece badge kalıyor (logo absolute oldu) */
+      .intro-header {
+        margin-bottom: 6px;
+        margin-right: 0;
+        text-align: center;
+        justify-content: center;
+      }
+
+      .intro-badge {
+        font-size: 28px;
+        line-height: 1;
+      }
+
+      /* Logo — kartın doğrudan absolute çocuğu, üstte ortalı.
+         corner-spin animasyonu (sadece rotate) kullan ki transform conflict olmasın */
+      .intro-logo {
+        position: absolute !important;
+        top: 12px;
+        left: 50%;
+        width: 60px;
+        height: 60px;
+        margin: 0 0 0 -30px !important;       /* -width/2 ile yatayda merkez */
+        animation: corner-spin 60s linear infinite !important;
+      }
+
+      .intro-text {
+        font-size: 16px;              /* 18→16 (0.9x) */
+        line-height: 1.4;             /* 1.5→1.4 (daha kompakt) */
+        text-align: center;
+      }
+
+      /* === VİDEO SAHNELERİ (data-scene 1–11) — mod 2 portrait ===
+         Grid: başlık üstte, video ortada (max-height cap), açıklama altta */
+      .video-scene {
+        display: grid;
+        grid-template-rows: auto auto auto;
+        grid-template-columns: 100%;
+        padding: 3vh 5vw;
+        gap: 0.5vh;
+        justify-items: center;
+        align-content: center;
+        overflow: hidden;
+        flex-direction: initial;
+      }
+
+      /* Sahne başlığı — sol üst, satır 1 */
+      .video-scene .scene-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        grid-row: 1;
+        justify-self: start;
+        margin: 0;
+        padding: 0;
+        font-size: clamp(43px, 9.8vw, 66px);
+        letter-spacing: 0.08em;
+        line-height: 1;
+      }
+
+      /* Intro sahnesi (sahne 0) label zaten gizli — dokunma */
+      .intro-scene .scene-label {
+        display: none;
+      }
+
+      /* Video — başlığın altında, doğal yükseklik (cap'li) */
+      .video-scene video {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        grid-row: 2;
+        justify-self: center;
+        align-self: start;
+        width: 100%;
+        max-width: 92vw;
+        max-height: 58vh;
+        height: auto;
+        margin: -3vh 0 -3vh;
+        object-fit: contain;
+        z-index: 2;
+        min-height: 0;
+      }
+
+      /* Intro sahnesi (sahne 0) videosu — tam ekran arka plan davranışı korunsun
+         (mod 2 intro override'ları yukarıda tanımlı) */
+      .intro-scene video {
+        /* width/height/max'leri yukarıdaki intro override'ı zaten yönetiyor — burada karışma */
+      }
+
+      /* Açıklama listesi — video altında, sola yaslı */
+      .scene-info {
+        position: relative;
+        left: auto;
+        top: auto;
+        transform: none;
+        grid-row: 3;
+        justify-self: start;
+        align-self: start;
+        max-width: 100%;
+        width: 100%;
+        margin: 2.5vh 0 0;
+        padding: 0;
+        gap: 12px;
+        text-align: left;
+      }
+
+      .scene-info li {
+        font-size: clamp(24px, 6vw, 34px);
+        line-height: 1.3;
+        padding-left: 28px;
+        text-align: left;
+      }
+
+      .scene-info li::before {
+        position: absolute;
+        display: block;
+        left: 0;
+        top: 0.55em;
+        width: 12px;
+        height: 12px;
+        margin: 0;
+        vertical-align: baseline;
+        transform: none;
+      }
+
+      /* Fiber arka plan — mod 2'de yatay şerit (alt 38vh), scene-info bölgesini kaplar */
+      .video-scene .scene-info-bg {
+        display: block;
+        position: absolute;
+        left: 0;
+        top: auto;
+        bottom: 0;
+        width: 100vw;
+        height: 38vh;
+        z-index: 0;
+      }
+
+      /* Intro sahnesi (sahne 0) canvas'ı global rule'da gizli kalsın */
+      .intro-scene .scene-info-bg {
+        display: none;
+      }
+
+      /* === SAHNE 16 (Tesekkurler) — MOD 2: kapak gibi davransin (flex column, no grid, no clip) ===
+         video-scene grid layout'unu override et, overflow visible (logo kesilmesin) */
+      .video-scene[data-scene="15"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        overflow: visible !important;
+        grid-template-rows: initial;
+        grid-template-columns: initial;
+      }
+
+      /* Mavi cizgi daha uzun (kapak'taki gibi belirgin) */
+      .contact-line {
+        width: 240px;
+        margin: 28px 0;
+      }
+
+      /* === SAHNE 13 (Canli Demo) — MOD 2: dikey, iframe + panel bitisik === */
+      .demo-scene {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        gap: 0 !important;
+        padding: 0 !important;
+        grid-template-rows: initial;
+        grid-template-columns: initial;
+      }
+
+      .demo-scene #live-stream {
+        position: relative !important;
+        left: auto !important;
+        top: auto !important;
+        transform: none !important;
+        width: 94vw !important;
+        aspect-ratio: 16 / 9 !important;
+        height: auto !important;
+        max-height: 40vh !important;
+        margin: 0 !important;
+        border-radius: 12px 12px 0 0 !important;
+        display: block !important;
+      }
+
+      .video-scene.demo-scene .scene-label.rec-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        order: 0;
+        width: 94vw;
+        max-width: 94vw;
+        margin: 0 0 4px 0;
+        padding: 0;
+        font-size: clamp(44px, 10.5vw, 70px);
+        letter-spacing: 0.12em;
+        line-height: 1;
+        text-align: left;
+        z-index: 10;
+      }
+
+      .demo-side-panel {
+        display: flex;
+        position: relative;
+        left: auto;
+        right: auto;
+        top: auto;
+        bottom: auto;
+        transform: none;
+        width: 94vw;
+        max-width: none;
+        margin: 0;
+        padding: 14px 18px 16px;
+        gap: 8px;
+        border-radius: 0 0 12px 12px;
+        border-top: 0;
+      }
+
+      .demo-side-hint {
+        font-size: clamp(12px, 3vw, 16px);
+        line-height: 1.3;
+      }
+
+      .demo-qr {
+        max-width: 140px;
+        width: 38%;
+      }
+
+      .demo-side-or {
+        margin: 2px 0;
+        gap: 10px;
+      }
+
+      .demo-side-or span {
+        font-size: 10px;
+        letter-spacing: 0.25em;
+      }
+
+      .demo-tg-button {
+        padding: 11px 14px;
+        font-size: clamp(14px, 3.8vw, 18px);
+        letter-spacing: 0.1em;
+        border-radius: 8px;
+      }
+
+      /* Mod 2 ucretsiz demo aktifken corner-logo gizle */
+      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+        display: none !important;
+      }
+
+      /* === ÜCRETSİZ DEMO (sahne 15) — mod 2: dikey scroll, problem slaytı mantığı ===
+         Sıra: title+badge üstte, steps ortada (tek sütun, kaydırılabilir), gift+no-bs altta */
+      .video-scene[data-scene="14"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: stretch !important;
+        justify-content: flex-start !important;
+        gap: 12px !important;
+        padding: 4vh 5vw 6vh !important;
+        overflow-y: scroll !important;
+        overflow-x: hidden !important;
+        grid-template-rows: initial;
+        grid-template-columns: initial;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .video-scene[data-scene="14"]::-webkit-scrollbar {
+        display: none;
+      }
+
+      .video-scene[data-scene="14"] .demo-title {
+        font-size: 64px;
+        line-height: 0.95;
+        text-align: center;
+        margin: 0;
+      }
+
+      .video-scene[data-scene="14"] .demo-badge {
+        font-size: 14px;
+        padding: 8px 18px;
+        align-self: center;
+        letter-spacing: 0.18em;
+        line-height: 1.25;
+      }
+
+      .video-scene[data-scene="14"] .demo-steps {
+        flex-direction: column;
+        gap: 14px;
+        align-items: stretch;
+        margin: 6px 0 0;
+        width: 100%;
+      }
+
+      .video-scene[data-scene="14"] .demo-step {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        max-width: 100%;
+        gap: 4px;
+        padding: 10px 12px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-num {
+        font-size: 38px;
+        line-height: 1;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-gift {
+        width: 38px;
+        height: 38px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-title {
+        font-size: 26px;
+        letter-spacing: 0.05em;
+        white-space: normal;
+        text-align: center;
+        line-height: 1.15;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-desc {
+        font-size: 16px;
+        line-height: 1.4;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift {
+        align-self: stretch;
+        margin: -8px 0 0;
+        padding: 12px 16px;
+        border-radius: 10px;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-title {
+        font-size: 17px;
+        letter-spacing: 0.06em;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-desc {
+        font-size: 14px;
+        margin-top: 4px;
+        text-align: center;
+      }
+
+      .video-scene[data-scene="14"] .demo-no-bs {
+        font-size: 14px;
+        margin: 0 0 6vh;
+        padding: 0;
+        border: 0;
+        background: none;
+        text-align: center;
+      }
+
+      /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 2: tablo gizli, kartlar dikey stack (V1S üstte) === */
+      .compare-scene {
+        display: flex !important;
+        flex-direction: column;
+        gap: 14px;
+        padding: 4vh 5vw;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .compare-scene .scene-label {
+        position: relative;
+        top: auto;
+        left: auto;
+        font-size: 48px;
+        line-height: 0.95;
+        margin: 0 0 6px;
+        text-align: left;
+        align-self: flex-start;
+        max-width: 390px;
+        padding-left: 4vw;
+      }
+
+      .compare-scene .compare-table {
+        display: none;
+      }
+
+      .compare-cards {
+        display: flex;
+        flex-direction: column-reverse;
+        gap: 10px;
+        width: 100%;
+        max-width: 420px;
+      }
+
+      .compare-card {
+        background: var(--white);
+        border: 1.5px solid var(--gray-200);
+        border-top: 4px solid var(--gray-700);
+        padding: 8px 14px;
+      }
+
+      .compare-card.v1s {
+        border-top-color: var(--accent);
+      }
+
+      .compare-card-title {
+        font-family: var(--font-display);
+        font-size: 28px;
+        text-align: center;
+        letter-spacing: 0.15em;
+        color: var(--black);
+        margin-bottom: 4px;
+        padding-bottom: 3px;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .compare-card.v1s .compare-card-title {
+        color: var(--accent-dark);
+      }
+
+      .compare-card-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        text-align: center;
+      }
+
+      .compare-card-list li {
+        font-size: 19px;
+        line-height: 1.35;
+        padding: 1px 0;
+        color: var(--gray-700);
+        white-space: nowrap;
+      }
+
+      .compare-card-list li.extra {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+    }
+
+    /* ─────────────────────────────────────────────────────────────
+       MOD 3: TELEFON YATAY (landscape, kısa ekran)
+       Scroll açık (v93 gibi). Kartlar 2-sütun grid → 6 kart 2x3 dağılır,
+       her satırda 2 konteynır. Header full-width.
+       ───────────────────────────────────────────────────────────── */
+    @media (orientation: landscape) and (max-height: 500px) {
+
+      #slide-problem {
+        padding: 0;
+      }
+
+      .problem-content {
+        position: absolute;
+        inset: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        column-gap: 12px;
+        row-gap: 12px;
+        padding: 14px 4vw 60px;       /* alt: nav-indicator ile çakışmasın */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .problem-content::-webkit-scrollbar {
+        display: none;
+      }
+
+      /* Header öğeleri her iki sütunu kaplasın */
+      .problem-label,
+      .problem-headline,
+      .problem-headline-big {
+        grid-column: 1 / -1;
+      }
+
+      /* .problem-items wrapper'ları görünmez ol — çocukları doğrudan grid hücresi olur */
+      .problem-items {
+        display: contents;
+      }
+
+      /* Header tipografi — kompakt, headline büyüdü */
+      .problem-label {
+        margin-top: 0;
+        margin-bottom: -8px;          /* sub-headline ile arası daralsın */
+      }
+      .problem-headline {
+        font-size: 22px;
+        margin-bottom: 0;
+      }
+      .problem-headline-big {
+        font-size: 70px;
+        margin-top: 0;
+        margin-bottom: 6px;
+        line-height: 0.9;
+      }
+
+      /* Kart içi tipografi mod 3 için */
+      .problem-item {
+        padding: 12px 14px;
+      }
+      .problem-item .num {
+        font-size: 28px;
+        margin-bottom: 4px;
+      }
+      .problem-item .title {
+        font-size: 16px;
+        margin-bottom: 4px;
+      }
+      .problem-item .desc {
+        font-size: 12px;
+        line-height: 1.4;
+      }
+
+      /* Sağ üst dönen logo — 0.75 oranı (80 → 60px) + köşeye sıkışık */
+      #corner-logo {
+        top: 8px;
+        right: 8px;
+        width: 60px;
+        height: 60px;
+      }
+
+      /* === ÇÖZÜM SLAYTI (intro scene) — desktop layout sığdırılmış === */
+
+      .intro-shell {
+        padding: 14px 40px;
+        width: 92vw;
+        max-width: 92vw;               /* 96 → 92: biraz daha dar */
+      }
+
+      .intro-header {
+        margin-bottom: 8px;
+        margin-right: -20px;           /* -50 → -20 (overhang azaldı) */
+      }
+
+      .intro-badge {
+        font-size: 30px;
+      }
+
+      .intro-logo {
+        width: 50px;
+        height: 50px;
+        top: 25px;
+        left: 30px;
+      }
+
+      .intro-text {
+        font-size: 16px;
+        line-height: 1.35;
+      }
+
+      /* === VİDEO SAHNELERİ (data-scene 1–11) — mod 3 landscape ===
+         Desktop layout sığdırılmış: sol video / sağ metin */
+      .video-scene {
+        gap: 32px;
+        padding: 0 40px;
+      }
+
+      .video-scene video {
+        left: 4vw;
+        max-width: 46vw;
+        max-height: 78vh;
+      }
+
+      .scene-info {
+        left: 52vw;
+        max-width: 42vw;
+        gap: 16px;
+      }
+
+      .scene-info li {
+        font-size: clamp(24px, 4.8vh, 38px);
+        line-height: 1.35;
+        padding-left: 26px;
+      }
+
+      .scene-info li::before {
+        width: 10px;
+        height: 10px;
+        top: 0.6em;
+      }
+
+      .video-scene .scene-label {
+        top: 16px;
+        left: 24px;
+        font-size: clamp(46px, 11vh, 82px);
+        letter-spacing: 0.12em;
+      }
+
+      .intro-scene .scene-label {
+        display: none;
+      }
+
+      /* === SAHNE 13 (Canli Demo) — MOD 3: iframe solda, panel sagda === */
+      .demo-scene #live-stream {
+        left: 2vw !important;
+        top: 50% !important;
+        transform: translateY(-50%) !important;
+        width: 62vw !important;
+        aspect-ratio: 16 / 9 !important;
+        height: auto !important;
+        max-height: 90vh !important;
+        border-radius: 12px !important;
+      }
+
+      .video-scene.demo-scene .scene-label.rec-label {
+        top: 10px;
+        left: 18px;
+        font-size: clamp(32px, 7.5vh, 54px);
+        letter-spacing: 0.12em;
+      }
+
+      .demo-side-panel {
+        display: flex;
+        right: 2vw;
+        width: 30vw;
+        max-width: none;
+        padding: 12px 14px;
+        gap: 8px;
+        border-radius: 12px;
+      }
+
+      .demo-side-hint {
+        font-size: clamp(11px, 2.4vh, 15px);
+        line-height: 1.3;
+      }
+
+      .demo-qr {
+        max-width: 150px;
+        width: 85%;
+      }
+
+      .demo-side-or {
+        margin: 0;
+        gap: 8px;
+      }
+
+      .demo-side-or span {
+        font-size: 10px;
+        letter-spacing: 0.2em;
+      }
+
+      .demo-tg-button {
+        padding: 10px 14px;
+        font-size: clamp(13px, 2.8vh, 17px);
+        letter-spacing: 0.1em;
+        border-radius: 8px;
+      }
+
+      /* === ÜCRETSİZ DEMO SAHNESİ (sahne 15) — mod 3: desktop layout sığdırılmış ===
+         4 adım yan yana, font/padding agresif küçük ki landscape phone'a sığsın */
+      .video-scene[data-scene="14"] {
+        gap: 8px;
+        padding: 6px 16px;
+      }
+
+      .demo-title {
+        font-size: 36px;
+        line-height: 0.95;
+      }
+
+      .demo-badge {
+        font-size: 12px;
+        padding: 6px 16px;
+        letter-spacing: 0.2em;
+        border-radius: 20px;
+      }
+
+      .demo-steps {
+        gap: 14px;
+        margin-top: 4px;
+      }
+
+      .demo-step {
+        max-width: 170px;
+        gap: 4px;
+      }
+
+      .demo-step-num {
+        font-size: 28px;
+      }
+
+      .demo-step-gift {
+        width: 32px;
+        height: 32px;
+      }
+
+      .demo-step-title {
+        font-size: 13px;
+        letter-spacing: 0.05em;
+        white-space: normal;
+      }
+
+      .demo-step-desc {
+        font-size: 10px;
+        line-height: 1.3;
+      }
+
+      .demo-gift {
+        margin-top: 6px;
+        padding: 8px 18px;
+        border-radius: 8px;
+      }
+
+      .demo-gift-title {
+        font-size: 14px;
+        letter-spacing: 0.08em;
+      }
+
+      .demo-no-bs {
+      font-family: var(--font-body);
+      font-size: clamp(13px, 1.4vw, 18px);
+      font-weight: 400;
+      font-style: italic;
+      color: var(--gray-700);
+      margin-top: 0;
+      text-align: center;
+      letter-spacing: 0.02em;
+    }
+
+    .demo-gift-desc {
+        font-size: 10px;
+        margin-top: 2px;
+      }
+
+      /* === ÜCRETSİZ DEMO (sahne 15) — mod 3 LAYOUT OVERRIDE: sol kolon, scroll ===
+         Title+badge sol üst, steps ortada scroll, gift+no-bs sol alt. Sağ taraf boş. */
+      .video-scene[data-scene="14"] {
+        display: flex !important;
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        justify-content: center !important;
+        gap: 8px !important;
+        padding: 0 0 0 18px !important;
+        overflow: hidden !important;
+        text-align: left;
+      }
+
+      /* Mod 3'te ücretsiz demo aktifken sağ üst dönen logoyu gizle */
+      body:has(.video-scene.active[data-scene="14"]) #corner-logo {
+        display: none !important;
+      }
+
+      .video-scene[data-scene="14"] .demo-title {
+        font-size: 64px;
+        line-height: 0.95;
+        text-align: left;
+        margin: 0;
+        max-width: 42vw;
+      }
+
+      .video-scene[data-scene="14"] .demo-badge {
+        font-size: 12px;
+        padding: 5px 14px;
+        letter-spacing: 0.18em;
+        border-radius: 16px;
+        align-self: flex-start;
+        max-width: 40vw;
+        line-height: 1.25;
+      }
+
+      .video-scene[data-scene="14"] .demo-steps {
+        position: absolute;
+        right: 12px;
+        top: 50%;
+        transform: translateY(-50%);
+        height: 80vh;
+        width: 52vw;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: min-content;
+        gap: 14px;
+        margin: 0;
+        padding: 4px;
+        overflow-y: auto;
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+      }
+
+      .video-scene[data-scene="14"] .demo-steps::-webkit-scrollbar {
+        display: none;
+      }
+
+      .video-scene[data-scene="14"] .demo-step {
+        flex-direction: column;
+        align-items: flex-start;
+        max-width: 100%;
+        width: 100%;
+        gap: 4px;
+        text-align: left;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-num {
+        font-size: 38px;
+        line-height: 1;
+        margin-bottom: 3px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-gift {
+        width: 32px;
+        height: 32px;
+        margin-bottom: 2px;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-title {
+        font-size: 16px;
+        letter-spacing: 0.05em;
+        white-space: normal;
+        text-align: left;
+        line-height: 1.15;
+      }
+
+      .video-scene[data-scene="14"] .demo-step-desc {
+        font-size: 12px;
+        line-height: 1.4;
+        text-align: left;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift {
+        align-self: flex-start;
+        margin: 0;
+        padding: 8px 14px;
+        border-radius: 8px;
+        max-width: 40vw;
+        box-sizing: border-box;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-title {
+        font-size: 14px;
+        letter-spacing: 0.06em;
+        line-height: 1.15;
+      }
+
+      .video-scene[data-scene="14"] .demo-gift-desc {
+        font-size: 12px;
+        margin-top: 3px;
+        line-height: 1.3;
+      }
+
+      .video-scene[data-scene="14"] .demo-no-bs {
+        font-size: 12px;
+        margin: 0;
+        padding: 0;
+        border: 0;
+        background: none;
+        text-align: left;
+        align-self: flex-start;
+        max-width: 40vw;
+        line-height: 1.3;
+      }
+
+      /* === KARŞILAŞTIRMA SAHNESİ (sahne 14) — mod 3: yatay layout, label sol orta + kartlar sağda === */
+      .compare-scene {
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 24px;
+        padding: 0 24px 0 0;          /* sol padding 0: label kenara yakın */
+      }
+
+      .compare-scene .scene-label {
+        writing-mode: vertical-rl;    /* dikey: yukarıdan aşağı */
+        font-size: 48px;              /* büyütüldü */
+        align-self: center;
+        text-align: left;
+        flex: 0 0 auto;
+        max-width: none;
+        max-height: 95vh;
+        line-height: 1;
+        margin: 0;
+        padding-left: 8px;
+      }
+
+      /* Tabloyu gizle */
+      .compare-scene .compare-table {
+        display: none;
+      }
+
+      /* Kartlar — sağa yakın ama scene-counter ile hizalı (right margin var) */
+      .compare-cards {
+        display: flex;
+        flex-direction: row;
+        gap: 8px;
+        flex: 0 0 auto;
+        max-width: 510px;              /* 440 → 510: V1 daha geniş, wrap olmasın */
+        align-items: stretch;
+        margin-left: auto;             /* önce sağa it */
+        margin-right: 90px;            /* scene-counter'a yer bırak (~50px text + 40px sağ padding) */
+      }
+
+      .compare-card {
+        flex: 1;                       /* V1 → 1 birim */
+        background: var(--white);
+        border: 1.5px solid var(--gray-200);
+        border-top: 4px solid var(--gray-700);
+        padding: 12px 14px 14px;
+      }
+
+      .compare-card.v1s {
+        flex: 1.4;                     /* V1S → daha geniş (ekstra özellikler için) */
+      }
+
+      .compare-card.v1s {
+        border-top-color: var(--accent);
+      }
+
+      .compare-card-title {
+        font-family: var(--font-display);
+        font-size: 26px;
+        text-align: center;
+        letter-spacing: 0.15em;
+        color: var(--black);
+        margin-bottom: 8px;
+        padding-bottom: 6px;
+        border-bottom: 1px solid var(--gray-200);
+      }
+
+      .compare-card.v1s .compare-card-title {
+        color: var(--accent-dark);
+      }
+
+      .compare-card-list {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        font-family: var(--font-body);
+        text-align: center;            /* özellikler ortalı */
+      }
+
+      .compare-card-list li {
+        font-size: 16px;               /* 13 → 16: büyüdü */
+        line-height: 1.5;
+        padding: 3px 0;
+        color: var(--gray-700);
+      }
+
+      .compare-card-list li.extra {
+        color: var(--accent);
+        font-weight: 600;
+      }
+
+      /* Sayfa altı nokta nav-indicator — SADECE compare slaytında sola yaslı */
+      body.compare-active #nav-indicator {
+        left: 24px;
+        transform: none;
+      }
+
+    }
+    /* === SAHNE 13 — TELEFON ortak: corner-logo gizle, scene-counter sol alta === */
+    @media (orientation: portrait) and (max-width: 900px),
+           (orientation: landscape) and (max-height: 500px) {
+      body:has(.video-scene.active[data-scene="12"]) #corner-logo {
+        display: none !important;
+      }
+      #scene-counter {
+        left: 16px;
+        right: auto;
+      }
+    }
+
+    /* Scroll arrow indicators — kaydırılabilir slaytlarda yanıp söner */
+    .scroll-arrow {
+      position: fixed;
+      left: 16px;
+      font-size: 18px;
+      color: var(--gray-400);
+      z-index: 99;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.3s;
+      font-family: var(--font-body);
+      line-height: 1;
+    }
+    #scroll-arrow-up {
+      top: 14px;
+    }
+    #scroll-arrow-down {
+      bottom: 14px;
+    }
+    .scroll-arrow.visible {
+      animation: scroll-arrow-blink 1.4s ease-in-out infinite;
+    }
+    @keyframes scroll-arrow-blink {
+      0%, 100% { opacity: 0.55; }
+      50% { opacity: 0.12; }
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div id="deck">
+
+    <!-- SLAYT 1: KAPAK -->
+    <div class="slide active" id="slide-kapak">
+      <div class="kapak-inner">
+        <div class="kapak-product">ENERJİMETRE</div>
+        <div class="kapak-version">V1 & V1S</div>
+        <div class="kapak-line"></div>
+        <div class="kapak-brand">ARKHE</div>
+        <div class="kapak-sub">Industrial Manufacturing Solutions</div>
+      </div>
+      <img src="logo.svg" class="kapak-logo" alt="">
+    </div>
+
+    <!-- SLAYT 2: PROBLEM -->
+    <div class="slide" id="slide-problem">
+      <div class="wave-bg"><canvas></canvas></div>
+      <div class="problem-content">
+        <div class="problem-label">// Why Enerjimetre?</div>
+        <div class="problem-headline">The energy leak in your factory</div>
+        <div class="problem-headline-big">CAN YOU SEE IT?</div>
+        <div class="problem-items">
+          <div class="problem-item">
+            <div class="num">01</div>
+            <div class="title">Invisible Costs</div>
+            <div class="desc">Energy consumed during off-hours and breaks hits the bill but goes unnoticed.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">02</div>
+            <div class="title">Instant Power Surges</div>
+            <div class="desc">A limit overshoot isn't just a penalty tariff — it signals an underlying fault. Unnoticed
+              surges cause permanent machine damage over time.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">03</div>
+            <div class="title">The Blindness of Standard Analyzers</div>
+            <div class="desc">Off-the-shelf network analyzers only measure total consumption — they don't show the source
+              of the problem.</div>
+          </div>
+        </div>
+        <div class="problem-items">
+          <div class="problem-item">
+            <div class="num">04</div>
+            <div class="title">Argument Without Proof</div>
+            <div class="desc">The "who burns how much" debate between the field and management always runs on rhetoric — without measurement, a definitive verdict is impossible.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">05</div>
+            <div class="title">The Inadequacy of Central Systems</div>
+            <div class="desc">Central metering gives no per-machine resolution — you can't see which device is the
+              problem.</div>
+          </div>
+          <div class="problem-item">
+            <div class="num">06</div>
+            <div class="title">Tariff-Blind</div>
+            <div class="desc">Turkey runs a 3-period tariff: 06–17 day, 17–22 peak, 22–06 night. Most plants don't know
+              what they draw at which hour and bleed hidden losses during peak.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SLAYT 3: ÜRÜN — 12 video sahnesi -->
+    <div class="slide" id="slide-urun">
+      <div class="video-stage">
+
+        <!-- SAHNE 1: Ana Ekran -->
+        <div class="video-scene active side-left intro-scene" data-scene="0">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/01_ana_ekran.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <div class="intro-shell">
+            <div class="intro-header">
+              <div class="intro-badge"><span class="slash">//</span> SOLUTION — ENERJİMETRE</div>
+              <img src="logo.svg" class="intro-logo" alt="">
+            </div>
+            <div class="intro-text">
+              A compact industrial metering unit that attaches directly to every machine on the production line, runs on its own screen, and delivers <span class="accent">machine-level</span> energy visibility. It shows instant power spikes, efficiency drops and hidden losses in real time, and <span class="accent">alerts at threshold values set by the operator</span>.
+            </div>
+          </div>
+          <div class="scene-label">Enerjimetre</div>
+        </div>
+
+        <!-- SAHNE 9: Alarm Sistemi -->
+        <div class="video-scene side-left" data-scene="1">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/09_alarm.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>3-dimensional alarm system</b></li>
+            <li><b>Predefined + custom</b></li>
+            <li><b>Anomaly analysis</b></li>
+          </ul>
+          <div class="scene-label">Alarm System</div>
+        </div>
+
+        <!-- SAHNE 7: Barchart -->
+        <div class="video-scene side-left" data-scene="2">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/07_barchart.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Color slices by tariff hours</b></li>
+            <li><b>12-month historical record</b></li>
+            <li><b>Hidden loss detection at peak</b></li>
+          </ul>
+          <div class="scene-label">Consumption Chart</div>
+        </div>
+
+        <!-- SAHNE 8: Günlük Rapor -->
+        <div class="video-scene side-left" data-scene="3">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/08_gunluk_rapor.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Shift / off-shift / break breakdown</b></li>
+            <li><b>Alarm counters + limit deviations</b></li>
+            <li><b>1-month automatic logging</b></li>
+          </ul>
+          <div class="scene-label">Daily Report</div>
+        </div>
+
+        <!-- SAHNE 10: RS485 Ayarları -->
+        <div class="video-scene side-left" data-scene="4">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/10_rs485.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Universal compatibility</b></li>
+            <li><b>Flexible parameterization</b></li>
+          </ul>
+          <div class="scene-label">RS485 Communication</div>
+        </div>
+
+        <!-- SAHNE 2: Power Gauge -->
+        <div class="video-scene side-left" data-scene="5">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/02_power_gauge.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Hysteretic visibility</b></li>
+            <li><b>Alarm indicators</b></li>
+          </ul>
+          <div class="scene-label">Power / Gauge</div>
+        </div>
+
+        <!-- SAHNE 3: Power Big -->
+        <div class="video-scene side-left" data-scene="6">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/03_power_big.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Large numeric display</b></li>
+            <li><b>Alarm indicators</b></li>
+          </ul>
+          <div class="scene-label">Power / Large</div>
+        </div>
+
+        <!-- SAHNE 4: Power Osiloskop -->
+        <div class="video-scene side-left" data-scene="7">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/04_power_osiloskop.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Real-time waveform</b></li>
+            <li><b>Spike tracking</b></li>
+          </ul>
+          <div class="scene-label">Power / Signal</div>
+        </div>
+
+        <!-- SAHNE 5: CO2 Gauge -->
+        <div class="video-scene side-left" data-scene="8">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/05_co2_gauge.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>An investment in the future</b></li>
+            <li><b>Production-based carbon identity</b></li>
+          </ul>
+          <div class="scene-label">CO₂ / Gauge</div>
+        </div>
+
+        <!-- SAHNE 6: CO2 Big -->
+        <div class="video-scene side-left" data-scene="9">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/06_co2_big.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Instant CO₂ emission</b></li>
+          </ul>
+          <div class="scene-label">CO₂ / Large</div>
+        </div>
+
+        <!-- SAHNE 11: Şifre Koruma -->
+        <div class="video-scene side-left" data-scene="10">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/11_sifre.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Unauthorized-access barrier</b></li>
+            <li><b>Settings protection</b></li>
+          </ul>
+          <div class="scene-label">Password Protection</div>
+        </div>
+
+        <!-- SAHNE 12: Dil Seçeneği -->
+        <div class="video-scene side-left" data-scene="11">
+          <video autoplay loop muted playsinline preload="auto" poster="panel_gorsel.png">            <source src="videos/12_dil.mp4" type="video/mp4">
+          </video>
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <ul class="scene-info">
+            <li><b>Turkish / English interface</b></li>
+          </ul>
+          <div class="scene-label">TR / EN Language Support</div>
+        </div>
+
+        <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
+        <div class="video-scene demo-scene" data-scene="12">
+          <div class="scene-label rec-label">&#9679; Live Demo</div>
+          <iframe id="live-stream"
+            src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
+            style="position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:85vw; height:85vh; border:none; border-radius:18px; background:#000; z-index:5; pointer-events:none;"
+            allow="autoplay; camera; microphone; encrypted-media" allowfullscreen>
+          </iframe>
+          <div class="demo-side-panel">
+            <div class="demo-side-hint">On a computer?<br>Scan the QR with your phone</div>
+            <img src="telegram_qr.svg" class="demo-qr" alt="Telegram bot QR">
+            <div class="demo-side-or"><span>OR</span></div>
+            <div class="demo-side-hint">On a phone?<br>Tap the button</div>
+            <a href="tg://resolve?domain=arkhe_sunum_bot" class="demo-tg-button">Open in Telegram</a>
+          </div>
+        </div>
+
+        <!-- SAHNE 14: Karşılaştırma Tablosu -->
+        <div class="video-scene compare-scene" data-scene="13">
+          <div class="wave-bg"><canvas></canvas></div>
+          <div class="scene-label">Model Comparison</div>
+          <table class="compare-table">
+            <tr>
+              <th></th>
+              <th>V1</th>
+              <th class="accent">V1S</th>
+            </tr>
+            <tr>
+              <td>Instant Power Indicator</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Oscilloscope View</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>CO₂ Tracking</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Consumption Chart</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Daily Reporting</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Alarm System</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>Tariff-Based Analysis</td>
+              <td class="dash">—</td>
+              <td class="check">&#10003;</td>
+            </tr>
+            <tr>
+              <td>RS485 / Modbus</td>
+              <td class="check">&#10003;</td>
+              <td class="check">&#10003;</td>
+            </tr>
+          </table>
+
+          <!-- Mod 3 (landscape) için iki kart yapısı; default'ta gizli, mod 3'te aktif -->
+          <div class="compare-cards">
+            <div class="compare-card">
+              <div class="compare-card-title">V1</div>
+              <ul class="compare-card-list">
+                <li>Instant Power Indicator</li>
+                <li>Oscilloscope View</li>
+                <li>CO₂ Tracking</li>
+                <li>Consumption Chart</li>
+                <li>RS485 / Modbus</li>
+              </ul>
+            </div>
+            <div class="compare-card v1s">
+              <div class="compare-card-title">V1S</div>
+              <ul class="compare-card-list">
+                <li>Instant Power Indicator</li>
+                <li>Oscilloscope View</li>
+                <li>CO₂ Tracking</li>
+                <li>Consumption Chart</li>
+                <li>RS485 / Modbus</li>
+                <li class="extra">Daily Reporting</li>
+                <li class="extra">Alarm System</li>
+                <li class="extra">Tariff-Based Analysis</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- SAHNE 15: Demo Teklifi -->
+        <div class="video-scene demo-scene" data-scene="14">
+          <div class="wave-bg"><canvas></canvas></div>
+          <div class="demo-title">FREE DEMO</div>
+          <div class="demo-badge">2-WEEK TRIAL WITH ENERJİMETRE V1S</div>
+          <div class="demo-steps">
+            <div class="demo-step">
+              <div class="demo-step-num">01</div>
+              <div class="demo-step-title">SETUP & LOGGING</div>
+              <div class="demo-step-desc">V1S connects to your line and silently logs your energy consumption in the first
+                week.</div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">02</div>
+              <div class="demo-step-title">ACTIVE OPERATION</div>
+              <div class="demo-step-desc">In the second week every feature turns on — alarm, report and tariff analysis run
+                live.</div>
+            </div>
+            <div class="demo-step">
+              <div class="demo-step-num">03</div>
+              <div class="demo-step-title">ANALYSIS & REPORT</div>
+              <div class="demo-step-desc">At the end of 2 weeks we report your factory's standby energy cost.</div>
+            </div>
+            <div class="demo-step">
+              <img src="gift.svg" class="demo-step-gift" alt="">
+              <div class="demo-step-title">UNITER DASHBOARD</div>
+              <div class="demo-step-desc">Free upgrade support is included once you move to the Uniter Dashboard stage.</div>
+            </div>
+          </div>
+          <div class="demo-gift">
+            <div class="demo-gift-title"><span class="gift-check">&#10004;</span> STANDBY COST REPORT — FREE</div>
+            <div class="demo-gift-desc">See your off-hours and break-time energy leak in real numbers for the first time.
+            </div>
+          </div>
+          <div class="demo-no-bs">We don't want to sell you something you won't use.</div>
+        </div>
+
+        <!-- SAHNE 16: Teşekkürler & İletişim -->
+        <div class="video-scene" data-scene="15"
+          style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
+          <img src="logo.svg" class="kapak-logo" alt="">
+          <div
+            style="position:relative; z-index:1; display:flex; flex-direction:column; align-items:center; text-align:center;">
+            <div class="contact-thanks">THANK YOU</div>
+            <div class="contact-line"></div>
+            <div class="contact-name">Muhammed Azad Kılıçarslan</div>
+            <div class="contact-phone">+90 532 596 44 92</div>
+            <div class="contact-emails">mak@arkheindustry.com | info@arkheips.com</div>
+            <div class="contact-company">Arkhe Industrial Manufacturing Solutions Inc.</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+
+  <!-- NAVİGASYON -->
+  <div id="nav-indicator">
+    <div class="dot" data-section="0"></div>
+    <div class="dot" data-section="1"></div>
+    <div class="dot" data-section="2"></div>
+    <div class="dot" data-section="3"></div>
+    <div class="dot" data-section="4"></div>
+  </div>
+
+
+  <div id="scroll-arrow-up" class="scroll-arrow">▲</div>
+  <div id="scroll-arrow-down" class="scroll-arrow">▼</div>
+  <img id="corner-logo" src="logo.svg" alt="">
+  <div id="scene-counter"></div>
+  <div id="slide-num"></div>
+  <div style="position:fixed; bottom:8px; right:8px; font-size:10px; color:#bbb; font-family:monospace; z-index:200;">
+    en</div>
+
+  <script>
+    // ── EN FORK: version-check disabled (self-contained, ayrı dağıtım) ──
+    const CURRENT_VERSION = 'en-v166';
+
+    // ── STATE ──
+    const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
+    const TOTAL_SCENES = 16;
+
+    let currentSlide = 0;
+    let currentScene = 0; // sadece slayt 2 için geçerli
+
+    // ── ELEMENTS ──
+    const slides = SLIDES.map(id => document.getElementById(id));
+    const scenes = document.querySelectorAll('.video-scene');
+    const dots = document.querySelectorAll('.dot');
+    const sceneCounter = document.getElementById('scene-counter');
+    const slideNum = document.getElementById('slide-num');
+    const navIndicator = document.getElementById('nav-indicator');
+    const cornerLogo = document.getElementById('corner-logo');
+
+    // Native tarafından çağrılabilir — belirli bir sahneye atla
+    window.goToScene = function (sceneIdx) {
+      currentSlide = 2;
+      currentScene = sceneIdx;
+      render();
+    };
+
+    // ── RENDER ──
+    function render() {
+      // Slide visibility
+      slides.forEach((s, i) => {
+        s.classList.toggle('active', i === currentSlide);
+      });
+
+      // Scene visibility (sadece slayt 2'de)
+      if (currentSlide === 2) {
+        scenes.forEach((s, i) => {
+          const isActive = i === currentScene;
+          s.classList.toggle('active', isActive);
+          // Video yönetimi
+          const video = s.querySelector('video');
+          if (video) {
+            if (isActive) {
+              video.play().catch(() => { });
+            } else {
+              video.pause();
+            }
+          }
+        });
+        sceneCounter.textContent = `${currentScene + 1} / ${TOTAL_SCENES}`;
+        sceneCounter.classList.add('visible');
+      } else {
+        sceneCounter.classList.remove('visible');
+      }
+
+      // Corner logo — kapak, intro sahnesi ve son sahne hariç
+      const isLastScene = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
+      const isIntroScene = currentSlide === 2 && currentScene === 0;
+      cornerLogo.classList.toggle('visible', currentSlide > 0 && !isLastScene && !isIntroScene);
+
+      // Nav dots — kapak ve teşekkürler hariç
+      // Section mapping: 0=Problem, 1=Ürün(0-11), 2=Canlı Demo(12), 3=Karşılaştırma(13), 4=Ücretsiz Demo(14)
+      const isKapak = currentSlide === 0;
+      const isTesekkkurler = currentSlide === 2 && currentScene === TOTAL_SCENES - 1;
+
+      if (isKapak || isTesekkkurler) {
+        navIndicator.classList.add('hidden');
+      } else {
+        navIndicator.classList.remove('hidden');
+        let activeSection = -1;
+        if (currentSlide === 1) {
+          activeSection = 0; // Problem
+        } else if (currentSlide === 2) {
+          if (currentScene <= 11) activeSection = 1;      // Ürün videoları
+          else if (currentScene === 12) activeSection = 2; // Canlı Demo
+          else if (currentScene === 13) activeSection = 3; // Karşılaştırma
+          else if (currentScene === 14) activeSection = 4; // Ücretsiz Demo
+        }
+        dots.forEach((d, i) => {
+          d.classList.toggle('active', i === activeSection);
+        });
+      }
+
+      // Slide num
+      if (currentSlide < 2) {
+        slideNum.textContent = `${currentSlide + 1} / ${SLIDES.length}`;
+      } else {
+        slideNum.textContent = '';
+      }
+
+      // Compare slaytı için body class (mod 3'te nav-indicator override için)
+      document.body.classList.toggle('compare-active', currentSlide === 2 && currentScene === 13);
+
+      // Scroll oklarını güncelle (slayt değişimi sonrası)
+      requestAnimationFrame(updateScrollArrows);
+    }
+
+    // ── NAVİGASYON ──
+    function next() {
+      if (currentSlide < 2) {
+        currentSlide++;
+        if (currentSlide === 2) currentScene = 0;
+      } else if (currentSlide === 2) {
+        if (currentScene < TOTAL_SCENES - 1) {
+          currentScene++;
+        }
+        // Son sahnedeyse ileri tuşu çalışmaz
+      }
+      render();
+    }
+
+    function prev() {
+      if (currentSlide === 2) {
+        if (currentScene > 0) {
+          currentScene--;
+        } else {
+          currentSlide = 1;
+        }
+      } else if (currentSlide > 0) {
+        currentSlide--;
+      }
+      render();
+    }
+
+    // ── KLAVYE / KUMANDA ──
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ' || e.key === 'PageDown') {
+        e.preventDefault();
+        next();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
+        e.preventDefault();
+        prev();
+      }
+    });
+
+    // ── SCROLLABLE SLAYT TESPİTİ (problem + ücretsiz demo portrait) ──
+    function _getScrollableTarget() {
+      const slide = document.querySelector('.slide.active');
+      if (!slide) return null;
+      if (slide.id === 'slide-problem') {
+        return slide.querySelector('.problem-content');
+      }
+      // Ücretsiz demo (data-scene="14") — sadece portrait modda scroll'lu
+      const activeScene = document.querySelector('.video-scene.active');
+      if (activeScene && activeScene.dataset.scene === '14') {
+        if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
+          return activeScene;
+        }
+      }
+      return null;
+    }
+
+    // ── JS WHEEL FALLBACK (desktop) ──
+    window.addEventListener('wheel', (e) => {
+      const target = _getScrollableTarget();
+      if (!target) return;
+      e.preventDefault();
+      target.scrollTop += e.deltaY;
+    }, { passive: false });
+
+    // ── JS TOUCH SCROLL (mobil) — preventDefault ile native ile çakışma yok ──
+    let scrollTouchLastY = 0;
+    document.addEventListener('touchstart', (e) => {
+      if (!_getScrollableTarget()) return;
+      if (e.touches.length !== 1) return;
+      scrollTouchLastY = e.touches[0].clientY;
+    }, { passive: true });
+    document.addEventListener('touchmove', (e) => {
+      const target = _getScrollableTarget();
+      if (!target) return;
+      if (e.touches.length !== 1) return;
+      e.preventDefault();
+      const y = e.touches[0].clientY;
+      const dy = scrollTouchLastY - y;
+      target.scrollTop += dy;
+      scrollTouchLastY = y;
+    }, { passive: false });
+
+    // ── SCROLL ARROW INDICATOR ──
+    const _scrollArrowUp = document.getElementById('scroll-arrow-up');
+    const _scrollArrowDown = document.getElementById('scroll-arrow-down');
+
+    function updateScrollArrows() {
+      const target = _getScrollableTarget();
+      if (!target) {
+        _scrollArrowUp.classList.remove('visible');
+        _scrollArrowDown.classList.remove('visible');
+        return;
+      }
+      const top = target.scrollTop;
+      const max = target.scrollHeight - target.clientHeight;
+      // Eğer içerik scroll'a sığıyorsa (max<=0) okları gizle
+      if (max <= 5) {
+        _scrollArrowUp.classList.remove('visible');
+        _scrollArrowDown.classList.remove('visible');
+        return;
+      }
+      const atTop = top <= 5;
+      const atBottom = top >= max - 5;
+      _scrollArrowUp.classList.toggle('visible', !atTop);
+      _scrollArrowDown.classList.toggle('visible', !atBottom);
+    }
+
+    // Scroll target'a scroll event eklemek dinamik; her wheel/touchmove sonrası tekrar guncelle
+    window.addEventListener('wheel', () => requestAnimationFrame(updateScrollArrows), { passive: true });
+    window.addEventListener('touchmove', () => requestAnimationFrame(updateScrollArrows), { passive: true });
+    window.addEventListener('resize', updateScrollArrows);
+
+    // ── DOKUNMATİK: tek dokunuş → ileri, soldan sağa swipe → önceki ──
+    let touchStartX = 0;
+    let touchStartY = 0;
+    let touchStartTime = 0;
+    const SWIPE_THRESHOLD = 50;   // px — bu mesafenin üstündeki yatay hareket swipe sayılır
+    const TAP_MAX_MOVE = 10;      // px — bu mesafenin altındaki hareket tap sayılır
+    const TAP_MAX_TIME = 300;     // ms — bu sürenin altındaki dokunuş tap sayılır
+
+    document.addEventListener('touchstart', (e) => {
+      if (e.touches.length !== 1) return;
+      const t = e.touches[0];
+      touchStartX = t.clientX;
+      touchStartY = t.clientY;
+      touchStartTime = Date.now();
+    }, { passive: true });
+
+    document.addEventListener('touchend', (e) => {
+      if (e.changedTouches.length !== 1) return;
+      // Sadece Telegram butonu tap sunumu ilerletmesin (panel diğer alanlarına dokunmak normal next yapar)
+      if (e.target && e.target.closest && e.target.closest('.demo-tg-button')) return;
+      const t = e.changedTouches[0];
+      const dx = t.clientX - touchStartX;
+      const dy = t.clientY - touchStartY;
+      const dt = Date.now() - touchStartTime;
+      const absDx = Math.abs(dx);
+      const absDy = Math.abs(dy);
+
+      // Tek dokunuş → ileri
+      if (absDx < TAP_MAX_MOVE && absDy < TAP_MAX_MOVE && dt < TAP_MAX_TIME) {
+        next();
+        return;
+      }
+
+      // Soldan sağa kaydırma → önceki (yatay hareket dikey hareketten baskın olmalı)
+      if (dx > SWIPE_THRESHOLD && absDx > absDy) {
+        prev();
+      }
+    }, { passive: true });
+
+    // ── VİDEO SIYAH FLASH ÖNLEMİ ──
+    // Tüm videolar arka planda yükleniyor, aktif olunca anında hazır
+    document.querySelectorAll('video').forEach(v => {
+      v.addEventListener('canplaythrough', () => {
+        // Hazır ama aktif değilse durdur
+        if (!v.closest('.video-scene.active')) {
+          v.pause();
+          v.currentTime = 0;
+        }
+      });
+      // Loop geçişinde flash önlemi
+      v.addEventListener('timeupdate', () => {
+        if (v.duration && v.currentTime > v.duration - 0.15) {
+          v.currentTime = 0.01;
+        }
+      });
+    });
+
+    // ── FULLSCREEN: ilk tuşa basışta tam ekran ──
+    function goFullscreen() {
+      const el = document.documentElement;
+      const rfs = el.requestFullscreen || el.webkitRequestFullscreen || el.msRequestFullscreen;
+      if (rfs) rfs.call(el);
+      document.removeEventListener('keydown', goFullscreen);
+      document.removeEventListener('click', goFullscreen);
+    }
+    document.addEventListener('keydown', goFullscreen);
+    document.addEventListener('click', goFullscreen);
+    document.addEventListener('touchstart', goFullscreen);
+
+    // WebView'da otomatik fullscreen dene
+    setTimeout(() => {
+      goFullscreen();
+    }, 500);
+
+    // ── WAVE ANİMASYONU (sadece aktif sahne) ──
+    const LINE_COUNT = 14;
+    const SPEED = 0.0003;
+
+    // Mod 2 (portrait) için yatay fiber. Desktop ve mod 3 dikey kalır.
+    const _portraitMQ = window.matchMedia('(orientation: portrait) and (max-width: 900px)');
+
+    function drawWaveOnCanvas(canvas, time) {
+      const ctx = canvas.getContext('2d');
+      const w = canvas.parentElement.offsetWidth;
+      const h = canvas.parentElement.offsetHeight;
+      if (canvas.width !== w) canvas.width = w;
+      if (canvas.height !== h) canvas.height = h;
+
+      ctx.clearRect(0, 0, w, h);
+      const horizontal = _portraitMQ.matches;
+      const major = horizontal ? w : h;        // çizginin uzandığı eksen
+      const minor = horizontal ? h : w;        // çizgilerin dağıldığı eksen
+      const center = LINE_COUNT / 2;
+
+      for (let i = 0; i < LINE_COUNT; i++) {
+        const basePos = minor * 0.15 + (i / LINE_COUNT) * minor * 0.7;
+        const isAccent = (i === 4 || i === 9);
+        const phase = i * 0.35;
+        const dist = Math.abs(i - center) / center;
+        const depth = 1 - dist * 0.6;
+
+        ctx.beginPath();
+        ctx.strokeStyle = isAccent
+          ? `rgba(0,180,216,${0.15 * depth})`
+          : `rgba(170,170,170,${0.18 * depth})`;
+        ctx.lineWidth = 1.0 + depth * 0.8;
+
+        for (let t = 0; t <= major; t += 4) {
+          const wave1 = Math.sin((t * 0.004) + (time * SPEED) + phase) * 30 * depth;
+          const wave2 = Math.sin((t * 0.008) + (time * SPEED * 0.6) + phase) * 15 * depth;
+          const perspective = Math.sin((t * 0.002) + (time * SPEED * 0.4)) * 20;
+          const offset = wave1 + wave2 + perspective * (i - center) * 0.08;
+          const pos = basePos + offset;
+          const x = horizontal ? t : pos;
+          const y = horizontal ? pos : t;
+          if (t === 0) ctx.moveTo(x, y);
+          else ctx.lineTo(x, y);
+        }
+        ctx.stroke();
+      }
+    }
+
+    function drawWave(time) {
+      // Aktif sahnenin info-bg canvas'ı
+      const sceneCanvas = document.querySelector('.video-scene.active .scene-info-bg canvas');
+      if (sceneCanvas) drawWaveOnCanvas(sceneCanvas, time);
+
+      // Aktif sahnenin wave-bg canvas'ı
+      const waveCanvas = document.querySelector('.video-scene.active .wave-bg canvas');
+      if (waveCanvas) drawWaveOnCanvas(waveCanvas, time);
+
+      // Problem slaytı (slide 2 aktifse)
+      if (currentSlide === 1) {
+        const problemCanvas = document.querySelector('#slide-problem .wave-bg canvas');
+        if (problemCanvas) drawWaveOnCanvas(problemCanvas, time);
+      }
+
+      requestAnimationFrame(drawWave);
+    }
+
+    requestAnimationFrame(drawWave);
+
+    // ── İLK RENDER ──
+    render();
+  </script>
+</body>
+
+</html>
