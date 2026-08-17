@@ -2138,3 +2138,31 @@ Ana Ekran → Çizgi Grafik
 **Sayfa bazlı süre:**
 - Çizgi Grafik: 1 sn
 - Ana Ekran: 1 sn
+
+---
+
+## Oturum #3 — 2026-08-17 20:26:42
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Aleyna |
+| **Telegram ID** | `8593933607` |
+| **Başlangıç** | 2026-08-17 20:26:42 |
+| **Bitiş** | 20:28:39 |
+| **Süre** | 116 sn (1 dk 56 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 13 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Bar Grafik → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Tarih Ayarları → Saat ve Tarih Ayarları
+
+**Sayfa bazlı süre:**
+- Saat ve Tarih Ayarları: 60 sn
+- Ana Ekran: 17 sn
+- Güç Göstergesi: 12 sn
+- Güç Büyük: 10 sn
+- Çizgi Grafik: 7 sn
+- Bar Grafik: 2 sn
+- Tarih Ayarları: 2 sn
+- CO₂ Göstergesi: 2 sn
