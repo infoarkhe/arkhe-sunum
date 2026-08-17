@@ -2094,3 +2094,25 @@ Ana Ekran → Günlük Rapor → Ana Ekran → Ayarlar → Ana Ekran → Güç G
 - Günlük Rapor: 3 sn
 - Ayarlar: 2 sn
 - Güç Göstergesi: 1 sn
+
+---
+
+## Oturum #1 — 2026-08-17 20:04:27
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-08-17 20:04:27 |
+| **Bitiş** | 20:05:34 |
+| **Süre** | 66 sn (1 dk 6 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi
+
+**Sayfa bazlı süre:**
+- Güç Göstergesi: 60 sn
+- Ana Ekran: 6 sn
