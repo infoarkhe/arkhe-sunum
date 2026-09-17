@@ -2211,3 +2211,27 @@ Ana Ekran → Çizgi Grafik → Ana Ekran → Güç Göstergesi → Ana Ekran �
 - Bar Grafik: 5 sn
 - Çizgi Grafik: 4 sn
 - Güç Göstergesi: 4 sn
+
+---
+
+## Oturum #2 — 2026-09-17 11:13:41
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-09-17 11:13:41 |
+| **Bitiş** | 11:14:34 |
+| **Süre** | 53 sn (0 dk 53 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 7 |
+| **En çok ziyaret** | Ana Ekran (3x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Güç Göstergesi: 19 sn
+- Çizgi Grafik: 14 sn
+- Ana Ekran: 13 sn
+- Güç Büyük: 5 sn
