@@ -2264,3 +2264,25 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran �
 - Saat ve Tarih Ayarları: 1 sn
 - Tarife Saat Ayarları: 1 sn
 - Tarih Ayarları: 1 sn
+
+---
+
+## Oturum #2 — 2026-09-29 22:32:33
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-09-29 22:32:33 |
+| **Bitiş** | 22:33:54 |
+| **Süre** | 81 sn (1 dk 21 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 3 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 75 sn
+- Güç Göstergesi: 4 sn
