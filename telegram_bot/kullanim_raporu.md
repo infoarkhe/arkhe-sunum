@@ -2286,3 +2286,34 @@ Ana Ekran → Güç Göstergesi → Ana Ekran
 **Sayfa bazlı süre:**
 - Ana Ekran: 75 sn
 - Güç Göstergesi: 4 sn
+
+---
+
+## Oturum #3 — 2026-09-29 22:44:54
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Aleyna |
+| **Telegram ID** | `2115280341` |
+| **Başlangıç** | 2026-09-29 22:44:54 |
+| **Bitiş** | 22:47:30 |
+| **Süre** | 156 sn (2 dk 36 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 20 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Saat Ayarları → Saat ve Tarih Ayarları → Ayarlar → RS485 Ayarları → Ayarlar → Önceden Tanımlı Değerler → Önceden Tanımlı Süre → Önceden Tanımlı Değerler → Ayarlar → Saat ve Tarih Ayarları → Saat Ayarları
+
+**Sayfa bazlı süre:**
+- Saat Ayarları: 63 sn
+- Ana Ekran: 35 sn
+- Çizgi Grafik: 16 sn
+- Ayarlar: 11 sn
+- Saat ve Tarih Ayarları: 6 sn
+- Önceden Tanımlı Süre: 5 sn
+- Önceden Tanımlı Değerler: 5 sn
+- Güç Göstergesi: 4 sn
+- Günlük Rapor: 4 sn
+- RS485 Ayarları: 1 sn
+- CO₂ Göstergesi: 1 sn
