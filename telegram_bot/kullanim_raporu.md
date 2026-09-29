@@ -2235,3 +2235,32 @@ Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana 
 - Çizgi Grafik: 14 sn
 - Ana Ekran: 13 sn
 - Güç Büyük: 5 sn
+
+---
+
+## Oturum #1 — 2026-09-29 13:53:39
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-09-29 13:53:39 |
+| **Bitiş** | 13:55:21 |
+| **Süre** | 101 sn (1 dk 41 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 14 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Günlük Rapor → Ana Ekran → Tarih Ayarları → Saat ve Tarih Ayarları → Ayarlar → Önceden Tanımlı Değerler → Ayarlar → Tarife Saat Ayarları → Ayarlar
+
+**Sayfa bazlı süre:**
+- Ayarlar: 64 sn
+- Ana Ekran: 18 sn
+- Günlük Rapor: 4 sn
+- Önceden Tanımlı Değerler: 2 sn
+- Güç Göstergesi: 2 sn
+- Çizgi Grafik: 1 sn
+- Saat ve Tarih Ayarları: 1 sn
+- Tarife Saat Ayarları: 1 sn
+- Tarih Ayarları: 1 sn
