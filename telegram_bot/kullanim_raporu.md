@@ -2379,3 +2379,24 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 62 sn
+
+---
+
+## Oturum #1 — 2026-10-01 12:31:10
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-01 12:31:10 |
+| **Bitiş** | 12:32:17 |
+| **Süre** | 66 sn (1 dk 6 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 2 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 66 sn
