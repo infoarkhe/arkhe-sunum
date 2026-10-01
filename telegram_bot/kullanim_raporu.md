@@ -2337,3 +2337,24 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekra
 —
 
 **Sayfa bazlı süre:**
+
+---
+
+## Oturum #1 — 2026-10-01 12:22:56
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-01 12:22:56 |
+| **Bitiş** | 12:24:00 |
+| **Süre** | 63 sn (1 dk 3 sn) |
+| **Sonuç** | timeout |
+| **Toplam basış** | 1 |
+| **En çok ziyaret** | Ana Ekran (1x) |
+
+**Sayfa geçişleri:**
+Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 62 sn
