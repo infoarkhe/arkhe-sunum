@@ -2317,3 +2317,23 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekra
 - Günlük Rapor: 4 sn
 - RS485 Ayarları: 1 sn
 - CO₂ Göstergesi: 1 sn
+
+---
+
+## Oturum #4 — 2026-10-01 12:19:10
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-01 12:19:10 |
+| **Bitiş** | 12:21:58 |
+| **Süre** | 167 sn (2 dk 47 sn) |
+| **Sonuç** | bot kapatıldı |
+| **Toplam basış** | 0 |
+| **En çok ziyaret** | — (0x) |
+
+**Sayfa geçişleri:**
+—
+
+**Sayfa bazlı süre:**
