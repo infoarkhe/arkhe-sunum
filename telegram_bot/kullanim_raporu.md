@@ -2505,3 +2505,27 @@ Ana Ekran
 
 **Sayfa bazlı süre:**
 - Ana Ekran: 60 sn
+
+---
+
+## Oturum #1 — 2026-10-02 09:27:57
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-02 09:27:57 |
+| **Bitiş** | 09:28:19 |
+| **Süre** | 22 sn (0 dk 22 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 7 |
+| **En çok ziyaret** | Ana Ekran (4x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran → Günlük Rapor → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 16 sn
+- Günlük Rapor: 2 sn
+- Çizgi Grafik: 1 sn
+- Güç Göstergesi: 1 sn
