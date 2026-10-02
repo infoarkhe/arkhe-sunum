@@ -2754,8 +2754,22 @@
           </div>
         </div>
 
+        <!-- SAHNE COMBO: CO2 (eski hali — video) -->
+        <div class="video-scene co2-combo" data-scene="9">
+          <div class="scene-info-bg"><canvas></canvas></div>
+          <div class="scene-label">CO₂</div>
+          <div class="combo-grid">
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="../videos/05_co2_gauge.mp4" type="video/mp4"></video></div>
+            <div class="combo-cell combo-text">
+              <div class="combo-title">KARBON<br>KİMLİĞİ</div>
+              <div class="combo-body">Anlık <b>CO₂ emisyonu</b> ve toplam birikim. Şebeke karbon faktörü × makinenin kWh tüketimi — sürdürülebilirlik raporlaması için <b>üretim bazlı</b> hazır veri.</div>
+            </div>
+            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="../videos/06_co2_big.mp4" type="video/mp4"></video></div>
+          </div>
+        </div>
+
         <!-- SAHNE CO2: Proje Önerisi — Ürün başına karbon kimliği (Uniter Dashboard) -->
-        <div class="video-scene co2-proposal" data-scene="9">
+        <div class="video-scene co2-proposal" data-scene="10">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="scene-label">CO₂</div>
           <div class="co2p-wrap">
@@ -2793,7 +2807,7 @@
           </div>
         </div>
 
-        <div class="video-scene compare-scene" data-scene="10">
+        <div class="video-scene compare-scene" data-scene="11">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="scene-label">Model Karşılaştırma</div>
           <table class="compare-table">
@@ -2873,7 +2887,7 @@
         </div>
 
         <!-- SAHNE SSS: Sıkça Sorulan Sorular -->
-        <div class="video-scene faq-scene" data-scene="11">
+        <div class="video-scene faq-scene" data-scene="12">
           <div class="scene-info-bg"><canvas></canvas></div>
           <div class="scene-label">SSS</div>
           <div class="faq-content">
@@ -2898,7 +2912,7 @@
         </div>
 
         <!-- SAHNE 15: Pilot Teklifi -->
-        <div class="video-scene demo-scene" data-scene="12">
+        <div class="video-scene demo-scene" data-scene="13">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="demo-title">PİLOT UYGULAMA</div>
           <div class="demo-badge">TEK HAT — BAŞARI ÖLÇÜTÜ BAŞTAN TANIMLI — ÜCRETSİZ</div>
@@ -2937,7 +2951,7 @@
         </div>
 
         <!-- SAHNE 16: Teşekkürler & İletişim -->
-        <div class="video-scene" data-scene="13"
+        <div class="video-scene" data-scene="14"
           style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
           <img src="../logo.svg" class="kapak-logo" alt="">
           <div
@@ -2980,7 +2994,7 @@
 
     // ── STATE ──
     const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
-    const TOTAL_SCENES = 14;
+    const TOTAL_SCENES = 15;
 
     let currentSlide = 0;
     let currentScene = 0; // sadece slayt 2 için geçerli
@@ -3048,10 +3062,11 @@
         } else if (currentSlide === 2) {
           if (currentScene <= 7) activeSection = 1;       // Ürün videoları
           else if (currentScene === 8) activeSection = 2;  // Canlı Demo
-          else if (currentScene === 9) activeSection = 2;  // CO2 Proje Önerisi
-          else if (currentScene === 10) activeSection = 3; // Karşılaştırma
-          else if (currentScene === 11) activeSection = 3; // SSS (karsilastirma ile ayni dot)
-          else if (currentScene === 12) activeSection = 4; // Pilot Uygulama
+          else if (currentScene === 9) activeSection = 2;  // CO2 (video)
+          else if (currentScene === 10) activeSection = 2; // CO2 Proje Önerisi
+          else if (currentScene === 11) activeSection = 3; // Karşılaştırma
+          else if (currentScene === 12) activeSection = 3; // SSS (karsilastirma ile ayni dot)
+          else if (currentScene === 13) activeSection = 4; // Pilot Uygulama
         }
         dots.forEach((d, i) => {
           d.classList.toggle('active', i === activeSection);
@@ -3066,7 +3081,7 @@
       }
 
       // Compare slaytı için body class (mod 3'te nav-indicator override için)
-      document.body.classList.toggle('compare-active', currentSlide === 2 && (currentScene === 10 || currentScene === 11));
+      document.body.classList.toggle('compare-active', currentSlide === 2 && (currentScene === 11 || currentScene === 12));
 
       // Scroll oklarını güncelle (slayt değişimi sonrası)
       requestAnimationFrame(updateScrollArrows);
@@ -3119,7 +3134,7 @@
       }
       // Ücretsiz demo (data-scene="12") — sadece portrait modda scroll'lu
       const activeScene = document.querySelector('.video-scene.active');
-      if (activeScene && (activeScene.dataset.scene === '12' || activeScene.dataset.scene === '11')) {
+      if (activeScene && (activeScene.dataset.scene === '13' || activeScene.dataset.scene === '12')) {
         if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
           return activeScene;
         }
