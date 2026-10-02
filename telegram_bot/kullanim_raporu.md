@@ -2529,3 +2529,30 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → Çizgi Grafik → Ana Ekran �
 - Günlük Rapor: 2 sn
 - Çizgi Grafik: 1 sn
 - Güç Göstergesi: 1 sn
+
+---
+
+## Oturum #2 — 2026-10-02 10:08:14
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-02 10:08:14 |
+| **Bitiş** | 10:09:32 |
+| **Süre** | 77 sn (1 dk 17 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 11 |
+| **En çok ziyaret** | Ana Ekran (5x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekran → Bar Grafik → Ana Ekran → Tarih Ayarları → Saat ve Tarih Ayarları → Ayarlar → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Ana Ekran: 52 sn
+- Ayarlar: 4 sn
+- Bar Grafik: 4 sn
+- CO₂ Göstergesi: 4 sn
+- Güç Göstergesi: 3 sn
+- Tarih Ayarları: 2 sn
+- Saat ve Tarih Ayarları: 1 sn
