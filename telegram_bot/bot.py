@@ -649,7 +649,9 @@ def main():
     app.post_stop = shutdown_notify
 
     log.info("Bot başlatıldı (sıra + geri sayım + raporlama).")
-    app.run_polling()
+    # allowed_updates'i açıkça ver: Telegram önceki kısıtlı seti hatırlıyor,
+    # callback_query (buton basışları) gelmiyordu.
+    app.run_polling(allowed_updates=Update.ALL_TYPES)
 
 
 if __name__ == "__main__":
