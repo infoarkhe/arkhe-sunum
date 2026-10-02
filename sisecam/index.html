@@ -729,66 +729,161 @@
       display: none;        /* bekamak: alt yazi yok, sadece basliki tut */
     }
 
-    /* sisecam: CO2 sahnesinde surdurulebilirlik metni gorunsun (madde 5) */
-    .co2-combo .combo-body {
-      display: block;
-      font-family: var(--font-body);
-      font-size: clamp(16px, 1.5vw, 22px);
-      font-weight: 400;
-      color: var(--gray-700);
-      line-height: 1.55;
-      margin-top: 18px;
-      max-width: 560px;
-    }
-
-    .co2-combo .combo-body b {
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    /* ── TEKNİK ÖZELLİKLER SAHNESİ ── */
-    .tech-scene {
+    /* ── CO2 PROJE ÖNERİSİ (Uniter Dashboard — ürün başına karbon kimliği) ── */
+    .co2-proposal {
       display: flex !important;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      gap: 28px;
+      padding: 0 5vw;
     }
 
-    .tech-scene .scene-label {
-      position: relative;
-      top: auto;
-      left: auto;
-      margin-bottom: 0;
-    }
-
-    .tech-table {
-      border-collapse: collapse;
-      width: 74%;
-      max-width: 1000px;
+    .co2p-wrap {
       position: relative;
       z-index: 1;
+      width: 100%;
+      max-width: 1500px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      margin-top: 6vh;
     }
 
-    .tech-table td {
-      font-family: var(--font-body);
-      font-size: clamp(15px, 1.7vw, 22px);
-      padding: 13px 22px;
-      border-bottom: 1px solid var(--gray-200);
-      color: var(--gray-700);
-      text-align: left;
-    }
-
-    .tech-table td:first-child {
-      font-weight: 600;
-      color: var(--black);
-      width: 38%;
-    }
-
-    .tech-todo {
+    .co2p-badge {
+      font-family: var(--font-display);
+      font-size: clamp(16px, 1.7vw, 26px);
+      letter-spacing: 0.3em;
       color: var(--accent);
-      font-style: italic;
-      letter-spacing: 0.05em;
+    }
+
+    .co2p-title {
+      font-family: var(--font-display);
+      font-size: clamp(48px, 6.2vw, 104px);
+      line-height: 0.95;
+      color: var(--black);
+      letter-spacing: 0.03em;
+      margin: 6px 0 5vh;
+    }
+
+    .co2p-title span {
+      color: var(--accent);
+    }
+
+    .co2p-flow {
+      display: flex;
+      align-items: center;
+      gap: 1.6vw;
+      width: 100%;
+    }
+
+    .co2p-inputs {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      flex: 1.1;
+    }
+
+    .co2p-node {
+      background: var(--white);
+      border: 1.5px solid var(--gray-200);
+      border-top: 3px solid var(--black);
+      padding: 18px 20px;
+    }
+
+    .co2p-node-k {
+      font-family: var(--font-display);
+      font-size: clamp(20px, 1.9vw, 30px);
+      letter-spacing: 0.08em;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+
+    .co2p-node-v {
+      font-family: var(--font-body);
+      font-size: clamp(14px, 1.25vw, 19px);
+      color: var(--gray-700);
+      line-height: 1.5;
+    }
+
+    .co2p-node-v b {
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .co2p-hub {
+      flex: 0.8;
+      border-top-color: var(--accent);
+      text-align: center;
+    }
+
+    .co2p-arrow {
+      font-size: clamp(28px, 2.6vw, 44px);
+      color: var(--accent);
+      flex: 0 0 auto;
+    }
+
+    .co2p-card {
+      flex: 1.2;
+      background: var(--white);
+      border: 2px solid var(--accent);
+      border-radius: 14px;
+      padding: 18px 22px 14px;
+      box-shadow: 0 10px 30px rgba(0, 119, 168, 0.12);
+    }
+
+    .co2p-card-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--font-display);
+      font-size: clamp(20px, 1.9vw, 30px);
+      letter-spacing: 0.12em;
+      color: var(--accent-dark);
+      padding-bottom: 10px;
+      margin-bottom: 8px;
+      border-bottom: 1px solid var(--gray-200);
+    }
+
+    .co2p-card-head img {
+      width: clamp(28px, 2.4vw, 40px);
+      height: clamp(28px, 2.4vw, 40px);
+      animation: corner-spin 60s linear infinite;
+    }
+
+    .co2p-card-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+      font-family: var(--font-body);
+      font-size: clamp(13px, 1.15vw, 18px);
+      padding: 6px 0;
+      color: var(--gray-400);
+    }
+
+    .co2p-card-row b {
+      color: var(--black);
+      font-weight: 600;
+      text-align: right;
+    }
+
+    .co2p-card-main {
+      margin-top: 4px;
+      padding-top: 10px;
+      border-top: 1px dashed var(--gray-200);
+    }
+
+    .co2p-card-main b {
+      color: var(--accent);
+      font-size: 1.15em;
+    }
+
+    .co2p-card-foot {
+      margin-top: 8px;
+      font-family: var(--font-display);
+      font-size: 12px;
+      letter-spacing: 0.3em;
+      color: var(--gray-400);
+      text-align: right;
     }
 
     /* ── KARŞILAŞTIRMA TABLOSU ── */
@@ -2552,22 +2647,8 @@
           <div class="scene-label">Enerjimetre</div>
         </div>
 
-        <!-- SAHNE COMBO: CO2 (öne çekildi — sürdürülebilirlik kancası) -->
-        <div class="video-scene co2-combo" data-scene="1">
-          <div class="scene-info-bg"><canvas></canvas></div>
-          <div class="scene-label">CO₂</div>
-          <div class="combo-grid">
-            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="../videos/05_co2_gauge.mp4" type="video/mp4"></video></div>
-            <div class="combo-cell combo-text">
-              <div class="combo-title">KARBON<br>KİMLİĞİ</div>
-              <div class="combo-body">Anlık <b>CO₂ emisyonu</b> ve toplam birikim. Şebeke karbon faktörü × makinenin kWh tüketimi — sürdürülebilirlik raporlaması için <b>makine bazlı</b> hazır veri.</div>
-            </div>
-            <div class="combo-cell"><video autoplay loop muted playsinline preload="auto"><source src="../videos/06_co2_big.mp4" type="video/mp4"></video></div>
-          </div>
-        </div>
-
         <!-- SAHNE 9: Alarm Sistemi -->
-        <div class="video-scene side-left" data-scene="2">
+        <div class="video-scene side-left" data-scene="1">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/09_alarm.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2580,7 +2661,7 @@
         </div>
 
         <!-- SAHNE 7: Barchart -->
-        <div class="video-scene side-left" data-scene="3">
+        <div class="video-scene side-left" data-scene="2">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/07_barchart.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2593,7 +2674,7 @@
         </div>
 
         <!-- SAHNE 8: Günlük Rapor -->
-        <div class="video-scene side-left" data-scene="4">
+        <div class="video-scene side-left" data-scene="3">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/08_gunluk_rapor.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2606,7 +2687,7 @@
         </div>
 
         <!-- SAHNE 10: RS485 Ayarları -->
-        <div class="video-scene side-left" data-scene="5">
+        <div class="video-scene side-left" data-scene="4">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/10_rs485.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2619,7 +2700,7 @@
 
         <!-- SAHNE 2: Power Gauge -->
         <!-- SAHNE COMBO: Güç (3 video 2x2 grid) -->
-        <div class="video-scene power-combo" data-scene="6">
+        <div class="video-scene power-combo" data-scene="5">
           <div class="scene-info-bg"><canvas></canvas></div>
           <div class="scene-label">Güç</div>
           <div class="combo-grid">
@@ -2634,7 +2715,7 @@
         </div>
 
         <!-- SAHNE 11: Şifre Koruma -->
-        <div class="video-scene side-left" data-scene="7">
+        <div class="video-scene side-left" data-scene="6">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/11_sifre.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2646,7 +2727,7 @@
         </div>
 
         <!-- SAHNE 12: Dil Seçeneği -->
-        <div class="video-scene side-left" data-scene="8">
+        <div class="video-scene side-left" data-scene="7">
           <video autoplay loop muted playsinline preload="auto" poster="../panel_gorsel.png">            <source src="../videos/12_dil.mp4" type="video/mp4">
           </video>
           <div class="scene-info-bg"><canvas></canvas></div>
@@ -2657,7 +2738,7 @@
         </div>
 
         <!-- SAHNE 13: Canlı Demo (iframe global wrapper içinde) -->
-        <div class="video-scene demo-scene" data-scene="9">
+        <div class="video-scene demo-scene" data-scene="8">
           <div class="scene-label rec-label">&#9679; Canlı Demo</div>
           <iframe id="live-stream"
             src="https://vdo.ninja/?view=arkhesunum&room=azad&solo&cover&transparent&autostart&noaudio&bitrate=5000&codec=h264"
@@ -2673,7 +2754,45 @@
           </div>
         </div>
 
-        <!-- SAHNE 14: Karşılaştırma Tablosu -->
+        <!-- SAHNE CO2: Proje Önerisi — Ürün başına karbon kimliği (Uniter Dashboard) -->
+        <div class="video-scene co2-proposal" data-scene="9">
+          <div class="wave-bg"><canvas></canvas></div>
+          <div class="scene-label">CO₂</div>
+          <div class="co2p-wrap">
+            <div class="co2p-badge">// PROJE ÖNERİSİ — UNITER DASHBOARD</div>
+            <div class="co2p-title">ÜRÜN BAŞINA <span>KARBON KİMLİĞİ</span></div>
+            <div class="co2p-flow">
+              <div class="co2p-inputs">
+                <div class="co2p-node">
+                  <div class="co2p-node-k">01 · ENERJİ</div>
+                  <div class="co2p-node-v">Her makinedeki Enerjimetre — çekilen kWh zaten ölçülüyor</div>
+                </div>
+                <div class="co2p-node">
+                  <div class="co2p-node-k">02 · ÜRETİM ADEDİ</div>
+                  <div class="co2p-node-v">Optik sensörle otomatik sayım veya operatörün manuel girişi</div>
+                </div>
+              </div>
+              <div class="co2p-arrow">&#10140;</div>
+              <div class="co2p-node co2p-hub">
+                <div class="co2p-node-k">03 · HUB</div>
+                <div class="co2p-node-v">Makine bazında<br><b>kWh / adet</b><br>× emisyon faktörü</div>
+              </div>
+              <div class="co2p-arrow">&#10140;</div>
+              <div class="co2p-card">
+                <div class="co2p-card-head">
+                  <span>KARBON KİMLİĞİ</span>
+                  <img src="../logo.svg" alt="">
+                </div>
+                <div class="co2p-card-row"><span>Ürün</span><b>Örnek ürün</b></div>
+                <div class="co2p-card-row"><span>Hat / Makine</span><b>Hat 3 · M-12</b></div>
+                <div class="co2p-card-row"><span>Enerji</span><b>x,xx kWh / adet</b></div>
+                <div class="co2p-card-row co2p-card-main"><span>Karbon</span><b>x,xx kg CO₂e / adet</b></div>
+                <div class="co2p-card-foot">ÖRNEK KART</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         <div class="video-scene compare-scene" data-scene="10">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="scene-label">Model Karşılaştırma</div>
@@ -2753,48 +2872,8 @@
           </div>
         </div>
 
-        <!-- SAHNE TEKNİK: Teknik Özellikler (kurumsal müşteri ilk soruları) -->
-        <div class="video-scene tech-scene" data-scene="11">
-          <div class="wave-bg"><canvas></canvas></div>
-          <div class="scene-label">Teknik Özellikler</div>
-          <table class="tech-table">
-            <tr>
-              <td>Ölçüm doğruluk sınıfı</td>
-              <td><span class="tech-todo">· doldurulacak ·</span></td>
-            </tr>
-            <tr>
-              <td>Akım trafosu aralığı</td>
-              <td><span class="tech-todo">· doldurulacak ·</span></td>
-            </tr>
-            <tr>
-              <td>Haberleşme</td>
-              <td>RS485 — Modbus RTU, mevcut SCADA / EMS'e doğrudan veri aktarımı</td>
-            </tr>
-            <tr>
-              <td>Montaj</td>
-              <td>Pano montajı, makine başına bağımsız ünite</td>
-            </tr>
-            <tr>
-              <td>Arayüz</td>
-              <td>Endüstriyel dokunmatik ekran, TR / EN, şifre korumalı ayarlar</td>
-            </tr>
-            <tr>
-              <td>Kayıt</td>
-              <td>12 ay tüketim grafiği, 1 ay günlük rapor (V1S)</td>
-            </tr>
-            <tr>
-              <td>Sertifikalar</td>
-              <td><span class="tech-todo">· doldurulacak ·</span></td>
-            </tr>
-            <tr>
-              <td>Nokta başı fiyat aralığı</td>
-              <td><span class="tech-todo">· doldurulacak ·</span></td>
-            </tr>
-          </table>
-        </div>
-
         <!-- SAHNE SSS: Sıkça Sorulan Sorular -->
-        <div class="video-scene faq-scene" data-scene="12">
+        <div class="video-scene faq-scene" data-scene="11">
           <div class="scene-info-bg"><canvas></canvas></div>
           <div class="scene-label">SSS</div>
           <div class="faq-content">
@@ -2819,7 +2898,7 @@
         </div>
 
         <!-- SAHNE 15: Pilot Teklifi -->
-        <div class="video-scene demo-scene" data-scene="13">
+        <div class="video-scene demo-scene" data-scene="12">
           <div class="wave-bg"><canvas></canvas></div>
           <div class="demo-title">PİLOT UYGULAMA</div>
           <div class="demo-badge">TEK HAT — BAŞARI ÖLÇÜTÜ BAŞTAN TANIMLI — ÜCRETSİZ</div>
@@ -2858,7 +2937,7 @@
         </div>
 
         <!-- SAHNE 16: Teşekkürler & İletişim -->
-        <div class="video-scene" data-scene="14"
+        <div class="video-scene" data-scene="13"
           style="justify-content:center; align-items:center; flex-direction:column; position:relative;">
           <img src="../logo.svg" class="kapak-logo" alt="">
           <div
@@ -2901,7 +2980,7 @@
 
     // ── STATE ──
     const SLIDES = ['slide-kapak', 'slide-problem', 'slide-urun'];
-    const TOTAL_SCENES = 15;
+    const TOTAL_SCENES = 14;
 
     let currentSlide = 0;
     let currentScene = 0; // sadece slayt 2 için geçerli
@@ -2967,12 +3046,12 @@
         if (currentSlide === 1) {
           activeSection = 0; // Problem
         } else if (currentSlide === 2) {
-          if (currentScene <= 8) activeSection = 1;       // Ürün videoları
-          else if (currentScene === 9) activeSection = 2;  // Canlı Demo
+          if (currentScene <= 7) activeSection = 1;       // Ürün videoları
+          else if (currentScene === 8) activeSection = 2;  // Canlı Demo
+          else if (currentScene === 9) activeSection = 2;  // CO2 Proje Önerisi
           else if (currentScene === 10) activeSection = 3; // Karşılaştırma
-          else if (currentScene === 11) activeSection = 3; // Teknik Özellikler
-          else if (currentScene === 12) activeSection = 3; // SSS (karsilastirma ile ayni dot)
-          else if (currentScene === 13) activeSection = 4; // Pilot Uygulama
+          else if (currentScene === 11) activeSection = 3; // SSS (karsilastirma ile ayni dot)
+          else if (currentScene === 12) activeSection = 4; // Pilot Uygulama
         }
         dots.forEach((d, i) => {
           d.classList.toggle('active', i === activeSection);
@@ -3040,7 +3119,7 @@
       }
       // Ücretsiz demo (data-scene="12") — sadece portrait modda scroll'lu
       const activeScene = document.querySelector('.video-scene.active');
-      if (activeScene && (activeScene.dataset.scene === '13' || activeScene.dataset.scene === '12')) {
+      if (activeScene && (activeScene.dataset.scene === '12' || activeScene.dataset.scene === '11')) {
         if (window.matchMedia('(orientation: portrait) and (max-width: 900px)').matches) {
           return activeScene;
         }
