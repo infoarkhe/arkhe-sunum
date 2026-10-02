@@ -2556,3 +2556,26 @@ Ana Ekran → Güç Göstergesi → Ana Ekran → CO₂ Göstergesi → Ana Ekra
 - Güç Göstergesi: 3 sn
 - Tarih Ayarları: 2 sn
 - Saat ve Tarih Ayarları: 1 sn
+
+---
+
+## Oturum #3 — 2026-10-02 10:37:40
+
+| Bilgi | Değer |
+|-------|-------|
+| **Kullanıcı** | Muhammed Azad |
+| **Telegram ID** | `1259481340` |
+| **Başlangıç** | 2026-10-02 10:37:40 |
+| **Bitiş** | 10:38:13 |
+| **Süre** | 32 sn (0 dk 32 sn) |
+| **Sonuç** | manuel bırakma |
+| **Toplam basış** | 5 |
+| **En çok ziyaret** | Ana Ekran (2x) |
+
+**Sayfa geçişleri:**
+Ana Ekran → Güç Göstergesi → Güç Büyük → Güç Göstergesi → Ana Ekran
+
+**Sayfa bazlı süre:**
+- Güç Göstergesi: 18 sn
+- Ana Ekran: 9 sn
+- Güç Büyük: 4 sn
